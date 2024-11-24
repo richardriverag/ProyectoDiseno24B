@@ -1,3 +1,49 @@
 @startuml
-'Diagrama de casos de uso
+left to right direction
+
+actor "Visitante" as visitante
+actor "Residente" as residente
+actor "Seguridad" as seguridad
+actor "Administrador" as administrador
+
+package "Check-in" {
+    usecase "Registrar Entrada" as registrarEntrada
+    usecase "Recopilar Detalles del Visitante" as recopilarDetalles
+    usecase "Notificar Llegada Programada" as notificarLlegada
+    usecase "Mantener Registro Histórico" as mantenerRegistro
+    usecase "Enviar Alerta Rápida" as enviarAlerta
+    usecase "Coordinar Parqueadero de Visita" as coordinarParqueadero
+}
+
+package "Gestión de Usuarios" {
+    usecase "Consultar Información de Residentes" as consultarInfoResidentes
+}
+
+package "Comunicación" {
+    usecase "Enviar Notificación" as enviarNotificacion
+}
+
+package "Reserva de Áreas Compartidas" {
+    usecase "Reservar Parqueadero" as reservarParqueadero
+}
+
+visitante -- registrarEntrada
+registrarEntrada --> recopilarDetalles
+registrarEntrada --> notificarLlegada
+registrarEntrada --> coordinarParqueadero
+registrarEntrada --> mantenerRegistro
+
+notificarLlegada --> enviarNotificacion
+enviarAlerta --> enviarNotificacion
+
+seguridad --> enviarAlerta
+seguridad --> registrarEntrada
+seguridad --> coordinarParqueadero
+
+residente --> notificarLlegada
+residente --> coordinarParqueadero
+
+administrador --> consultarInfoResidentes
+registrarEntrada --> consultarInfoResidentes
+coordinarParqueadero --> reservarParqueadero
 @enduml

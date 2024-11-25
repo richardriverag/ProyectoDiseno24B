@@ -1,1 +1,48 @@
+@startuml
 
+left to right direction
+
+actor "Usuario" as usuarioNombre
+actor "Administrador" as administradorNombre
+actor "Trabajador" as trabajadorNombre
+actor "Residente" as residenteNombre
+package comunicacion{
+package envioMensajes{
+usecase "enviarMensajeResidente" as mensajeResidentes
+usecase "enviarMensajeDirecto" as mensajeDirecto
+usecase "enviarMensajeGlobal" as mensajeGlobal
+}
+
+package comunicados{
+usecase "enviarComunicadosTrabajadores" as comunicadoTrabajadores
+}
+package anuncioGeneral{
+usecase "modificarAnuncioGeneral" as modAnuncioGeneral
+usecase "eliminarAnuncioGeneral" as delAnuncioGeneral
+usecase "agregarAnuncioGeneral" as addAnuncioGeneral
+}
+package reportes{
+usecase "crearReporte" as creaReporte
+}
+}
+
+administradorNombre -u-|> usuarioNombre
+trabajadorNombre -u-|> usuarioNombre
+residenteNombre -u-|> usuarioNombre
+
+
+usuarioNombre --> mensajeResidentes
+administradorNombre --> comunicadoTrabajadores
+usuarioNombre --> mensajeGlobal
+usuarioNombre --> mensajeDirecto
+
+
+addAnuncioGeneral --> modAnuncioGeneral
+addAnuncioGeneral --> delAnuncioGeneral
+administradorNombre --> addAnuncioGeneral
+
+residenteNombre --> comunicadoTrabajadores
+administradorNombre --> creaReporte
+
+
+@enduml

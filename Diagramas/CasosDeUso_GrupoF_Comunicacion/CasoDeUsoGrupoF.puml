@@ -4,25 +4,25 @@ left to right direction
 
 actor "Usuario" as usuarioNombre
 actor "Administrador" as administradorNombre
-actor "Trabajador" as trabajadorNombre
-actor "Residente" as residenteNombre
+actor "Empleado" as empleadoNombre
+actor "Departamento" as departamentoNombre
 package comunicacion{
 package envioMensajes{
-usecase "enviarMensajeResidente" as mensajeResidentes
-usecase "enviarMensajeDirecto" as mensajeDirecto
-usecase "enviarMensajeGlobal" as mensajeGlobal
+usecase "Enviar mensaje residente" as mensajeResidentes
+usecase "Enviar mensaje directo" as mensajeDirecto
+usecase "Enviar mensaje global" as mensajeGlobal
 }
 
 package comunicados{
-usecase "enviarComunicadosTrabajadores" as comunicadoTrabajadores
+usecase "Enviar comunicados a trabajadores" as comunicadoTrabajadores
 }
 package anuncioGeneral{
-usecase "modificarAnuncioGeneral" as modAnuncioGeneral
-usecase "eliminarAnuncioGeneral" as delAnuncioGeneral
-usecase "agregarAnuncioGeneral" as addAnuncioGeneral
+usecase "Modificar anuncio general" as modAnuncioGeneral
+usecase "Eliminar anuncio general" as delAnuncioGeneral
+usecase "Agregar anuncio general" as addAnuncioGeneral
 }
 package reportes{
-usecase "crearReporte" as creaReporte
+usecase "Crear reporte" as creaReporte
 }
 }
 

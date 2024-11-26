@@ -1,0 +1,60 @@
+@startuml
+left to right direction
+
+actor "Administrador del Condominio" as Admin
+actor "Propietario" as Owner
+actor "Residente" as Resident
+actor "Personal de Mantenimiento" as Maintenance
+
+usecase "Registrar inmuebles" as RegisterProperty
+usecase "Actualizar información de inmuebles" as UpdateProperty
+usecase "Consultar disponibilidad de inmuebles" as CheckAvailability
+usecase "Administrar estado de inmuebles" as ManageStatus
+usecase "Configurar áreas comunes" as ConfigureCommonAreas
+usecase "Gestionar reservas de áreas comunes" as ManageReservations
+usecase "Definir reglas de uso de áreas comunes" as DefineRules
+usecase "Registrar usuarios del condominio" as RegisterUsers
+usecase "Consultar datos de propietarios o residentes" as ViewUsers
+usecase "Gestionar acceso al sistema" as ManageAccess
+usecase "Registrar solicitudes de mantenimiento" as MaintenanceRequest
+usecase "Asignar tareas de mantenimiento" as AssignTasks
+usecase "Monitorear estado del mantenimiento" as MonitorMaintenance
+usecase "Configurar alertas y recordatorios" as ConfigureAlerts
+usecase "Notificar eventos fortuitos" as NotifyEvents
+usecase "Generar reportes de estado del condominio" as GenerateReports
+usecase "Auditar actividades del sistema" as AuditSystem
+usecase "Gestionar pagos y cuotas" as ManagePayments
+usecase "Emitir recibos y facturas" as GenerateReceipts
+
+Admin -r-> RegisterProperty
+Admin -r-> UpdateProperty
+Admin -d-> CheckAvailability
+Admin -d-> ManageStatus
+Admin -l-> ConfigureCommonAreas
+Admin -l-> DefineRules
+Admin -d-> RegisterUsers
+Admin -d-> ViewUsers
+Admin -r-> ManageAccess
+Admin -d-> AssignTasks
+Admin -d-> MonitorMaintenance
+Admin -r-> ConfigureAlerts
+Admin -r-> NotifyEvents
+Admin -l-> GenerateReports
+Admin -l-> AuditSystem
+Admin -d-> ManagePayments
+Admin -d-> GenerateReceipts
+
+Owner -d-> CheckAvailability
+Owner -l-> MaintenanceRequest
+Owner -r-> ManageReservations
+Owner -d-> ViewUsers
+Owner -r-> ManagePayments
+
+Resident -l-> MaintenanceRequest
+Resident -r-> ManageReservations
+
+Maintenance -u-> AssignTasks
+Maintenance -d-> MonitorMaintenance
+@enduml
+
+

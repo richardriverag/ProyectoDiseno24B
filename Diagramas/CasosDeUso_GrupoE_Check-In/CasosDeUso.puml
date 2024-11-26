@@ -1,10 +1,8 @@
 @startuml
 left to right direction
 
-actor "Visitante" as visitante
-actor "Residente" as residente
-actor "Seguridad" as seguridad
-actor "Administrador" as administrador
+actor "Departamento" as residente
+actor "Guardia" as seguridad
 
 package "Check-in" {
     usecase "Registrar Entrada" as registrarEntrada
@@ -15,35 +13,28 @@ package "Check-in" {
     usecase "Coordinar Parqueadero de Visita" as coordinarParqueadero
 }
 
-package "Gestión de Usuarios" {
-    usecase "Consultar Información de Residentes" as consultarInfoResidentes
+package "Reservas de Espacios Comunes"{
+   usecase "Reservar áreas comunes" as reservarAC
 }
 
-package "Comunicación" {
-    usecase "Enviar Notificación" as enviarNotificacion
+package "Comunicación"{
+package envioMensajes{
+usecase "enviarMensajeGlobal" as mensajeGlobal
 }
 
-package "Reserva de Áreas Compartidas" {
-    usecase "Reservar Parqueadero" as reservarParqueadero
 }
 
-visitante -- registrarEntrada
-registrarEntrada --> recopilarDetalles
-registrarEntrada --> notificarLlegada
-registrarEntrada --> coordinarParqueadero
-registrarEntrada --> mantenerRegistro
 
-notificarLlegada --> enviarNotificacion
-enviarAlerta --> enviarNotificacion
+registrarEntrada <.. recopilarDetalles : extend
+registrarEntrada <.. notificarLlegada : extend
+registrarEntrada <.. mantenerRegistro : extend
 
-seguridad --> enviarAlerta
-seguridad --> registrarEntrada
-seguridad --> coordinarParqueadero
 
-residente --> notificarLlegada
-residente --> coordinarParqueadero
+seguridad -down- enviarAlerta
+seguridad -left- registrarEntrada
 
-administrador --> consultarInfoResidentes
-registrarEntrada --> consultarInfoResidentes
-coordinarParqueadero --> reservarParqueadero
+residente -- coordinarParqueadero
+
+reservarAC <.up. coordinarParqueadero : include
+mensajeGlobal <.up. enviarAlerta : include
 @enduml

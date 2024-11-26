@@ -1,15 +1,15 @@
 @startuml
 left to right direction
-actor Cliente
+actor Departamento
 
-rectangle "Módulo de Reservas de Espacios Comunes" {
-    usecase "Visualizar disponibilidad" as UC1
-    usecase "Reservar áreas comunes" as UC2
-    usecase "Cancelar reserva" as UC3
+package "Reserva de Espacios Comunes" {
+    usecase "Visualizar disponibilidad" as VisualizarDisp
+    usecase "Reservar áreas comunes" as ReservarArea
+    usecase "Cancelar reserva" as CancelReserva
 
 }
 
-Cliente --> UC1
-Cliente --> UC2
-Cliente --> UC3
+Departamento --> VisualizarDisp
+Departamento --> ReservarArea
+Departamento --> CancelReserva
 @enduml

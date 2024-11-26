@@ -1,0 +1,32 @@
+@startuml
+actor "Administrador" as Admin
+actor "Guardia" as Guardia
+actor "Personal Limpieza" as Limpieza
+actor "Departamento" as Departamento
+
+usecase "Iniciar sesión" as IniciarSesion
+usecase "Verificación 2FA" as Verificacion2FA
+usecase "Recuperar contraseña" as RecuperarContraseña
+usecase "Gestionar cuenta" as GestionarCuenta
+usecase "Crear cuenta" as CrearCuenta
+usecase "Actualizar cuenta" as ActualizarCuenta
+usecase "Desactivar cuenta" as DesactivarCuenta
+
+' Asociación entre actores y casos de uso
+Admin --> IniciarSesion
+Admin --> GestionarCuenta
+Guardia --> IniciarSesion
+Limpieza --> IniciarSesion
+Departamento --> IniciarSesion
+Departamento --> GestionarCuenta
+
+' Generalización
+GestionarCuenta <|-- CrearCuenta
+GestionarCuenta <|-- ActualizarCuenta
+GestionarCuenta <|-- DesactivarCuenta
+
+' Relaciones include y extend
+GestionarCuenta -> Verificacion2FA : <<include>>
+IniciarSesion -> Verificacion2FA : <<include>>
+IniciarSesion -> RecuperarContraseña : <<extend>>
+@enduml

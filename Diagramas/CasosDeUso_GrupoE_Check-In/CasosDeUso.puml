@@ -17,7 +17,7 @@ package "Reservas de Espacios Comunes"{
    usecase "Reservar áreas comunes" as reservarAC
 }
 
-package "Comunicación"{
+package comunicacion{
 package envioMensajes{
 usecase "enviarMensajeGlobal" as mensajeGlobal
 }
@@ -30,11 +30,14 @@ registrarEntrada <.. notificarLlegada : extend
 registrarEntrada <.. mantenerRegistro : extend
 
 
-seguridad -down- enviarAlerta
-seguridad -left- registrarEntrada
+seguridad -- enviarAlerta
+seguridad -- registrarEntrada
+seguridad -- coordinarParqueadero
 
 residente -- coordinarParqueadero
 
-reservarAC <.up. coordinarParqueadero : include
+reservarAC <.left. coordinarParqueadero : include
 mensajeGlobal <.up. enviarAlerta : include
+
+
 @enduml

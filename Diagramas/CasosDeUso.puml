@@ -123,28 +123,47 @@ Departamento -- CancelReserva
 ReservarAC <.. CoordinarParqueadero : <<include>>
 
 ' Comunicación
-package "Comunicación" {
-    package "Envío de Mensajes" {
-        usecase "Enviar Mensaje Global" as MensajeGlobal
-        usecase "Enviar Mensaje Directo" as MensajeDirecto
-        usecase "Enviar solicitud de reserva" as EnviarSolicitud
-        usecase "Revisar solicitud de reserva" as RevisarSolicitud
-        usecase "Enviar aceptación de reserva" as EnviarAceptacion
-        usecase "Enviar deuda de cuota" as EnviarDeuda
+package Comunicación{
+package "Envío Mensajes"{
 
-    }
-    package "Comunicados" {
-        usecase "Enviar Comunicados Trabajadores" as ComunicadoTrabajadores
-    }
-    package "Anuncio General" {
-        usecase "Modificar Anuncio General" as ModAnuncioGeneral
-        usecase "Eliminar Anuncio General" as DelAnuncioGeneral
-        usecase "Agregar Anuncio General" as AddAnuncioGeneral
-    }
-    package "Reportes" {
-        usecase "Crear Reporte" as CreaReporte
-    }
+usecase "Enviar mensaje directo" as mensajeDirecto
+usecase "Enviar mensaje global" as mensajeGlobal
+usecase "Recibir mensaje directo" as recibirmsjDirecto
+usecase "Recibir mensaje global" as recibirmsjGlobal
 }
+
+package Comunicados{
+usecase "Enviar Comunicados Trabajadores" as comunicadoTrabajadores
+usecase "Recibir Comunicados Trabajadores" as recibirComunicadoTrabajadores
+}
+
+package "Anuncio General"{
+usecase "Modificar anuncio general" as modAnuncioGeneral
+usecase "Eliminar anuncio general" as delAnuncioGeneral
+usecase "Agregar anuncio general" as addAnuncioGeneral
+}
+
+package Reportes{
+usecase "Crear reporte de mensajes Empleados" as creaReporte
+usecase "Visualizar reportes de mensajes Empleados" as visualizarReporte
+}
+}
+
+Admin --> comunicadoTrabajadores
+Empleado --> recibirComunicadoTrabajadores
+Departamento --> mensajeGlobal
+Departamento --> mensajeDirecto
+Departamento --> recibirmsjGlobal
+Departamento --> recibirmsjDirecto
+
+Admin --> modAnuncioGeneral
+Admin --> delAnuncioGeneral
+Admin --> addAnuncioGeneral
+Admin --> visualizarReporte
+Admin --> creaReporte
+
+
+
 package Inmuebles{
 usecase "Registrar inmuebles" as RegisterProperty
 usecase "Actualizar información de inmuebles" as UpdateProperty
@@ -196,18 +215,4 @@ ReservarArea <.. EnviarAceptacion:  <<extend>>
 
 }
 
-
-
-Admin --> ComunicadoTrabajadores
-Admin --> MensajeGlobal
-Admin --> MensajeDirecto
-
-AddAnuncioGeneral --> ModAnuncioGeneral
-AddAnuncioGeneral --> DelAnuncioGeneral
-Admin --> AddAnuncioGeneral
-
-Departamento --> ComunicadoTrabajadores
-Admin --> CreaReporte
-
-MensajeGlobal <.. EnviarAlerta : <<include>>
 @enduml

@@ -85,7 +85,6 @@ GestionarCuenta <|-- DesactivarCuenta
 GestionarCuenta ..> Verificacion2FA : <<include>>
 IniciarSesion ..> Verificacion2FA : <<include>>
 IniciarSesion <. RecuperarContraseña : <<extend>>
-
 ' Check-in
 package "Check-in" {
     usecase "Registrar Entrada" as RegistrarEntrada
@@ -176,6 +175,7 @@ Admin --> addAnuncioGeneral
 Admin --> visualizarReporte
 Admin --> creaReporte
 
+Verificacion2FA .....> mensajeDirecto : <<include>>
 
 
 package Inmuebles{

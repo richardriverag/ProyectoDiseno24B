@@ -32,6 +32,7 @@ usecase "Pago a cuotas" as UC1_4
 }
 usecase "Consultar el historial de pagos y multas" as UC2
 usecase "Recibir recordatorios y notificaciones" as UC3
+usecase "Verificar estado de cuotas" as VerEstadoCuota
 
 
 usecase "Registrar un pago" as UC4
@@ -60,6 +61,8 @@ Admin --> UC5
 Admin --> UC6
 Admin --> UC7
 Admin --> UC8
+
+Admin -right- VerEstadoCuota
 
 ' Gestión de usuarios y administradores
 package "Gestión de Usuarios" {
@@ -114,9 +117,9 @@ package "Reserva de Espacios Comunes" {
     usecase "Cancelar reserva" as CancelReserva
 }
 
-Departamento --> VisualizarDisp
-Departamento --> ReservarAC
-Departamento --> CancelReserva
+Departamento -- VisualizarDisp
+VisualizarDisp <.right. ReservarAC: <<extend>>
+Departamento -- CancelReserva
 ReservarAC <.. CoordinarParqueadero : <<include>>
 
 ' Comunicación
@@ -124,6 +127,11 @@ package "Comunicación" {
     package "Envío de Mensajes" {
         usecase "Enviar Mensaje Global" as MensajeGlobal
         usecase "Enviar Mensaje Directo" as MensajeDirecto
+        usecase "Enviar solicitud de reserva" as EnviarSolicitud
+        usecase "Revisar solicitud de reserva" as RevisarSolicitud
+        usecase "Enviar aceptación de reserva" as EnviarAceptacion
+        usecase "Enviar deuda de cuota" as EnviarDeuda
+
     }
     package "Comunicados" {
         usecase "Enviar Comunicados Trabajadores" as ComunicadoTrabajadores
@@ -177,6 +185,15 @@ Departamento -r-> ManageReservations
 
 Mantenimiento -u-> AssignTasks
 Mantenimiento -d-> MonitorMaintenance
+
+ReservarArea ..> EnviarSolicitud: <<include>>
+Admin -up- EnviarDeuda
+Admin -up- EnviarAceptacion
+Admin -up- RevisarSolicitud
+
+ReservarArea <.. EnviarDeuda: <<extend>>
+ReservarArea <.. EnviarAceptacion:  <<extend>>
+
 }
 
 

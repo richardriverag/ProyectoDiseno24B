@@ -5,44 +5,45 @@ left to right direction
 actor "Usuario" as usuarioNombre
 actor "Administrador" as administradorNombre
 actor "Empleado" as empleadoNombre
-actor "Departamento" as departamentoNombre
 package comunicacion{
 package envioMensajes{
-usecase "Enviar mensaje residente" as mensajeResidentes
+
 usecase "Enviar mensaje directo" as mensajeDirecto
 usecase "Enviar mensaje global" as mensajeGlobal
+usecase "Recibir mensaje directo" as recibirmsjDirecto
+usecase "Recibir mensaje global" as recibirmsjGlobal
 }
 
 package comunicados{
-usecase "Enviar comunicados a trabajadores" as comunicadoTrabajadores
+usecase "Enviar Comunicados Trabajadores" as comunicadoTrabajadores
+usecase "Recibir Comunicados Trabajadores" as recibirComunicadoTrabajadores
 }
 package anuncioGeneral{
 usecase "Modificar anuncio general" as modAnuncioGeneral
 usecase "Eliminar anuncio general" as delAnuncioGeneral
 usecase "Agregar anuncio general" as addAnuncioGeneral
+
 }
 package reportes{
-usecase "Crear reporte" as creaReporte
+usecase "Crear reporte de mensajes Empleados" as creaReporte
+usecase "Visualizar reportes de mensajes Empleados" as visualizarReporte
 }
 }
 
 administradorNombre -u-|> usuarioNombre
-trabajadorNombre -u-|> usuarioNombre
-residenteNombre -u-|> usuarioNombre
+empleadoNombre -u-|> usuarioNombre
 
-
-usuarioNombre --> mensajeResidentes
 administradorNombre --> comunicadoTrabajadores
+empleadoNombre --> recibirComunicadoTrabajadores
 usuarioNombre --> mensajeGlobal
 usuarioNombre --> mensajeDirecto
+usuarioNombre --> recibirmsjGlobal
+usuarioNombre --> recibirmsjDirecto
 
-
-addAnuncioGeneral --> modAnuncioGeneral
-addAnuncioGeneral --> delAnuncioGeneral
+administradorNombre --> modAnuncioGeneral
+administradorNombre --> delAnuncioGeneral
 administradorNombre --> addAnuncioGeneral
-
-residenteNombre --> comunicadoTrabajadores
+administradorNombre --> visualizarReporte
 administradorNombre --> creaReporte
-
 
 @enduml

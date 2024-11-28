@@ -1,0 +1,147 @@
+@startuml
+left to right direction
+
+' Actores principales
+actor "Administrador" as Admin
+actor "Limpieza" as Limpieza
+actor "Residente" as Departamento
+actor "Mantenimiento" as Mantenimiento
+actor "Empleado" as Empleado
+actor "Usuario"
+actor "Guardia" as Guardia
+
+' Jerarquía de usuarios
+Usuario <|-- Empleado
+Usuario <|-- Admin
+Usuario <|-- Departamento
+Empleado <|-- Limpieza
+Empleado <|-- Mantenimiento
+Empleado <|-- Guardia
+
+' Gestión de pagos y multas
+package "Gestión de Pagos y Multas" {
+    usecase "Realizar un pago" as Pago
+    usecase "Pago en efectivo" as PagoEfectivo
+    usecase "Pago por transferencia bancaria" as PagoTransferencia
+    usecase "Pago por depósito bancario" as PagoDeposito
+    usecase "Pago a cuotas" as PagoCuotas
+    usecase "Visualizar historial de pagos y multas" as VisualizarHistorial
+    usecase "Recibir recordatorios y notificaciones" as Notificaciones
+    usecase "Registrar un pago" as RegistrarPago
+    usecase "Registrar una multa" as RegistrarMulta
+    usecase "Gestionar historial" as GestionHistorial
+    usecase "Editar historial" as EditarHistorial
+    usecase "Configurar métodos de pago" as ConfigurarPago
+}
+
+Pago ..> EditarHistorial : <<include>>
+PagoEfectivo <|-- Pago
+PagoTransferencia <|-- Pago
+PagoDeposito <|-- Pago
+PagoCuotas <|-- Pago
+
+Departamento --> Pago
+Departamento --> VisualizarHistorial
+Departamento --> Notificaciones
+Admin --> RegistrarPago
+Admin --> VisualizarHistorial
+Admin --> RegistrarMulta
+Admin --> GestionHistorial
+Admin --> ConfigurarPago
+
+RegistrarPago ..> EditarHistorial : <<include>>
+RegistrarMulta ..> EditarHistorial : <<include>>
+GestionHistorial ..> EditarHistorial : <<include>>
+
+' Gestión de usuarios y administradores
+package "Gestión de Usuarios" {
+    usecase "Iniciar sesión" as IniciarSesion
+    usecase "Verificación 2FA" as Verificacion2FA
+    usecase "Recuperar contraseña" as RecuperarContraseña
+    usecase "Gestionar cuenta" as GestionarCuenta
+    usecase "Crear cuenta" as CrearCuenta
+    usecase "Actualizar cuenta" as ActualizarCuenta
+    usecase "Desactivar cuenta" as DesactivarCuenta
+}
+
+Admin --> GestionarCuenta
+Usuario --> IniciarSesion
+Departamento --> GestionarCuenta
+
+GestionarCuenta <|-- CrearCuenta
+GestionarCuenta <|-- ActualizarCuenta
+GestionarCuenta <|-- DesactivarCuenta
+GestionarCuenta ..> Verificacion2FA : <<include>>
+IniciarSesion ..> Verificacion2FA : <<include>>
+IniciarSesion <. RecuperarContraseña : <<extend>>
+
+' Check-in
+package "Check-in" {
+    usecase "Registrar Entrada" as RegistrarEntrada
+    usecase "Recopilar Detalles del Visitante" as RecopilarDetalles
+    usecase "Notificar Llegada Programada" as NotificarLlegada
+    usecase "Mantener Registro Histórico" as MantenerRegistro
+    usecase "Enviar Alerta Rápida" as EnviarAlerta
+    usecase "Coordinar Parqueadero de Visita" as CoordinarParqueadero
+    usecase "Autorizar Entrada" as AutorizarEntrada
+}
+
+RegistrarEntrada <.. RecopilarDetalles : <<extend>>
+RegistrarEntrada <.. NotificarLlegada : <<extend>>
+RegistrarEntrada <.. MantenerRegistro : <<extend>>
+RegistrarEntrada <.. AutorizarEntrada : <<include>>
+
+CoordinarParqueadero <.. AutorizarEntrada : <<include>>
+
+Guardia --> RegistrarEntrada
+Guardia --> EnviarAlerta
+Guardia --> CoordinarParqueadero
+
+Departamento --> CoordinarParqueadero
+
+' Reservas de Espacios Comunes
+package "Reserva de Espacios Comunes" {
+    usecase "Visualizar disponibilidad" as VisualizarDisp
+    usecase "Reservar áreas comunes" as ReservarAC
+    usecase "Cancelar reserva" as CancelReserva
+}
+
+Departamento --> VisualizarDisp
+Departamento --> ReservarAC
+Departamento --> CancelReserva
+ReservarAC <.. CoordinarParqueadero : <<include>>
+
+' Comunicación
+package "Comunicación" {
+    package "Envío de Mensajes" {
+        usecase "Enviar Mensaje Global" as MensajeGlobal
+        usecase "Enviar Mensaje Directo" as MensajeDirecto
+    }
+    package "Comunicados" {
+        usecase "Enviar Comunicados Trabajadores" as ComunicadoTrabajadores
+    }
+    package "Anuncio General" {
+        usecase "Modificar Anuncio General" as ModAnuncioGeneral
+        usecase "Eliminar Anuncio General" as DelAnuncioGeneral
+        usecase "Agregar Anuncio General" as AddAnuncioGeneral
+    }
+    package "Reportes" {
+        usecase "Crear Reporte" as CreaReporte
+    }
+}
+
+
+
+Admin --> ComunicadoTrabajadores
+Admin --> MensajeGlobal
+Admin --> MensajeDirecto
+
+AddAnuncioGeneral --> ModAnuncioGeneral
+AddAnuncioGeneral --> DelAnuncioGeneral
+Admin --> AddAnuncioGeneral
+
+Departamento --> ComunicadoTrabajadores
+Admin --> CreaReporte
+
+MensajeGlobal <.. EnviarAlerta : <<include>>
+@enduml

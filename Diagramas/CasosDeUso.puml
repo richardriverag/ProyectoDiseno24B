@@ -112,14 +112,28 @@ Departamento --> CoordinarParqueadero
 
 ' Reservas de Espacios Comunes
 package "Reserva de Espacios Comunes" {
-    usecase "Visualizar disponibilidad" as VisualizarDisp
-    usecase "Reservar áreas comunes" as ReservarAC
-    usecase "Cancelar reserva" as CancelReserva
+    usecase "Visualizar Disponibilidad" as VisualizarDisp
+    usecase "Reservar Áreas Comunes" as ReservarAC
+    usecase "Cancelar Reserva" as CancelReserva
+    usecase "Enviar Deuda" as EnviarDeuda
+    usecase "Enviar Aceptación" as EnviarAceptacion
+    usecase "Enviar Solicitud" as EnviarSolicitud
+    usecase "Revisar Solicitud" as RevisarSolicitud
+
+    ReservarAC ..> EnviarSolicitud: <<include>>
+    Admin --> EnviarDeuda
+    Admin --> EnviarAceptacion
+    Admin --> RevisarSolicitud
+
+    ReservarAC <.. EnviarDeuda: <<extend>>
+    ReservarAC <.. EnviarAceptacion:  <<extend>>
 }
 
-Departamento -- VisualizarDisp
-VisualizarDisp <.right. ReservarAC: <<extend>>
-Departamento -- CancelReserva
+Departamento --> ReservarAC
+Departamento --> VisualizarDisp
+Departamento --> VisualizarDisp
+VisualizarDisp <.. ReservarAC: <<extend>>
+Departamento --> CancelReserva
 ReservarAC <.. CoordinarParqueadero : <<include>>
 
 ' Comunicación
@@ -204,14 +218,6 @@ Departamento -r-> ManageReservations
 
 Mantenimiento -u-> AssignTasks
 Mantenimiento -d-> MonitorMaintenance
-
-ReservarArea ..> EnviarSolicitud: <<include>>
-Admin -up- EnviarDeuda
-Admin -up- EnviarAceptacion
-Admin -up- RevisarSolicitud
-
-ReservarArea <.. EnviarDeuda: <<extend>>
-ReservarArea <.. EnviarAceptacion:  <<extend>>
 
 }
 

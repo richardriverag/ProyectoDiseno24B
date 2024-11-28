@@ -129,6 +129,47 @@ package "Comunicación" {
         usecase "Crear Reporte" as CreaReporte
     }
 }
+package Inmuebles{
+usecase "Registrar inmuebles" as RegisterProperty
+usecase "Actualizar información de inmuebles" as UpdateProperty
+usecase "Consultar disponibilidad de inmuebles" as CheckAvailability
+usecase "Administrar estado de inmuebles" as ManageStatus
+usecase "Gestionar áreas comunes" as ManageCommonAreas
+usecase "Gestionar reservas de áreas comunes" as ManageReservations
+usecase "Registrar usuarios del condominio" as RegisterUsers
+usecase "Consultar datos de propietarios o residentes" as ViewUsers
+usecase "Gestionar acceso al sistema" as ManageAccess
+usecase "Registrar solicitudes de mantenimiento" as MaintenanceRequest
+usecase "Asignar tareas de mantenimiento" as AssignTasks
+usecase "Monitorear estado del mantenimiento" as MonitorMaintenance
+usecase "Configurar alertas y recordatorios" as ConfigureAlerts
+usecase "Notificar eventos fortuitos" as NotifyEvents
+usecase "Generar reportes de estado del condominio" as GenerateReports
+usecase "Gestionar pagos y cuotas" as ManagePayments
+usecase "Emitir recibos y facturas" as GenerateReceipts
+
+Admin -r-> RegisterProperty
+Admin -r-> UpdateProperty
+Admin -d-> CheckAvailability
+Admin -d-> ManageStatus
+Admin -l-> ManageCommonAreas
+Admin -d-> RegisterUsers
+Admin -d-> ViewUsers
+Admin -r-> ManageAccess
+Admin -d-> AssignTasks
+Admin -d-> MonitorMaintenance
+Admin -r-> ConfigureAlerts
+Admin -r-> NotifyEvents
+Admin -l-> GenerateReports
+Admin -d-> ManagePayments
+Admin -d-> GenerateReceipts
+
+Departamento -l-> MaintenanceRequest
+Departamento -r-> ManageReservations
+
+Mantenimiento -u-> AssignTasks
+Mantenimiento -d-> MonitorMaintenance
+}
 
 
 

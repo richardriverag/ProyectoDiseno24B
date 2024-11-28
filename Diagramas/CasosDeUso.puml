@@ -97,9 +97,9 @@ package "Check-in" {
 RegistrarEntrada <.. RecopilarDetalles : <<extend>>
 RegistrarEntrada <.. NotificarLlegada : <<extend>>
 RegistrarEntrada <.. MantenerRegistro : <<extend>>
-RegistrarEntrada <.. AutorizarEntrada : <<include>>
+RegistrarEntrada ..> AutorizarEntrada : <<include>>
 
-CoordinarParqueadero <.. AutorizarEntrada : <<include>>
+CoordinarParqueadero ..> AutorizarEntrada : <<include>>
 
 Guardia --> RegistrarEntrada
 Guardia --> EnviarAlerta

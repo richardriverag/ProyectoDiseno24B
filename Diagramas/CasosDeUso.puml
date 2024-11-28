@@ -1,0 +1,224 @@
+@startuml
+left to right direction
+
+' Actores principales
+actor "Administrador" as Admin
+actor "Limpieza" as Limpieza
+actor "Residente" as Residente
+actor "Mantenimiento" as Mantenimiento
+actor "Empleado" as Empleado
+actor "Usuario"
+actor "Guardia" as Guardia
+
+' Jerarquía de usuarios
+Usuario <|-- Empleado
+Usuario <|-- Admin
+Usuario <|-- Residente
+Empleado <|-- Limpieza
+Empleado <|-- Mantenimiento
+Empleado <|-- Guardia
+
+' Gestión de pagos y multas
+package "Pagos y Finanzas"{
+
+
+
+usecase "Realizar un Pago" as UC1
+package "Métodos de Pago" {
+usecase "Pago en Efectivo" as UC1_1
+usecase "Pago por Transferencia Bancaria" as UC1_2
+usecase "Pago por Depósito Bancario" as UC1_3
+usecase "Pago a Cuotas" as UC1_4
+}
+usecase "Consultar el Historial de Pagos y Multas" as UC2
+usecase "Recibir Recordatorios y Notificaciones" as UC3
+usecase "Verificar Estado de Cuotas" as VerEstadoCuota
+
+
+usecase "Registrar un Pago" as UC4
+usecase "Editar Registro de Pago" as UC4_5
+usecase "Registrar una Multa" as UC5
+usecase "Consultar el Historial de Pagos y Multas" as UC6
+usecase "Enviar Recordatorios y Notificaciones" as UC7
+usecase "Configurar Métodos de Pago" as UC8
+}
+
+
+Residente --> UC1
+UC1 <|-- UC1_1
+UC1 <|-- UC1_2
+UC1 <|-- UC1_3
+UC1 <|-- UC1_4
+
+
+Residente --> UC2
+Residente --> UC3
+
+Admin --> UC4
+Admin--> UC4_5
+Admin --> UC5
+
+Admin --> UC6
+Admin --> UC7
+Admin --> UC8
+
+Admin -right- VerEstadoCuota
+
+' Gestión de usuarios y administradores
+package "Gestión de Usuarios" {
+    usecase "Iniciar Sesión" as IniciarSesion
+    usecase "Verificación 2FA" as Verificacion2FA
+    usecase "Recuperar Contraseña" as RecuperarContraseña
+    usecase "Gestionar Cuenta" as GestionarCuenta
+    usecase "Crear Cuenta" as CrearCuenta
+    usecase "Actualizar Cuenta" as ActualizarCuenta
+    usecase "Desactivar Cuenta" as DesactivarCuenta
+}
+
+Admin --> GestionarCuenta
+Usuario --> IniciarSesion
+Residente --> GestionarCuenta
+
+GestionarCuenta <|-- CrearCuenta
+GestionarCuenta <|-- ActualizarCuenta
+GestionarCuenta <|-- DesactivarCuenta
+GestionarCuenta ..> Verificacion2FA : <<include>>
+IniciarSesion ..> Verificacion2FA : <<include>>
+IniciarSesion <. RecuperarContraseña : <<extend>>
+' Check-in
+package "Check-in" {
+    usecase "Registrar Entrada" as RegistrarEntrada
+    usecase "Recopilar Detalles del Visitante" as RecopilarDetalles
+    usecase "Notificar Llegada Programada" as NotificarLlegada
+    usecase "Mantener Registro Histórico" as MantenerRegistro
+    usecase "Enviar Alerta Rápida" as EnviarAlerta
+    usecase "Coordinar Parqueadero de Visita" as CoordinarParqueadero
+    usecase "Autorizar Entrada" as AutorizarEntrada
+}
+
+RegistrarEntrada <.. RecopilarDetalles : <<extend>>
+RegistrarEntrada <.. NotificarLlegada : <<extend>>
+RegistrarEntrada <.. MantenerRegistro : <<extend>>
+RegistrarEntrada ..> AutorizarEntrada : <<include>>
+
+CoordinarParqueadero ..> AutorizarEntrada : <<include>>
+
+Guardia --> RegistrarEntrada
+Guardia --> EnviarAlerta
+Guardia --> CoordinarParqueadero
+
+Residente --> CoordinarParqueadero
+
+' Reservas de Espacios Comunes
+package "Reserva de Espacios Comunes" {
+    usecase "Visualizar Disponibilidad" as VisualizarDisp
+    usecase "Reservar Áreas Comunes" as ReservarAC
+    usecase "Cancelar Reserva" as CancelReserva
+    usecase "Enviar Deuda" as EnviarDeuda
+    usecase "Enviar Aceptación" as EnviarAceptacion
+    usecase "Enviar Solicitud" as EnviarSolicitud
+    usecase "Revisar Solicitud" as RevisarSolicitud
+
+    ReservarAC ..> EnviarSolicitud: <<include>>
+    Admin --> EnviarDeuda
+    Admin --> EnviarAceptacion
+    Admin --> RevisarSolicitud
+
+    ReservarAC <.. EnviarDeuda: <<extend>>
+    ReservarAC <.. EnviarAceptacion:  <<extend>>
+}
+
+Residente --> ReservarAC
+Residente --> VisualizarDisp
+Residente --> VisualizarDisp
+VisualizarDisp <.. ReservarAC: <<extend>>
+Residente --> CancelReserva
+ReservarAC <.. CoordinarParqueadero : <<include>>
+
+' Comunicación
+package Comunicación{
+package "Envío Mensajes"{
+
+usecase "Enviar Mensaje Ddirecto" as mensajeDirecto
+usecase "Enviar Mensaje Global" as mensajeGlobal
+usecase "Recibir Mensaje Directo" as recibirmsjDirecto
+usecase "Recibir Mensaje Global" as recibirmsjGlobal
+}
+
+package Comunicados{
+usecase "Enviar Comunicados Empleados" as comunicadoTrabajadores
+usecase "Recibir Comunicados Empleados" as recibirComunicadoTrabajadores
+}
+
+package "Anuncio General"{
+usecase "Modificar Anuncio General" as modAnuncioGeneral
+usecase "Eliminar Anuncio General" as delAnuncioGeneral
+usecase "Agregar Anuncio General" as addAnuncioGeneral
+}
+
+package Reportes{
+usecase "Crear Reporte de Mensajes Empleados" as creaReporte
+usecase "Visualizar Reportes de Mensajes Empleados" as visualizarReporte
+}
+}
+
+Admin --> comunicadoTrabajadores
+Empleado --> recibirComunicadoTrabajadores
+Residente --> mensajeGlobal
+Residente --> mensajeDirecto
+Residente --> recibirmsjGlobal
+Residente --> recibirmsjDirecto
+
+Admin --> modAnuncioGeneral
+Admin --> delAnuncioGeneral
+Admin --> addAnuncioGeneral
+Admin --> visualizarReporte
+Admin --> creaReporte
+
+Verificacion2FA .....> mensajeDirecto : <<include>>
+
+
+package Inmuebles{
+usecase "Registrar Inmuebles" as RegisterProperty
+usecase "Actualizar Información de Inmuebles" as UpdateProperty
+usecase "Consultar Disponibilidad de Inmuebles" as CheckAvailability
+usecase "Administrar Estado de Inmuebles" as ManageStatus
+usecase "Gestionar Áreas Comunes" as ManageCommonAreas
+usecase "Gestionar Reservas de Áreas Comunes" as ManageReservations
+usecase "Registrar Usuarios del Condominio" as RegisterUsers
+usecase "Consultar Datos de Propietarios o Residentes" as ViewUsers
+usecase "Gestionar Acceso al Sistema" as ManageAccess
+usecase "Registrar Solicitudes de Mantenimiento" as MaintenanceRequest
+usecase "Asignar Tareas de Mantenimiento" as AssignTasks
+usecase "Monitorear Estado del Mantenimiento" as MonitorMaintenance
+usecase "Configurar Alertas y Recordatorios" as ConfigureAlerts
+usecase "Notificar Eventos Fortuitos" as NotifyEvents
+usecase "Generar Reportes de Estado del Condominio" as GenerateReports
+usecase "Gestionar Pagos y Cuotas" as ManagePayments
+usecase "Emitir Recibos y Facturas" as GenerateReceipts
+
+Admin -r-> RegisterProperty
+Admin -r-> UpdateProperty
+Admin -d-> CheckAvailability
+Admin -d-> ManageStatus
+Admin -l-> ManageCommonAreas
+Admin -d-> RegisterUsers
+Admin -d-> ViewUsers
+Admin -r-> ManageAccess
+Admin -d-> AssignTasks
+Admin -d-> MonitorMaintenance
+Admin -r-> ConfigureAlerts
+Admin -r-> NotifyEvents
+Admin -l-> GenerateReports
+Admin -d-> ManagePayments
+Admin -d-> GenerateReceipts
+
+Residente -l-> MaintenanceRequest
+Residente -r-> ManageReservations
+
+Mantenimiento -u-> AssignTasks
+Mantenimiento -d-> MonitorMaintenance
+
+}
+
+@enduml

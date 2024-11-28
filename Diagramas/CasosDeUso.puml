@@ -19,12 +19,12 @@ Empleado <|-- Mantenimiento
 Empleado <|-- Guardia
 
 ' Gestión de pagos y multas
-package Módulo_pagos_finanzas{
+package "Pagos y Finanzas"{
 
 
 
 usecase "Realizar un pago" as UC1
-package MetodosDePagos{
+package "Métodos de Pago" {
 usecase "Pago en efectivo" as UC1_1
 usecase "Pago por transferencia bancaria" as UC1_2
 usecase "Pago por depósito bancario" as UC1_3
@@ -35,19 +35,19 @@ usecase "Recibir recordatorios y notificaciones" as UC3
 
 
 usecase "Registrar un pago" as UC4
-usecase "Editar regristo de pago" as UC4_5
+usecase "Editar registro de pago" as UC4_5
 usecase "Registrar una multa" as UC5
-usecase "Consultar el historial de pago y multas" as UC6
+usecase "Consultar el historial de pagos y multas" as UC6
 usecase "Enviar recordatorios y notificaciones" as UC7
 usecase "Configurar métodos de pago" as UC8
 }
 
 
 Departamento --> UC1
-UC1 --|> UC1_1
-UC1 --|> UC1_2
-UC1 --|> UC1_3
-UC1 --|> UC1_4
+UC1 <|-- UC1_1
+UC1 <|-- UC1_2
+UC1 <|-- UC1_3
+UC1 <|-- UC1_4
 
 
 Departamento --> UC2

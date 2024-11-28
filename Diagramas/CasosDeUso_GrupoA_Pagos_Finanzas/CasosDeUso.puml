@@ -1,6 +1,6 @@
 @startuml
 left to right direction
-actor Cliente as C
+actor Departamento as C
 Actor Administrador as A
 
 
@@ -25,22 +25,22 @@ usecase "Configurar métodos de pago" as UC8
 
 
 C --> UC1
-UC1 ..> guardar
-UC1_1 -[#green]-> UC1 : <<extends>>
-UC1_2 -[#green]-> UC1 : <<extends>>
-UC1_3 -[#green]-> UC1 : <<extends>>
-UC1_4 -[#green]-> UC1 : <<extends>>
+UC1 ..> guardar : <<include>>
+UC1_1 <|-- UC1 
+UC1_2 <|-- UC1  
+UC1_3 <|-- UC1  
+UC1_4 <|-- UC1  
 
 
 C --> UC2
 C --> UC3
 
 A --> UC4
-UC4 ..> UC6_1
+UC4 ..> UC6_1 : <<include>>
 A --> UC5
-UC5 ..> UC6_1
+UC5 ..> UC6_1: <<include>>
 A --> UC6
-UC6 ..> UC6_1
+UC6 ..> UC6_1: <<include>>
 A --> UC7
 A --> UC8
 @enduml

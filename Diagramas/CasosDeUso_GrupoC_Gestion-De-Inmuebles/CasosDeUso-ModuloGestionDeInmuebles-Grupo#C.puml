@@ -1,60 +1,42 @@
 @startuml
 left to right direction
 
-actor "Administrador del Condominio" as Admin
-actor "Propietario" as Owner
-actor "Residente" as Resident
-actor "Personal de Mantenimiento" as Maintenance
+actor "Departamento" as residente
+actor "Guardia" as seguridad
 
-usecase "Registrar inmuebles" as RegisterProperty
-usecase "Actualizar información de inmuebles" as UpdateProperty
-usecase "Consultar disponibilidad de inmuebles" as CheckAvailability
-usecase "Administrar estado de inmuebles" as ManageStatus
-usecase "Configurar áreas comunes" as ConfigureCommonAreas
-usecase "Gestionar reservas de áreas comunes" as ManageReservations
-usecase "Definir reglas de uso de áreas comunes" as DefineRules
-usecase "Registrar usuarios del condominio" as RegisterUsers
-usecase "Consultar datos de propietarios o residentes" as ViewUsers
-usecase "Gestionar acceso al sistema" as ManageAccess
-usecase "Registrar solicitudes de mantenimiento" as MaintenanceRequest
-usecase "Asignar tareas de mantenimiento" as AssignTasks
-usecase "Monitorear estado del mantenimiento" as MonitorMaintenance
-usecase "Configurar alertas y recordatorios" as ConfigureAlerts
-usecase "Notificar eventos fortuitos" as NotifyEvents
-usecase "Generar reportes de estado del condominio" as GenerateReports
-usecase "Auditar actividades del sistema" as AuditSystem
-usecase "Gestionar pagos y cuotas" as ManagePayments
-usecase "Emitir recibos y facturas" as GenerateReceipts
+package "Check-in" {
+    usecase "Registrar Entrada" as registrarEntrada
+    usecase "Recopilar Detalles del Visitante" as recopilarDetalles
+    usecase "Notificar Llegada Programada" as notificarLlegada
+    usecase "Mantener Registro Histórico" as mantenerRegistro
+    usecase "Enviar Alerta Rápida" as enviarAlerta
+    usecase "Coordinar Parqueadero de Visita" as coordinarParqueadero
+}
 
-Admin -r-> RegisterProperty
-Admin -r-> UpdateProperty
-Admin -d-> CheckAvailability
-Admin -d-> ManageStatus
-Admin -l-> ConfigureCommonAreas
-Admin -l-> DefineRules
-Admin -d-> RegisterUsers
-Admin -d-> ViewUsers
-Admin -r-> ManageAccess
-Admin -d-> AssignTasks
-Admin -d-> MonitorMaintenance
-Admin -r-> ConfigureAlerts
-Admin -r-> NotifyEvents
-Admin -l-> GenerateReports
-Admin -l-> AuditSystem
-Admin -d-> ManagePayments
-Admin -d-> GenerateReceipts
+package "Reservas de Espacios Comunes"{
+   usecase "Reservar áreas comunes" as reservarAC
+}
 
-Owner -d-> CheckAvailability
-Owner -l-> MaintenanceRequest
-Owner -r-> ManageReservations
-Owner -d-> ViewUsers
-Owner -r-> ManagePayments
+package comunicacion{
+package envioMensajes{
+usecase "enviarMensajeGlobal" as mensajeGlobal
+}
 
-Resident -l-> MaintenanceRequest
-Resident -r-> ManageReservations
+}
 
-Maintenance -u-> AssignTasks
-Maintenance -d-> MonitorMaintenance
+
+registrarEntrada <.. recopilarDetalles : extend
+registrarEntrada <.. notificarLlegada : extend
+registrarEntrada <.. mantenerRegistro : extend
+
+
+seguridad --> enviarAlerta
+seguridad -left-> registrarEntrada
+
+residente --> coordinarParqueadero
+
+reservarAC <.up. coordinarParqueadero : include
+mensajeGlobal <.up. enviarAlerta : include
 @enduml
 
 

@@ -1,41 +1,48 @@
 @startuml
 left to right direction
 actor "Administrador" as Admin
-actor "Seguridad" as Seguridad
+actor "Guardia" as Guardia
 actor "Limpieza" as Limpieza
-actor "Departamento" as Departamento
+actor "Residente" as Residente
 actor "Mantenimiento" as Mantenimiento
 actor "Empleado" as Empleado
 actor "Usuario"
 
-package "Gestión de Usuarios y Administradores" {
-    usecase "Iniciar sesión" as IniciarSesion
-    usecase "Verificación 2FA" as Verificacion2FA
-    usecase "Recuperar contraseña" as RecuperarContraseña
-    usecase "Gestionar cuenta" as GestionarCuenta
-    usecase "Crear cuenta" as CrearCuenta
-    usecase "Actualizar cuenta" as ActualizarCuenta
-    usecase "Desactivar cuenta" as DesactivarCuenta
-}
-' Asociación entre actores y casos de uso
-Admin --> GestionarCuenta
-Usuario --> IniciarSesion
-Departamento --> GestionarCuenta
-
-' Generalización
+' Jerarquía de usuarios
 Usuario <|-- Empleado
 Usuario <|-- Admin
-Usuario <|-- Departamento
-Empleado <|-- Seguridad
-Empleado <|-- Limpieza  
+Usuario <|-- Residente
+Empleado <|-- Limpieza
 Empleado <|-- Mantenimiento
+Empleado <|-- Guardia
+
+package "Gestión de Usuarios" {
+    usecase "Iniciar Sesión" as IniciarSesion
+    usecase "Verificación 2FA" as Verificacion2FA
+    usecase "Recuperar Contraseña" as RecuperarContraseña
+    usecase "Gestionar Cuenta" as GestionarCuenta
+    usecase "Crear Cuenta" as CrearCuenta
+    usecase "Actualizar Cuenta" as ActualizarCuenta
+    usecase "Desactivar Cuenta" as DesactivarCuenta
+}
+
+Admin --> GestionarCuenta
+Usuario --> IniciarSesion
+Residente --> GestionarCuenta
 
 GestionarCuenta <|-- CrearCuenta
 GestionarCuenta <|-- ActualizarCuenta
 GestionarCuenta <|-- DesactivarCuenta
-
-' Relaciones include y extend
 GestionarCuenta ..> Verificacion2FA : <<include>>
-IniciarSesion .> Verificacion2FA : <<include>>
+IniciarSesion ..> Verificacion2FA : <<include>>
 IniciarSesion <. RecuperarContraseña : <<extend>>
+
+
+package Comunicación{
+package "Envío Mensajes"{
+usecase "Enviar Mensaje Directo" as mensajeDirecto
+}
+}
+
+Verificacion2FA .....> mensajeDirecto : <<include>>
 @enduml

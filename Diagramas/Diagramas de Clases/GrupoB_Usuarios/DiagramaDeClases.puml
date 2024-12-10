@@ -1,0 +1,68 @@
+@startuml 
+skinparam classAttributeIconSize 0
+
+' Clases principales
+class Usuario {
+    - id: int
+    - nombre: String
+    - email: String
+    - contraseña: String
+    + iniciarSesion(): boolean
+    + recuperarContraseña(email: String): boolean
+}
+
+class Empleado {
+    # puesto: String
+}
+
+class Administrador {
+    + gestionarCuenta(accion: String): void
+}
+
+class Residente {
+    + gestionarCuenta(accion: String): void
+}
+
+class Limpieza {
+    + limpiarZona(zona: String): void
+}
+
+class Guardia {
+    + patrullar(area: String): void
+}
+
+class Mantenimiento {
+    + repararInstalacion(instalacion: String): void
+}
+
+' Relación de herencia
+Usuario <|-- Empleado
+Usuario <|-- Administrador
+Usuario <|-- Residente
+Empleado <|-- Limpieza
+Empleado <|-- Mantenimiento
+Empleado <|-- Guardia
+
+' Clases adicionales para gestión de cuentas
+class Verificacion2FA {
+    + enviarCodigo(): boolean
+    + verificarCodigo(codigo: String): boolean
+}
+
+class GestionarCuenta {
+    + crearCuenta(datos: Map): boolean
+    + actualizarCuenta(id: int, datos: Map): boolean
+    + desactivarCuenta(id: int): boolean
+}
+
+class EnviarMensaje {
+    + enviarMensajeDirecto(destinatario: Usuario, mensaje: String): boolean
+}
+
+' Relaciones entre clases
+Usuario --> Verificacion2FA : "<<use>>"
+Administrador --> GestionarCuenta : "<<use>>"
+Residente --> GestionarCuenta : "<<use>>"
+Verificacion2FA --> EnviarMensaje : "<<use>>"
+
+@enduml

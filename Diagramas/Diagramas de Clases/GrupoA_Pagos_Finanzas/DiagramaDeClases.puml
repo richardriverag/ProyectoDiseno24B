@@ -1,0 +1,47 @@
+@startuml
+class Residente {
+    - Nombre: String
+    - Cedula: String
+    - Casa: String
+    + realizarPago(metodo de pago: String,pago: Pago)
+    + consultarHistorial()
+    + recibirNotificaciones()
+}
+
+class Administrador {
+    - Nombre: String
+    - Cedula: String
+    - Casa: String
+    + registrarPago(pago: Pago)
+    + editarRegistroPago(pago: Pago)
+    + registrarMulta(multa: Multa)
+    + consultarHistorial()
+    + enviarNotificaciones()
+    + configurarMetodosPago()
+}
+
+class Pago {
+    - monto: Double
+    - fecha: Date
+    - metodo: String
+    + registrar()
+}
+
+class Multa {
+    - monto: Double
+    - descripcion: String
+    - fecha: Date
+    + registrar()
+}
+
+class Notificacion {
+    - mensaje: String
+    - destinatario: String
+    + enviar()
+}
+
+Residente --> Pago
+Administrador --> Pago
+Administrador --> Multa
+Administrador --> Notificacion
+@enduml

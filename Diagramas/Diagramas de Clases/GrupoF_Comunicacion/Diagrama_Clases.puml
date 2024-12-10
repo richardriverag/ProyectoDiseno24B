@@ -1,0 +1,49 @@
+@startuml
+' Encapsulación
+skinparam classAttributeIconSize 0
+
+class Usuario {
+    - nombre: String
+}
+
+class Administrador {
+    - id: int
+}
+
+class Empleado {
+    - puesto: String
+    - id: int
+}
+
+'Almacenar mensajes como Map
+class AnuncioGeneral {
+    + modificar(idMensaje: int): void
+    + eliminar(idMensaje: int): void
+    + agregar(contenido: String): void
+}
+
+class Reporte {
+    + crearReporte(contenido: String): void
+    + visualizarReporte(idReporte: int): void
+}
+
+class Comunicado {
+    + enviarComunicadoTrabajador(contenido: String, id: int): void
+    + recibirComunicadoTrabajador(idMensaje: int)): void
+}
+
+class Mensaje{
+    + enviarMensajeDirecto(contenido:String, destinatario: Usuario): String
+    + enviarMensajeGlobal(contenido:String): String
+    + recibirMensajeDirecto(idContenido: int, destinatario: Usuario): void
+    + recibirMensajeGlobal(idContenido: int): void
+}
+
+Usuario <|-- Empleado
+Usuario <|-- Administrador
+Administrador --> Comunicado: "<<use>>"
+Empleado --> Comunicado: "<<use>>"
+Usuario --> Mensaje: "<<use>>"
+Administrador --> AnuncioGeneral: "<<use>>"
+Administrador --> Reporte: "<<use>>"
+@enduml

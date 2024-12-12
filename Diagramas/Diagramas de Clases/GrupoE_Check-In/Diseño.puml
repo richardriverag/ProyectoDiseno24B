@@ -14,12 +14,11 @@ class Parqueadero {
     +liberarEspacio(): void
 }
 
-class Departamento {
+class Residente {
     -id: int
     -nombre: String
     -telefonoContacto: String
-    +realizarReserva(): void
-    +coordinarParqueadero(): void
+    +solicitarParqueadero(): void
     +notificarLlegadaProgramada(visitante: Visitante): void
 }
 
@@ -27,19 +26,15 @@ class Guardia {
     -id: int
     -nombre: String
     -turno: String
-    +registrarEntrada(visitante: Visitante): void
-    +enviarAlerta(): void
-    +mantenerRegistroHistorico(): void
-    +coordinarParqueadero(): void
+    +vigilar(): void
+
 }
 
 class Visitante {
-    -id: int
     -nombre: String
     -identificacion: String
     -detallesContacto: String
     -motivoVisita: String
-    +proporcionarDetalles(): String
 }
 
 class Reserva {
@@ -52,27 +47,20 @@ class Reserva {
 }
 
 class RegistroEntrada {
-    -id: int
     -fechaHora: DateTime
     -visitante: Visitante
-    -departamento: Departamento
     +registrarLlegada(): void
-    +marcarAutorizacion(estado: Boolean): void
+    +autorizar(estado: Boolean): void
+    +guardarRegistro(): void
+
 }
 
 class Notificación {
-    -id: int
     -tipo: String
     -contenido: String
     +enviarNotificacion(): void
 }
 
-class Historico {
-    -id: int
-    -fecha: Date
-    -registro: RegistroEntrada
-    +guardarRegistro(): void
-}
 
 class Vehiculo {
     -placa: String
@@ -82,13 +70,14 @@ class Vehiculo {
 }
 
 EspacioComun <|-- Parqueadero
-Departamento "1" --> "0..*" Reserva : "realiza"
-Reserva "1" --> "1" EspacioComun : "usa"
-Departamento "1" --> "0..*" RegistroEntrada : "gestiona"
+Residente "1" --> "0..*" Reserva : "realiza"
+Reserva "1" --> "1" Parqueadero: "usa"
+Residente "1" --> "0..*" RegistroEntrada : "solicita"
+
 RegistroEntrada "1" --> "0..*" Notificación : "genera"
-RegistroEntrada "1" --> "1" Historico : "guarda"
-Visitante "1" --> "0..*" RegistroEntrada : "realiza"
-Visitante "1" --> "1" Vehiculo : "posee"
+RegistroEntrada "1" --> "1..*" Visitante : "tiene"
+
+Visitante "1" --> "0..1" Vehiculo : "posee"
 Guardia "1" --> "0..*" RegistroEntrada : "supervisa"
 Guardia "1" --> "0..*" Notificación : "envía"
 @enduml

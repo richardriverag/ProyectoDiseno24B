@@ -1,4 +1,4 @@
-@startuml 
+@startuml
 skinparam classAttributeIconSize 0
 
 ' Clases principales
@@ -12,27 +12,23 @@ class Usuario {
 }
 
 class Empleado {
-    # puesto: String
+    # salario: float
+    # fecha_contrato: Date
 }
 
-class Administrador {
-    + gestionarCuenta(accion: String): void
+class Administrador {    
 }
 
 class Residente {
-    + gestionarCuenta(accion: String): void
 }
 
 class Limpieza {
-    + limpiarZona(zona: String): void
 }
 
 class Guardia {
-    + patrullar(area: String): void
 }
 
 class Mantenimiento {
-    + repararInstalacion(instalacion: String): void
 }
 
 ' Relación de herencia
@@ -64,5 +60,4 @@ Usuario --> Verificacion2FA : "<<use>>"
 Administrador --> GestionarCuenta : "<<use>>"
 Residente --> GestionarCuenta : "<<use>>"
 Verificacion2FA --> EnviarMensaje : "<<use>>"
-
 @enduml

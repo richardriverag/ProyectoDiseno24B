@@ -1,0 +1,50 @@
+@startuml
+
+class Residente {
+    - nombre : String
+    - cedula : String
+    - email : String
+}
+
+class Administrador {
+    - nombre : String
+    - cedula : String
+    - email : String
+}
+
+class Reserva {
+    - idReserva : int
+    - fechaReserva : Date
+    - horaInicio : Time
+    - horaFin : Time
+    - estado : String
+    + generarSolicitudReserva() : void
+    + revisarSolicitudReserva() : void
+    + enviarAceptacionReserva() : void
+    + reservarAreaComun() : void
+    + cancelarReserva() : void
+}
+
+class EspacioComun {
+    - idEspacio : int
+    - nombreEspacio : String
+    - disponibilidad : boolean
+    + actualizarDisponibilidad() : void
+    + visualizarDisponibilidad() : void
+}
+
+class Cuota {
+    - idCuota : int
+    - monto : float
+    - fechaVencimiento : Date
+    - estadoPago : String
+    + verificarEstadoCuotas() : void
+    + enviarDeudaCuota() : void
+}
+
+Residente "1" --> "*" Reserva : realiza
+Reserva "1" --> "1" EspacioComun : incluye
+Administrador "1" --> "*" Reserva : gestiona
+Administrador "1" --> "*" Cuota : verifica
+
+@enduml

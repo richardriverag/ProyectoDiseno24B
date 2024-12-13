@@ -1,0 +1,360 @@
+@startuml Diagrama de clases
+skinparam classAttributeIconSize 0
+!define Abstract abstract
+
+' ------------ USUARIOS ------------
+package "Gestión de Usuarios" {
+    Abstract class Usuario {
+        - id: int
+        - cedula: String
+        - nombre: String
+        - email: String
+        - contraseña: String
+        + iniciarSesion(): boolean
+        + cerrarSesion(): boolean
+        + recuperarContraseña(email: String): boolean
+    }
+
+    class Empleado {
+        # salario: float
+        # fecha_contrato: Date
+    }
+
+    class Residente {
+        ' Pagos y finanzas
+        + realizarPago(metodo de pago: String,pago: Pago)
+        + consultarHistorial()
+        + recibirNotificaciones()
+
+        ' Check-in
+        +solicitarParqueadero(): void
+        +notificarLlegadaProgramada(visitante: Visitante): void
+    }
+
+    class Administrador {
+        ' Pagos y finanzas
+        + registrarPago(pago: Pago)
+        + editarRegistroPago(pago: Pago)
+        + registrarMulta(multa: Multa)
+        + consultarHistorial()
+        + enviarNotificaciones()
+        + configurarMetodosPago()
+
+        ' Inmuebles
+        + configurarAlertas(): void
+        + notificarEventos(): void
+        + generarReportes(): void
+        + gestionarAreasComunes(): void
+    }
+
+    class Residente {
+        ' Inmuebles
+        + gestionarReservas(): void
+        + registrarSolicitudMantenimiento(): void
+    }
+
+    class Guardia {
+        + vigilar(): void
+    }
+
+    class Mantenimiento {
+        + asignarTareas(): void
+        + monitorearMantenimiento(): void
+    }
+
+    class Limpieza {
+        + realizarLimpieza(): void
+    }
+
+    ' Clases adicionales para gestión de cuentas
+    class Verificacion2FA {
+        + enviarCodigo(): boolean
+        + verificarCodigo(codigo: String): boolean
+    }
+
+    class GestionarCuenta {
+        + crearCuenta(datos: Map): boolean
+        + actualizarCuenta(id: int, datos: Map): boolean
+        + desactivarCuenta(id: int): boolean
+    }
+
+    class EnviarMensaje {
+        + enviarMensajeDirecto(destinatario: Usuario, mensaje: String): boolean
+    }
+}
+
+' Relación de herencia
+Usuario <|-- Empleado
+Usuario <|-- Administrador
+Usuario <|-- Residente
+Empleado <|-- Limpieza
+Empleado <|-- Mantenimiento
+Empleado <|-- Guardia
+
+' Relaciones entre clases
+Usuario --> Verificacion2FA : "<<use>>"
+Administrador --> GestionarCuenta : "<<use>>"
+Residente --> GestionarCuenta : "<<use>>"
+Verificacion2FA --> EnviarMensaje : "<<use>>"
+
+
+
+' ------------ PAGOS Y FINANZAS ------------
+package "Pagos y Finanzas" {
+    class Pago {
+        - monto: Double
+        - fecha: Date
+        - metodo: String
+        + registrar()
+    }
+
+    class Multa {
+        - monto: Double
+        - descripcion: String
+        - fecha: Date
+        + registrar()
+    }
+
+    class Notificacion {
+        - mensaje: String
+        - destinatario: String
+        + enviar()
+    }
+}
+
+Residente --> Pago
+Administrador --> Pago
+Administrador --> Multa
+Administrador --> Notificacion
+
+
+
+' ------------ INMUEBLES ------------
+package Inmuebles {
+    class Inmueble {
+        + id: int
+        + direccion: string
+        + estado: string
+        + registrar(): void
+        + actualizar(): void
+        + consultarDisponibilidad(): bool
+        + administrarEstado(): void
+    }
+
+    class AreaComun {
+        + id: int
+        + nombre: string
+        + capacidad: int
+        + gestionar(): void
+    }
+
+    class Reserva {
+        + id: int
+        + fecha: Date
+        + idAreaComun: int
+        + idUsuario: int
+        + crear(): void
+        + cancelar(): void
+    }
+
+    class SolicitudMantenimiento {
+        + id: int
+        + descripcion: string
+        + estado: string
+        + registrar(): void
+        + asignarTareas(): void
+        + monitorearEstado(): void
+    }
+
+    class Pago {
+        + id: int
+        + monto: float
+        + fecha: Date
+        + idUsuario: int
+        + registrar(): void
+        + generarRecibo(): void
+    }
+
+    class Alerta {
+        + id: int
+        + tipo: string
+        + mensaje: string
+        + configurar(): void
+        + notificar(): void
+    }
+
+    class Evento {
+        + id: int
+        + tipo: string
+        + descripcion: string
+        + notificar(): void
+    }
+
+    class Reporte {
+        + id: int
+        + tipo: string
+        + contenido: string
+        + generar(): void
+    }
+}
+
+Administrador o-- Alerta
+Administrador o-- Evento
+Administrador o-- Reporte
+Administrador o-- AreaComun
+
+Usuario o-- Inmueble
+Usuario o-- Reserva
+Usuario o-- Pago
+
+Residente o-- SolicitudMantenimiento
+Mantenimiento o-- SolicitudMantenimiento
+
+AreaComun o-- Reserva
+
+
+' ------------ RESERVAS DE ESPACIOS COMUNES ------------
+package "Reserva de Espacios Comunes" {
+    class Reserva {
+        - idReserva: int
+        - fechaReserva: Date
+        - horaInicio: Time
+        - horaFin: Time
+        - estado: String
+        + generarSolicitudReserva(): void
+        + revisarSolicitudReserva(): void
+        + enviarAceptacionReserva(): void
+        + reservarAreaComun(): void
+        + cancelarReserva(): void
+    }
+
+    class EspacioComun {
+        - idEspacio: int
+        - nombreEspacio: String
+        - disponibilidad: boolean
+        + actualizarDisponibilidad(): void
+        + visualizarDisponibilidad(): void
+    }
+
+    class Cuota {
+        - idCuota: int
+        - monto: float
+        - fechaVencimiento: Date
+        - estadoPago: String
+        + verificarEstadoCuotas(): void
+        + enviarDeudaCuota(): void
+    }
+}
+
+Residente "1" --> "*" Reserva : realiza
+Reserva "1" --> "1" EspacioComun : incluye
+Administrador "1" --> "*" Reserva : gestiona
+Administrador "1" --> "*" Cuota : verifica
+
+
+
+' ------------ CHECK-IN ------------
+package "Check-in" {
+    abstract class EspacioComun {
+        - id: int
+        - nombre: String
+        - capacidad: int
+        + verificarDisponibilidad(): Boolean
+        + actualizarEstado(estado: Boolean): void
+    }
+
+    class Parqueadero {
+        - ubicacion: String
+        - disponibilidad: bool
+        + asignarEspacio(): void
+        + liberarEspacio(): void
+    }
+
+    class Visitante {
+        - nombre: String
+        - identificacion: String
+        - detallesContacto: String
+        - motivoVisita: String
+    }
+
+    class Reserva {
+        - id: int
+        - fecha: Date
+        - hora: Time
+        - departamento: Departamento
+        + generarReserva(): void
+        + cancelarReserva(): void
+    }
+
+    class RegistroEntrada {
+        - fechaHora: DateTime
+        - visitante: Visitante
+        + registrarLlegada(): void
+        + autorizar(estado: Boolean): void
+        + guardarRegistro(): void
+
+    }
+
+    class Notificación {
+        - tipo: String
+        - contenido: String
+        + enviarNotificacion(): void
+    }
+
+    class Vehiculo {
+        - placa: String
+        - modelo: String
+        - color: String
+        + obtenerDetalles(): String
+    }
+}
+
+EspacioComun <|-- Parqueadero
+Residente "1" --> "0..*" Reserva : "realiza"
+Reserva "1" --> "1" Parqueadero: "usa"
+Residente "1" --> "0..*" RegistroEntrada : "solicita"
+
+RegistroEntrada "1" --> "0..*" Notificación : "genera"
+RegistroEntrada "1" --> "1..*" Visitante : "tiene"
+
+Visitante "1" --> "0..1" Vehiculo : "posee"
+Guardia "1" --> "0..*" RegistroEntrada : "supervisa"
+Guardia "1" --> "0..*" Notificación : "envía"
+
+
+
+' ------------ COMUNICACIÓN ------------
+package Comunicación {
+    'Almacenar mensajes como Map
+    class AnuncioGeneral {
+        + modificar(idMensaje: int): void
+        + eliminar(idMensaje: int): void
+        + agregar(contenido: String): void
+    }
+
+    class Reporte {
+        + crearReporte(contenido: String): void
+        + visualizarReporte(idReporte: int): void
+    }
+
+    class Comunicado {
+        + enviarComunicadoTrabajador(contenido: String, id: int): void
+        + recibirComunicadoTrabajador(idMensaje: int)): void
+    }
+
+    class Mensaje{
+        + enviarMensajeDirecto(contenido:String, destinatario: Usuario): String
+        + enviarMensajeGlobal(contenido:String): String
+        + recibirMensajeDirecto(idContenido: int, destinatario: Usuario): void
+        + recibirMensajeGlobal(idContenido: int): void
+    }
+}
+
+Administrador --> Comunicado: "<<use>>"
+Empleado --> Comunicado: "<<use>>"
+Usuario --> Mensaje: "<<use>>"
+Administrador --> AnuncioGeneral: "<<use>>"
+Administrador --> Reporte: "<<use>>"
+
+
+@enduml

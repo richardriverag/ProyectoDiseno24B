@@ -120,12 +120,22 @@ package "Pagos y Finanzas" {
         - destinatario: String
         + enviar()
     }
+
+    class Cuota {
+        - idCuota: int
+        - monto: float
+        - fechaVencimiento: Date
+        - estadoPago: String
+        + verificarEstadoCuotas(): void
+        + enviarDeudaCuota(): void
+    }
 }
 
 Residente --> Pago
 Administrador --> Pago
 Administrador --> Multa
 Administrador --> Notificacion
+Administrador "1" --> "*" Cuota : verifica
 
 
 
@@ -139,22 +149,6 @@ package Inmuebles {
         + actualizar(): void
         + consultarDisponibilidad(): bool
         + administrarEstado(): void
-    }
-
-    class AreaComun {
-        + id: int
-        + nombre: string
-        + capacidad: int
-        + gestionar(): void
-    }
-
-    class Reserva {
-        + id: int
-        + fecha: Date
-        + idAreaComun: int
-        + idUsuario: int
-        + crear(): void
-        + cancelar(): void
     }
 
     class SolicitudMantenimiento {
@@ -201,16 +195,13 @@ package Inmuebles {
 Administrador o-- Alerta
 Administrador o-- Evento
 Administrador o-- Reporte
-Administrador o-- AreaComun
 
 Usuario o-- Inmueble
-Usuario o-- Reserva
 Usuario o-- Pago
 
 Residente o-- SolicitudMantenimiento
 Mantenimiento o-- SolicitudMantenimiento
 
-AreaComun o-- Reserva
 
 
 ' ------------ RESERVAS DE ESPACIOS COMUNES ------------
@@ -233,36 +224,20 @@ package "Reserva de Espacios Comunes" {
         - nombreEspacio: String
         - disponibilidad: boolean
         + actualizarDisponibilidad(): void
-        + visualizarDisponibilidad(): void
-    }
-
-    class Cuota {
-        - idCuota: int
-        - monto: float
-        - fechaVencimiento: Date
-        - estadoPago: String
-        + verificarEstadoCuotas(): void
-        + enviarDeudaCuota(): void
-    }
-}
-
-Residente "1" --> "*" Reserva : realiza
-Reserva "1" --> "1" EspacioComun : incluye
-Administrador "1" --> "*" Reserva : gestiona
-Administrador "1" --> "*" Cuota : verifica
-
-
-
-' ------------ CHECK-IN ------------
-package "Check-in" {
-    abstract class EspacioComun {
-        - id: int
-        - nombre: String
-        - capacidad: int
-        + verificarDisponibilidad(): Boolean
+        + verificarDisponibilidad(): void
         + actualizarEstado(estado: Boolean): void
     }
 
+}
+
+Residente "1" --> "*" Reserva : realiza
+Reserva "1" --o "1" EspacioComun : incluye
+Administrador "1" --> "*" Reserva : gestiona
+Usuario o-- Reserva
+Administrador o-- EspacioComun
+
+' ------------ CHECK-IN ------------
+package "Check-in" {
     class Parqueadero {
         - ubicacion: String
         - disponibilidad: bool

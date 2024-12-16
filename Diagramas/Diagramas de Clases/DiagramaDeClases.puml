@@ -1,4 +1,5 @@
 @startuml DiagramaDeClases
+skinparam classAttributeIconSize 0
 
 ' ------------ USUARIOS ------------
 package "Gestión de Usuarios" {

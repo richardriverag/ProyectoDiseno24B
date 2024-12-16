@@ -3,48 +3,68 @@
 skinparam classAttributeIconSize 0
 
 class Usuario {
+    - idUsuario: int
     - nombre: String
-    - puesto: String
+    - email: String
+    + recibirMensaje(mensaje: Mensaje)
 }
 
 class Administrador {
+    - puesto: String
+    + crearReporteMensaje(reporte: Reporte)
+    + modificarAnuncioGeneral(anuncio: AnuncioGeneral)
+    + eliminarAnuncioGeneral(id: int)
+    + generarAnuncioGeneral(anuncio: AnuncioGeneral)
+    + enviarComunicadoEmpleados(comunicado: Comunicado)
 }
 
 class Empleado {
+    - puesto: String
+}
 
+class Residente {
 }
 
 class ReporteMensaje {
-    + crearReporte(contenido: String): void
-    + visualizarReporte(idReporte: int): void
+    - idReporte: int
+    - contenido: String
+    - fechaCreacion: datetime
+    + generarReporte(): void
+    + visualizarReporte(): void
 }
 
 
 class Comunicado {
-    + verificarAdministrador(puesto: String): boolean
+    - contenido: String
+    - empleados: List[Empleado]
 }
 
 class Mensaje{
-    + enviarMensajeDirecto(contenido:String, destinatario: Usuario): void
-    + recibirMensajeDirecto(Contenido: String, destinatario: Usuario): void
-    + modificarAnuncioGeneral(puesto:String): void
-    + eliminarAnuncioGeneral(puesto: String): void
+    - idMensaje: int
+    - contenido: String
+    - destinatarios: List[Usuario]
+    - fechaEnvio: datetime
+    + enviar(): void
 }
 
-interface IMensaje{
-    +enviarMensaje(contenido:String): void
-    +recibirMensaje(contenido:String): void
+class AnuncioGeneral{
+    - idAnuncio: int
+    - contenido: String
+    - fechaCreacion: datetime
+    + generar(): void
+    + editar(nuevoContenido: String): void
+    + eliminar(): void
 }
 
 
 Usuario <|-- Empleado
 Usuario <|-- Administrador
+Usuario <|-- Residente
 Administrador --> Comunicado: "<<use>>"
-Empleado --> Comunicado: "<<use>>"
+Comunicado --> Empleado: "<<use>>"
 Usuario --> Mensaje: "<<use>>"
 Administrador --> ReporteMensaje: "<<use>>"
-Mensaje ..|> IMensaje: "<<implements>>"
-Comunicado ..|> IMensaje: "<<implements>>"
+Administrador --> AnuncioGeneral: "<<use>>"
+Mensaje <|-- Comunicado
 
-note bottom of Comunicado: "Verificar solo administrador envía comunicado\nEmpleado solo recibe comunicado"
 @enduml

@@ -1,6 +1,4 @@
-@startuml Diagrama de clases
-skinparam classAttributeIconSize 0
-!define Abstract abstract
+@startuml DiagramaDeClases
 
 ' ------------ USUARIOS ------------
 package "Gestión de Usuarios" {
@@ -228,8 +226,16 @@ package "Reserva de Espacios Comunes" {
         + actualizarEstado(estado: Boolean): void
     }
 
+        class Parqueadero {
+        - ubicacion: String
+        - disponibilidad: bool
+        + asignarEspacio(): void
+        + liberarEspacio(): void
+    }
+
 }
 
+EspacioComun <|-- Parqueadero
 Residente "1" --> "*" Reserva : realiza
 Reserva "1" --o "1" EspacioComun : incluye
 Administrador "1" --> "*" Reserva : gestiona
@@ -238,41 +244,29 @@ Administrador o-- EspacioComun
 
 ' ------------ CHECK-IN ------------
 package "Check-in" {
-    class Parqueadero {
-        - ubicacion: String
-        - disponibilidad: bool
-        + asignarEspacio(): void
-        + liberarEspacio(): void
-    }
-
     class Visitante {
         - nombre: String
         - identificacion: String
         - detallesContacto: String
-        - motivoVisita: String
-    }
-
-    class Reserva {
-        - id: int
-        - fecha: Date
-        - hora: Time
-        - departamento: Departamento
-        + generarReserva(): void
-        + cancelarReserva(): void
+        - motivoVisita: Stringe
+        + obtenerDatos(): String
     }
 
     class RegistroEntrada {
-        - fechaHora: DateTime
+        - fechaRegistro: Date
         - visitante: Visitante
+        - guardia : Guardia
         + registrarLlegada(): void
+        + registrarLlegada(visitante: Visitante): void
         + autorizar(estado: Boolean): void
         + guardarRegistro(): void
-
+        + obtenerRegistro(): String
     }
 
     class Notificación {
         - tipo: String
         - contenido: String
+        - fechaEnvio: DateTime
         + enviarNotificacion(): void
     }
 
@@ -284,9 +278,9 @@ package "Check-in" {
     }
 }
 
-EspacioComun <|-- Parqueadero
-Residente "1" --> "0..*" Reserva : "realiza"
-Reserva "1" --> "1" Parqueadero: "usa"
+
+
+
 Residente "1" --> "0..*" RegistroEntrada : "solicita"
 
 RegistroEntrada "1" --> "0..*" Notificación : "genera"
@@ -295,8 +289,6 @@ RegistroEntrada "1" --> "1..*" Visitante : "tiene"
 Visitante "1" --> "0..1" Vehiculo : "posee"
 Guardia "1" --> "0..*" RegistroEntrada : "supervisa"
 Guardia "1" --> "0..*" Notificación : "envía"
-
-
 
 ' ------------ COMUNICACIÓN ------------
 package Comunicación {

@@ -4,46 +4,47 @@ skinparam classAttributeIconSize 0
 
 class Usuario {
     - nombre: String
+    - puesto: String
 }
 
 class Administrador {
-    - id: int
 }
 
 class Empleado {
-    - puesto: String
-    - id: int
+
 }
 
-'Almacenar mensajes como Map
-class AnuncioGeneral {
-    + modificar(idMensaje: int): void
-    + eliminar(idMensaje: int): void
-    + agregar(contenido: String): void
-}
-
-class Reporte {
+class ReporteMensaje {
     + crearReporte(contenido: String): void
     + visualizarReporte(idReporte: int): void
 }
 
+
 class Comunicado {
-    + enviarComunicadoTrabajador(contenido: String, id: int): void
-    + recibirComunicadoTrabajador(idMensaje: int)): void
+    + verificarAdministrador(puesto: String): boolean
 }
 
 class Mensaje{
-    + enviarMensajeDirecto(contenido:String, destinatario: Usuario): String
-    + enviarMensajeGlobal(contenido:String): String
-    + recibirMensajeDirecto(idContenido: int, destinatario: Usuario): void
-    + recibirMensajeGlobal(idContenido: int): void
+    + enviarMensajeDirecto(contenido:String, destinatario: Usuario): void
+    + recibirMensajeDirecto(Contenido: String, destinatario: Usuario): void
+    + modificarAnuncioGeneral(puesto:String): void
+    + eliminarAnuncioGeneral(puesto: String): void
 }
+
+interface IMensaje{
+    +enviarMensaje(contenido:String): void
+    +recibirMensaje(contenido:String): void
+}
+
 
 Usuario <|-- Empleado
 Usuario <|-- Administrador
 Administrador --> Comunicado: "<<use>>"
 Empleado --> Comunicado: "<<use>>"
 Usuario --> Mensaje: "<<use>>"
-Administrador --> AnuncioGeneral: "<<use>>"
-Administrador --> Reporte: "<<use>>"
+Administrador --> ReporteMensaje: "<<use>>"
+Mensaje ..|> IMensaje: "<<implements>>"
+Comunicado ..|> IMensaje: "<<implements>>"
+
+note bottom of Comunicado: "Verificar solo administrador envía comunicado\nEmpleado solo recibe comunicado"
 @enduml

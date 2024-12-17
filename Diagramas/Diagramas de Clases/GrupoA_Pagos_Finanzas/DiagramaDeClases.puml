@@ -1,47 +1,96 @@
 @startuml
+skinparam classAttributeIconSize 0
+package pagos_finanzas {
+
 class Residente {
-    - Nombre: String
-    - Cedula: String
-    - Casa: String
-    + realizarPago(metodo de pago: String,pago: Pago)
-    + consultarHistorial()
-    + recibirNotificaciones()
+    -id: int
+    - nombre: String
+    - telefonoContacto: String
 }
 
+' Clase Administrador
 class Administrador {
     - Nombre: String
     - Cedula: String
     - Casa: String
-    + registrarPago(pago: Pago)
-    + editarRegistroPago(pago: Pago)
-    + registrarMulta(multa: Multa)
-    + consultarHistorial()
-    + enviarNotificaciones()
-    + configurarMetodosPago()
 }
 
+' Clase Registro
+class Registro {
+    + verificarRol(): String
+    + guardarMulta(multa: Multa)
+    + guardarPago(pago: Pago)
+    + editarMulta()
+    + consultarHistorial()
+}
+
+' Clase Pago
 class Pago {
+    - pagoDe: String
     - monto: Double
     - fecha: Date
-    - metodo: String
+    - metodo: MetodoPago
+    + verificarRol()
+    + metodoPago()
     + registrar()
+    + toString()
 }
 
+' Clase Multa
 class Multa {
+    - multaDe: String
     - monto: Double
     - descripcion: String
     - fecha: Date
+    + crearMulta(String nombre, Double monto, String Desc)
     + registrar()
+    + toString()
 }
 
+' Clase Notificacion
 class Notificacion {
     - mensaje: String
     - destinatario: String
-    + enviar()
+    + enviarMensajeDirecto(contenido: String, destinatario: Usuario): void
 }
 
-Residente --> Pago
-Administrador --> Pago
-Administrador --> Multa
-Administrador --> Notificacion
+' Clases de Métodos de Pago (Herencia)
+class MetodoPago {
+    - tipo: String
+    + procesarPago(): void
+}
+
+class PagoEfectivo {
+    - tipo: String = "Efectivo"
+    + procesarPago(): void
+}
+
+class PagoTarjeta {
+    - tipo: String = "Tarjeta"
+    + procesarPago(): void
+}
+
+class PagoTransferencia {
+    - tipo: String = "Transferencia"
+    + procesarPago(): void
+}
+
+}
+
+' Relaciones
+Residente "1" -- "0..*" Multa : tiene >
+Administrador "1" -- "0..*" Multa : gestiona >
+Administrador "1" -- "0..*" Notificacion : envia >
+
+Pago "1" -- "1" MetodoPago : usa >
+Pago "0..*" -- "1" Registro : es registrado en >
+
+Multa "0..*" -- "1" Registro : es registrada en >
+Administrador "1" -- "0..*" Registro : gestiona >
+
+' Herencia entre los Métodos de Pago
+MetodoPago <|-- PagoEfectivo
+MetodoPago <|-- PagoTarjeta
+MetodoPago <|-- PagoTransferencia
+
 @enduml

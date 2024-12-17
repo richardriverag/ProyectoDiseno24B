@@ -12,7 +12,6 @@ package "Gestión de Usuarios" {
         + iniciarSesion(): boolean
         + cerrarSesion(): boolean
         + recuperarContraseña(email: String): boolean
-        + recibirMensaje(mensaje: Mensaje)
     }
 
     class Empleado {
@@ -21,43 +20,36 @@ package "Gestión de Usuarios" {
     }
 
     class Residente {
-        ' Pagos y finanzas
-        + realizarPago(metodo de pago: String,pago: Pago)
-        + consultarHistorial()
-        + recibirNotificaciones()
 
-        ' Check-in
-        +solicitarParqueadero(): void
-        +notificarLlegadaProgramada(visitante: Visitante): void
     }
 
     class Administrador {
-        ' Pagos y finanzas
-        + registrarPago(pago: Pago)
-        + editarRegistroPago(pago: Pago)
-        + registrarMulta(multa: Multa)
-        + consultarHistorial()
-        + enviarNotificaciones()
-        + configurarMetodosPago()
+        ' ' Pagos y finanzas
+        ' + registrarPago(pago: Pago)
+        ' + editarRegistroPago(pago: Pago)
+        ' + registrarMulta(multa: Multa)
+        ' + consultarHistorial()
+        ' + enviarNotificaciones()
+        ' + configurarMetodosPago()
 
-        ' Inmuebles
-        + configurarAlertas(): void
-        + notificarEventos(): void
-        + generarReportes(): void
-        + gestionarAreasComunes(): void
+        ' ' Inmuebles
+        ' + configurarAlertas(): void
+        ' + notificarEventos(): void
+        ' + generarReportes(): void
+        ' + gestionarAreasComunes(): void
 
-        ' Comunicación
-        + generarReporteMensaje(reporte: Reporte)
-        + modificarAnuncioGeneral(anuncio: AnuncioGeneral)
-        + eliminarAnuncioGeneral(id: int)
-        + generarAnuncioGeneral(anuncio: AnuncioGeneral)
-        + enviarComunicadoEmpleados(comunicado: Comunicado)
+        ' ' Comunicación
+        ' + generarReporteMensaje(reporte: Reporte)
+        ' + modificarAnuncioGeneral(anuncio: AnuncioGeneral)
+        ' + eliminarAnuncioGeneral(id: int)
+        ' + generarAnuncioGeneral(anuncio: AnuncioGeneral)
+        ' + enviarComunicadoEmpleados(comunicado: Comunicado)
     }
 
     class Residente {
-        ' Inmuebles
-        + gestionarReservas(): void
-        + registrarSolicitudMantenimiento(): void
+        ' ' Inmuebles
+        ' + gestionarReservas(): void
+        ' + registrarSolicitudMantenimiento(): void
     }
 
     class Guardia {
@@ -65,11 +57,12 @@ package "Gestión de Usuarios" {
     }
 
     class Mantenimiento {
-        + asignarTareas(): void
+        + realizarTareas(): void
         + monitorearMantenimiento(): void
     }
 
     class Limpieza {
+        + habitacionesAsignadas: Residente[]
         + realizarLimpieza(): void
     }
 
@@ -84,10 +77,6 @@ package "Gestión de Usuarios" {
         + actualizarCuenta(id: int, datos: Map): boolean
         + desactivarCuenta(id: int): boolean
     }
-
-    class EnviarMensaje {
-        + enviarMensajeDirecto(destinatario: Usuario, mensaje: String): boolean
-    }
 }
 
 ' Relación de herencia
@@ -99,10 +88,10 @@ Empleado <|-- Mantenimiento
 Empleado <|-- Guardia
 
 ' Relaciones entre clases
-Usuario --> Verificacion2FA : "<<use>>"
-Administrador --> GestionarCuenta : "<<use>>"
-Residente --> GestionarCuenta : "<<use>>"
-Verificacion2FA --> EnviarMensaje : "<<use>>"
+Usuario --> Verificacion2FA : "necesita"
+Administrador "1..*" --> "1" GestionarCuenta : "utiliza"
+Residente "1..*" --> "1" GestionarCuenta : "utiliza"
+Verificacion2FA "1" --> "1..*" Mensaje : "envia"
 
 
 
@@ -167,15 +156,6 @@ package Inmuebles {
         + monitorearEstado(): void
     }
 
-    class Pago {
-        + id: int
-        + monto: float
-        + fecha: Date
-        + idUsuario: int
-        + registrar(): void
-        + generarRecibo(): void
-    }
-
     class Alerta {
         + id: int
         + tipo: string
@@ -204,7 +184,6 @@ Administrador o-- Evento
 Administrador o-- Reporte
 
 Usuario o-- Inmueble
-Usuario o-- Pago
 
 Residente o-- SolicitudMantenimiento
 Mantenimiento o-- SolicitudMantenimiento

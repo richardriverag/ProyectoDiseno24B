@@ -1,36 +1,92 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-' Clases principales
-class Usuario {
-    - id: int
-    - nombre: String
-    - email: String
-    - contraseña: String
-    + iniciarSesion(): boolean
-    + recuperarContraseña(email: String): boolean
-}
+package "Gestión de Usuarios" {
+    Abstract class Usuario {
+        - id: int
+        - cedula: String
+        - nombre: String
+        - email: String
+        - contraseña: String
+        + iniciarSesion(): boolean
+        + cerrarSesion(): boolean
+        + recuperarContraseña(email: String): boolean
+    }
 
-class Empleado {
-    # salario: float
-    # fecha_contrato: Date
-}
+    class Empleado {
+        # salario: float
+        # fecha_contrato: Date
+    }
 
-class Administrador {    
-}
+    class Residente {
 
-class Residente {
-}
+    }
 
-class Limpieza {
-}
+    class Administrador {
+        ' ' Pagos y finanzas
+        ' + registrarPago(pago: Pago)
+        ' + editarRegistroPago(pago: Pago)
+        ' + registrarMulta(multa: Multa)
+        ' + consultarHistorial()
+        ' + enviarNotificaciones()
+        ' + configurarMetodosPago()
 
-class Guardia {
-}
+        ' ' Inmuebles
+        ' + configurarAlertas(): void
+        ' + notificarEventos(): void
+        ' + generarReportes(): void
+        ' + gestionarAreasComunes(): void
 
-class Mantenimiento {
-}
+        ' ' Comunicación
+        ' + generarReporteMensaje(reporte: Reporte)
+        ' + modificarAnuncioGeneral(anuncio: AnuncioGeneral)
+        ' + eliminarAnuncioGeneral(id: int)
+        ' + generarAnuncioGeneral(anuncio: AnuncioGeneral)
+        ' + enviarComunicadoEmpleados(comunicado: Comunicado)
+    }
 
+    class Residente {
+        ' ' Inmuebles
+        ' + gestionarReservas(): void
+        ' + registrarSolicitudMantenimiento(): void
+    }
+
+    class Guardia {
+        + vigilar(): void
+    }
+
+    class Mantenimiento {
+        + realizarTareas(): void
+        + monitorearMantenimiento(): void
+    }
+
+    class Limpieza {
+        + habitacionesAsignadas: Residente[]
+        + realizarLimpieza(): void
+    }
+
+    ' Clases adicionales para gestión de cuentas
+    class Verificacion2FA {
+        + enviarCodigo(): boolean
+        + verificarCodigo(codigo: String): boolean
+    }
+
+    class GestionarCuenta {
+        + crearCuenta(datos: Map): boolean
+        + actualizarCuenta(id: int, datos: Map): boolean
+        + desactivarCuenta(id: int): boolean
+    }
+}
+package "Comunicación" {
+    class Mensaje{
+        - idMensaje: int
+        - contenido: String
+        - destinatarios: List[Usuario]
+        - fechaEnvio: datetime
+        + enviar(): void
+    }
+
+}
 ' Relación de herencia
 Usuario <|-- Empleado
 Usuario <|-- Administrador
@@ -39,25 +95,10 @@ Empleado <|-- Limpieza
 Empleado <|-- Mantenimiento
 Empleado <|-- Guardia
 
-' Clases adicionales para gestión de cuentas
-class Verificacion2FA {
-    + enviarCodigo(): boolean
-    + verificarCodigo(codigo: String): boolean
-}
-
-class GestionarCuenta {
-    + crearCuenta(datos: Map): boolean
-    + actualizarCuenta(id: int, datos: Map): boolean
-    + desactivarCuenta(id: int): boolean
-}
-
-class EnviarMensaje {
-    + enviarMensajeDirecto(destinatario: Usuario, mensaje: String): boolean
-}
-
 ' Relaciones entre clases
-Usuario --> Verificacion2FA : "<<use>>"
-Administrador --> GestionarCuenta : "<<use>>"
-Residente --> GestionarCuenta : "<<use>>"
-Verificacion2FA --> EnviarMensaje : "<<use>>"
+Usuario --> Verificacion2FA : "necesita"
+Administrador "1..*" --> "1" GestionarCuenta : "utiliza"
+Residente "1..*" --> "1" GestionarCuenta : "utiliza"
+Verificacion2FA "1" --> "1..*" Mensaje : "envia"
+
 @enduml

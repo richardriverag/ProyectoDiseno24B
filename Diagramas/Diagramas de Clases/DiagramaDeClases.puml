@@ -16,7 +16,7 @@ package "Gestión de Usuarios" {
 
     class Empleado {
         # salario: float
-        # fecha_contrato: Date
+        # fechaContrato: Date
     }
 
     class Residente {
@@ -47,6 +47,7 @@ package "Gestión de Usuarios" {
     }
 
     class Residente {
+        - numDepartamento: String
         ' ' Inmuebles
         ' + gestionarReservas(): void
         ' + registrarSolicitudMantenimiento(): void
@@ -57,7 +58,7 @@ package "Gestión de Usuarios" {
     }
 
     class Mantenimiento {
-        + realizarTareas(): void
+        + completarTarea(): void
         + monitorearMantenimiento(): void
     }
 
@@ -92,6 +93,7 @@ Usuario --> Verificacion2FA : "necesita"
 Administrador "1..*" --> "1" GestionarCuenta : "utiliza"
 Residente "1..*" --> "1" GestionarCuenta : "utiliza"
 Verificacion2FA "1" --> "1..*" Mensaje : "envia"
+Usuario "1" --> "1..*" Mensaje : "envia"
 
 
 

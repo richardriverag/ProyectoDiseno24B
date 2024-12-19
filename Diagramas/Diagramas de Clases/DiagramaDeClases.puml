@@ -48,9 +48,6 @@ package "Gestión de Usuarios" {
         ' + registrarSolicitudMantenimiento(): void
     }
 
-    class Guardia {
-    }
-
     class Mantenimiento {
         + monitorearMantenimiento(): void
     }
@@ -71,23 +68,6 @@ package "Gestión de Usuarios" {
         + desactivarCuenta(id: int): boolean
     }
 }
-
-' Relación de herencia
-Usuario <|-- Empleado
-Usuario <|-- Administrador
-Usuario <|-- Residente
-Empleado <|-- Limpieza
-Empleado <|-- Mantenimiento
-Empleado <|-- Guardia
-
-' Relaciones entre clases
-Usuario --> Verificacion2FA : "necesita"
-Administrador "1..*" --> "1" GestionarCuenta : "utiliza"
-Residente "1..*" --> "1" GestionarCuenta : "utiliza"
-Verificacion2FA "1" --> "1..*" Mensaje : "envia"
-Usuario "1" --> "1..*" Mensaje : "envia"
-
-
 
 ' ------------ PAGOS Y FINANZAS ------------
 package "Pagos y Finanzas" {
@@ -120,14 +100,6 @@ package "Pagos y Finanzas" {
         + enviarDeudaCuota(): void
     }
 }
-
-Residente --> Pago
-Administrador --> Pago
-Administrador --> Multa
-Administrador --> Notificacion
-Administrador "1" --> "*" Cuota : verifica
-
-
 
 ' ------------ INMUEBLES ------------
 package Inmuebles {
@@ -173,17 +145,6 @@ package Inmuebles {
     }
 }
 
-Administrador o-- Alerta
-Administrador o-- Evento
-Administrador o-- Reporte
-
-Usuario o-- Inmueble
-
-Residente o-- SolicitudMantenimiento
-Mantenimiento o-- SolicitudMantenimiento
-
-
-
 ' ------------ RESERVAS DE ESPACIOS COMUNES ------------
 package "Reserva de Espacios Comunes" {
     class Reserva {
@@ -217,60 +178,39 @@ package "Reserva de Espacios Comunes" {
 
 }
 
-EspacioComun <|-- Parqueadero
-Residente "1" --> "*" Reserva : realiza
-Reserva "1" --o "1" EspacioComun : incluye
-Administrador "1" --> "*" Reserva : gestiona
-Usuario o-- Reserva
-Administrador o-- EspacioComun
-
 ' ------------ CHECK-IN ------------
 package "Check-in" {
     class Visitante {
+        - id: Integer
         - nombre: String
         - identificacion: String
         - detallesContacto: String
         - motivoVisita: Stringe
-        + obtenerDatos(): String
+        + agregarVisitante(nombre: String, cedula: String, idContacto: int, motivoVisita: String): Visitante
+        + obtenerVisitante(id: Integer): Visitante
+        + obtenerVisitantes(): List<Visitante>
     }
 
     class RegistroEntrada {
+        - id: Integer
         - fechaRegistro: Date
         - visitante: Visitante
-        - guardia : Guardia
-        + registrarLlegada(): void
-        + registrarLlegada(visitante: Visitante): void
-        + autorizar(estado: Boolean): void
-        + guardarRegistro(): void
-        + obtenerRegistro(): String
-    }
-
-    class Notificación {
-        - tipo: String
-        - contenido: String
-        - fechaEnvio: DateTime
-        + enviarNotificacion(): void
+        - guardia : Empleado
+        + agregarRegistro(nombre: String, cedula: String, idContacto: int, motivoVisita: String): RegistroEntrada
+        + obtenerRegistro(id: Integer): RegistroEntrada
+        + obtenerRegistros(): List<RegistroEntrada>
     }
 
     class Vehiculo {
+        - id: Integer
         - placa: String
         - modelo: String
         - color: String
         + obtenerDetalles(): String
+        + agregarVehiculo(placa: String, tipo: String, modelo: String): Vehiculo
+        + obtenerVehiculo(id: Integer): Vehiculo
     }
 }
-
-
-
-
-Residente "1" --> "0..*" RegistroEntrada : "solicita"
-
-RegistroEntrada "1" --> "0..*" Notificación : "genera"
-RegistroEntrada "1" --> "1..*" Visitante : "tiene"
-
-Visitante "1" --> "0..1" Vehiculo : "posee"
-Guardia "1" --> "0..*" RegistroEntrada : "supervisa"
-Guardia "1" --> "0..*" Notificación : "envía"
 
 ' ------------ COMUNICACIÓN ------------
 package Comunicación {
@@ -305,6 +245,57 @@ package Comunicación {
     }
 }
 
+' ------------ USUARIOS ------------
+' Relación de herencia
+Empleado <|-- Limpieza
+Empleado <|-- Mantenimiento
+
+' Relaciones entre clases
+Usuario --> Verificacion2FA : "necesita"
+Administrador "1..*" --> "1" GestionarCuenta : "utiliza"
+Residente "1..*" --> "1" GestionarCuenta : "utiliza"
+Verificacion2FA "1" --> "1..*" Mensaje : "envia"
+Usuario "1" --> "1..*" Mensaje : "envia"
+
+' ------------ PAGOS Y FINANZAS ------------
+Residente --> Pago
+Administrador --> Pago
+Administrador --> Multa
+Administrador --> Notificacion
+Administrador "1" --> "*" Cuota : verifica
+
+' ------------ INMUEBLES ------------
+Administrador o-- Alerta
+Administrador o-- Evento
+Administrador o-- Reporte
+
+Usuario o-- Inmueble
+
+Residente o-- SolicitudMantenimiento
+Mantenimiento o-- SolicitudMantenimiento
+
+
+' ------------ RESERVAS DE ESPACIOS COMUNES ------------
+EspacioComun <|-- Parqueadero
+Residente "1" --> "*" Reserva : realiza
+Reserva "1" --o "1" EspacioComun : incluye
+Administrador "1" --> "*" Reserva : gestiona
+Usuario o-- Reserva
+Administrador o-- EspacioComun
+
+
+' ------------ CHECK-IN ------------
+Residente "1" --> "0..*" RegistroEntrada : "solicita"
+
+RegistroEntrada "1" --> "0..*" Mensaje : "genera"
+RegistroEntrada "1" --> "1..*" Visitante : "tiene"
+
+Visitante "1" --> "0..1" Vehiculo : "posee"
+Empleado "1" --> "0..*" RegistroEntrada : "supervisa"
+Empleado "1" --> "0..*" Mensaje : "envía"
+
+
+' ------------ COMUNICACIÓN ------------
 Usuario <|-- Empleado
 Usuario <|-- Administrador
 Usuario <|-- Residente

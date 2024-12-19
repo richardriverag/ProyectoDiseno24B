@@ -22,19 +22,19 @@ class Residente {
     +notificarLlegadaProgramada(visitante: Visitante): void
 }
 
-class Guardia {
-    -id: int
-    -nombre: String
-    -turno: String
-    +vigilar(): void
+class Empleado {
 
 }
 
 class Visitante {
-    -nombre: String
-    -identificacion: String
-    -detallesContacto: String
-    -motivoVisita: String
+    - id: Integer
+    - nombre: String
+    - cedula: String
+    - idContacto: Integer
+    - motivoVisita: String
+    + agregarVisitante(nombre: String, cedula: String, idContacto: int, motivoVisita: String): Visitante
+    + obtenerVisitante(id: Integer): Visitante
+    + obtenerVisitantes(): List<Visitante>
 }
 
 class Reserva {
@@ -47,26 +47,27 @@ class Reserva {
 }
 
 class RegistroEntrada {
-    -fechaHora: DateTime
-    -visitante: Visitante
-    +registrarLlegada(): void
-    +autorizar(estado: Boolean): void
-    +guardarRegistro(): void
+    - id: Integer
+    - fecha: LocalDateTime
+    - visitante: Visitante
+    - guardia : Empleado
+    + agregarRegistro(nombre: String, cedula: String, idContacto: int, motivoVisita: String): RegistroEntrada
+    + obtenerRegistro(id: Integer): RegistroEntrada
+    + obtenerRegistros(): List<RegistroEntrada>
 
 }
 
-class Notificación {
-    -tipo: String
-    -contenido: String
-    +enviarNotificacion(): void
+class Mensaje {
 }
 
 
 class Vehiculo {
-    -placa: String
-    -modelo: String
-    -color: String
-    +obtenerDetalles(): String
+    - id: Integer
+    - placa: String
+    - tipo: String
+    - modelo: String
+    + agregarVehiculo(placa: String, tipo: String, modelo: String): Vehiculo
+    + obtenerVehiculo(id: Integer): Vehiculo
 }
 
 EspacioComun <|-- Parqueadero
@@ -74,10 +75,10 @@ Residente "1" --> "0..*" Reserva : "realiza"
 Reserva "1" --> "1" Parqueadero: "usa"
 Residente "1" --> "0..*" RegistroEntrada : "solicita"
 
-RegistroEntrada "1" --> "0..*" Notificación : "genera"
+RegistroEntrada "1" --> "0..*" Mensaje : "genera"
 RegistroEntrada "1" --> "1..*" Visitante : "tiene"
 
 Visitante "1" --> "0..1" Vehiculo : "posee"
-Guardia "1" --> "0..*" RegistroEntrada : "supervisa"
-Guardia "1" --> "0..*" Notificación : "envía"
+Empleado "1" --> "0..*" RegistroEntrada : "supervisa"
+Empleado "1" --> "0..*" Mensaje : "envía"
 @enduml

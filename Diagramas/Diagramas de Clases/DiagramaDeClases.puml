@@ -19,10 +19,6 @@ package "Gestión de Usuarios" {
         # fechaContrato: Date
     }
 
-    class Residente {
-
-    }
-
     class Administrador {
         ' ' Pagos y finanzas
         ' + registrarPago(pago: Pago)
@@ -47,24 +43,20 @@ package "Gestión de Usuarios" {
     }
 
     class Residente {
-        - numDepartamento: String
         ' ' Inmuebles
         ' + gestionarReservas(): void
         ' + registrarSolicitudMantenimiento(): void
     }
 
     class Guardia {
-        + vigilar(): void
     }
 
     class Mantenimiento {
-        + completarTarea(): void
         + monitorearMantenimiento(): void
     }
 
     class Limpieza {
-        + habitacionesAsignadas: Residente[]
-        + realizarLimpieza(): void
+        + registrarLimpieza(): void
     }
 
     ' Clases adicionales para gestión de cuentas

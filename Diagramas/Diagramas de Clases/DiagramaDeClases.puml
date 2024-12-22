@@ -71,18 +71,6 @@ package "Gestión de Usuarios" {
 
 ' ------------ PAGOS Y FINANZAS ------------
 package "Pagos y Finanzas" {
-   class Residente {
-    -id: int
-    - nombre: String
-    - telefonoContacto: String
-}
-
-' Clase Administrador
-class Administrador {
-    - Nombre: String
-    - Cedula: String
-    - Casa: String
-}
 
 ' Clase Registro
 class Registro {
@@ -123,7 +111,6 @@ class Notificacion {
     + enviarMensajeDirecto(contenido: String, destinatario: Usuario): void
 }
 
-' Clases de Métodos de Pago (Herencia)
 class MetodoPago {
     - tipo: String
     + procesarPago(): void
@@ -307,14 +294,14 @@ Usuario "1" --> "1..*" Mensaje : "envia"
 Residente "1" -- "0..*" Multa : tiene >
 Administrador "1" -- "0..*" Multa : gestiona >
 Administrador "1" -- "0..*" Notificacion : envia >
-
+Notificacion -- Mensaje
 Pago "1" -- "1" MetodoPago : usa >
 Pago "0..*" -- "1" Registro : es registrado en >
 
 Multa "0..*" -- "1" Registro : es registrada en >
 Administrador "1" -- "0..*" Registro : gestiona >
 
-' Herencia entre los Métodos de Pago
+
 MetodoPago <|-- PagoEfectivo
 MetodoPago <|-- PagoTarjeta
 MetodoPago <|-- PagoTransferencia

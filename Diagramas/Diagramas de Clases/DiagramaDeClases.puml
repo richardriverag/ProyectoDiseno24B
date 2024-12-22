@@ -71,35 +71,81 @@ package "Gestión de Usuarios" {
 
 ' ------------ PAGOS Y FINANZAS ------------
 package "Pagos y Finanzas" {
-    class Pago {
-        - monto: Double
-        - fecha: Date
-        - metodo: String
-        + registrar()
-    }
-
-    class Multa {
-        - monto: Double
-        - descripcion: String
-        - fecha: Date
-        + registrar()
-    }
-
-    class Notificacion {
-        - mensaje: String
-        - destinatario: String
-        + enviar()
-    }
-
-    class Cuota {
-        - idCuota: int
-        - monto: float
-        - fechaVencimiento: Date
-        - estadoPago: String
-        + verificarEstadoCuotas(): void
-        + enviarDeudaCuota(): void
-    }
+   class Residente {
+    -id: int
+    - nombre: String
+    - telefonoContacto: String
 }
+
+' Clase Administrador
+class Administrador {
+    - Nombre: String
+    - Cedula: String
+    - Casa: String
+}
+
+' Clase Registro
+class Registro {
+    + verificarRol(): String
+    + guardarMulta(multa: Multa)
+    + guardarPago(pago: Pago)
+    + editarMulta()
+    + consultarHistorial()
+}
+
+' Clase Pago
+class Pago {
+    - pagoDe: String
+    - monto: Double
+    - fecha: Date
+    - metodo: MetodoPago
+    + verificarRol()
+    + metodoPago()
+    + registrar()
+    + toString()
+}
+
+' Clase Multa
+class Multa {
+    - multaDe: String
+    - monto: Double
+    - descripcion: String
+    - fecha: Date
+    + crearMulta(String nombre, Double monto, String Desc)
+    + registrar()
+    + toString()
+}
+
+' Clase Notificacion
+class Notificacion {
+    - mensaje: String
+    - destinatario: String
+    + enviarMensajeDirecto(contenido: String, destinatario: Usuario): void
+}
+
+' Clases de Métodos de Pago (Herencia)
+class MetodoPago {
+    - tipo: String
+    + procesarPago(): void
+}
+
+class PagoEfectivo {
+    - tipo: String = "Efectivo"
+    + procesarPago(): void
+}
+
+class PagoTarjeta {
+    - tipo: String = "Tarjeta"
+    + procesarPago(): void
+}
+
+class PagoTransferencia {
+    - tipo: String = "Transferencia"
+    + procesarPago(): void
+}
+
+}
+
 
 ' ------------ INMUEBLES ------------
 package Inmuebles {
@@ -258,11 +304,20 @@ Verificacion2FA "1" --> "1..*" Mensaje : "envia"
 Usuario "1" --> "1..*" Mensaje : "envia"
 
 ' ------------ PAGOS Y FINANZAS ------------
-Residente --> Pago
-Administrador --> Pago
-Administrador --> Multa
-Administrador --> Notificacion
-Administrador "1" --> "*" Cuota : verifica
+Residente "1" -- "0..*" Multa : tiene >
+Administrador "1" -- "0..*" Multa : gestiona >
+Administrador "1" -- "0..*" Notificacion : envia >
+
+Pago "1" -- "1" MetodoPago : usa >
+Pago "0..*" -- "1" Registro : es registrado en >
+
+Multa "0..*" -- "1" Registro : es registrada en >
+Administrador "1" -- "0..*" Registro : gestiona >
+
+' Herencia entre los Métodos de Pago
+MetodoPago <|-- PagoEfectivo
+MetodoPago <|-- PagoTarjeta
+MetodoPago <|-- PagoTransferencia
 
 ' ------------ INMUEBLES ------------
 Administrador o-- Alerta

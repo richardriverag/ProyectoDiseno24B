@@ -18,46 +18,45 @@ class Administrador {
 }
 
 class Empleado {
-    
-}
 
-class Residente {
 }
 
 class ReporteMensaje {
-    - idReporte: int
-    - contenido: String
-    - fechaCreacion: datetime
-    + generarReporte(): void
+    -fechaInicio: datetime
+    -fechaFinal: datetime
+    -contenido: List<Mensaje>
+    -idReporte: int
+    + generarReporte(): ReporteMensaje
     + visualizarReporte(): void
 }
 
 
 class Comunicado {
-    - empleados: List[Empleado]
+    - empleados: List<Empleado>
 }
 
 class Mensaje{
     - idMensaje: int
     - contenido: String
-    - destinatarios: List[Usuario]
+    - destinatarios: List<Usuario>
     - fechaEnvio: datetime
-    + enviar(): void
+    + enviar(): Mensaje
+    + editar(nuevoContenido: String): Mensaje
+    + eliminar(): void
 }
 
 class AnuncioGeneral{
     - idAnuncio: int
     - contenido: String
     - fechaCreacion: datetime
-    + generar(): void
-    + editar(nuevoContenido: String): void
+    + generar(): AnuncioGeneral
+    + editar(nuevoContenido: String): AnuncioGeneral
     + eliminar(): void
 }
 
 
 Usuario <|-- Empleado
 Usuario <|-- Administrador
-Usuario <|-- Residente
 
 Administrador "1" --> "0..*" Comunicado: "enviar"
 Administrador "1"--> "0..*" ReporteMensaje: "genera"

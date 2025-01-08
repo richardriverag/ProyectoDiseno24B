@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+actor Residente as C
+Actor Administrador as A
+
+package Módulo_pagos_finanzas{
+
+
+
+usecase "Realizar un pago" as UC1
+package MetodosDePagos{
+usecase "Pago en efectivo" as UC1_1
+usecase "Pago por transferencia bancaria" as UC1_2
+usecase "Pago por depósito bancario" as UC1_3
+usecase "Pago a cuotas" as UC1_4
+}
+usecase "Consultar el historial de pagos y multas" as UC2
+usecase "Recibir recordatorios y notificaciones" as UC3
+
+
+usecase "Registrar un pago" as UC4
+usecase "Editar regristo de pago" as UC4_5
+usecase "Registrar una multa" as UC5
+usecase "Consultar el historial de pago y multas" as UC6
+usecase "Enviar recordatorios y notificaciones" as UC7
+usecase "Configurar métodos de pago" as UC8
+}
+
+
+C --> UC1
+UC1 --|> UC1_1
+UC1 --|> UC1_2
+UC1 --|> UC1_3
+UC1 --|> UC1_4
+
+
+C --> UC2
+C --> UC3
+
+A --> UC4
+A --> UC4_5
+A --> UC5
+
+A --> UC6
+A --> UC7
+A --> UC8
+@enduml

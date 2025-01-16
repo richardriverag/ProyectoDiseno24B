@@ -1,0 +1,355 @@
+@startuml DiagramaDeClases
+skinparam classAttributeIconSize 0
+
+' ------------ USUARIOS ------------
+package "Gestión de Usuarios" {
+    Abstract class Usuario {
+        - id: int
+        - cedula: String
+        - nombre: String
+        - email: String
+        - contraseña: String
+        + iniciarSesion(): boolean
+        + cerrarSesion(): boolean
+        + recuperarContraseña(email: String): boolean
+    }
+
+    class Empleado {
+        # salario: float
+        # fechaContrato: Date
+    }
+
+    class Administrador {
+        ' ' Pagos y finanzas
+        ' + registrarPago(pago: Pago)
+        ' + editarRegistroPago(pago: Pago)
+        ' + registrarMulta(multa: Multa)
+        ' + consultarHistorial()
+        ' + enviarNotificaciones()
+        ' + configurarMetodosPago()
+
+        ' ' Inmuebles
+        ' + configurarAlertas(): void
+        ' + notificarEventos(): void
+        ' + generarReportes(): void
+        ' + gestionarAreasComunes(): void
+
+        ' ' Comunicación
+        ' + generarReporteMensaje(reporte: Reporte)
+        ' + modificarAnuncioGeneral(anuncio: AnuncioGeneral)
+        ' + eliminarAnuncioGeneral(id: int)
+        ' + generarAnuncioGeneral(anuncio: AnuncioGeneral)
+        ' + enviarComunicadoEmpleados(comunicado: Comunicado)
+    }
+
+    class Residente {
+        ' ' Inmuebles
+        ' + gestionarReservas(): void
+        ' + registrarSolicitudMantenimiento(): void
+    }
+
+    class Mantenimiento {
+        + monitorearMantenimiento(): void
+    }
+
+    class Limpieza {
+        + registrarLimpieza(): void
+    }
+
+    ' Clases adicionales para gestión de cuentas
+    class Verificacion2FA {
+        + enviarCodigo(): boolean
+        + verificarCodigo(codigo: String): boolean
+    }
+
+    class GestionarCuenta {
+        + crearCuenta(datos: Map): boolean
+        + actualizarCuenta(id: int, datos: Map): boolean
+        + desactivarCuenta(id: int): boolean
+    }
+}
+
+' ------------ PAGOS Y FINANZAS ------------
+package "Pagos y Finanzas" {
+
+' Clase Registro
+class Registro {
+    + verificarRol(): String
+    + guardarMulta(multa: Multa)
+    + guardarPago(pago: Pago)
+    + editarMulta()
+    + consultarHistorial()
+}
+
+' Clase Pago
+class Pago {
+    - pagoDe: String
+    - monto: Double
+    - fecha: Date
+    - metodo: MetodoPago
+    + verificarRol()
+    + metodoPago()
+    + registrar()
+    + toString()
+}
+
+' Clase Multa
+class Multa {
+    - multaDe: String
+    - monto: Double
+    - descripcion: String
+    - fecha: Date
+    + crearMulta(String nombre, Double monto, String Desc)
+    + registrar()
+    + toString()
+}
+
+' Clase Notificacion
+class Notificacion {
+    - mensaje: String
+    - destinatario: String
+    + enviarMensajeDirecto(contenido: String, destinatario: Usuario): void
+}
+
+class MetodoPago {
+    - tipo: String
+    + procesarPago(): void
+}
+
+class PagoEfectivo {
+    - tipo: String = "Efectivo"
+    + procesarPago(): void
+}
+
+class PagoTarjeta {
+    - tipo: String = "Tarjeta"
+    + procesarPago(): void
+}
+
+class PagoTransferencia {
+    - tipo: String = "Transferencia"
+    + procesarPago(): void
+}
+
+}
+
+
+' ------------ INMUEBLES ------------
+package Inmuebles {
+    class Inmueble {
+        + id: int
+        + direccion: string
+        + estado: string
+        + registrar(): void
+        + actualizar(): void
+        + consultarDisponibilidad(): bool
+        + administrarEstado(): void
+    }
+
+    class SolicitudMantenimiento {
+        + id: int
+        + descripcion: string
+        + estado: string
+        + registrar(): void
+        + asignarTareas(): void
+        + monitorearEstado(): void
+    }
+
+    class Alerta {
+        + id: int
+        + tipo: string
+        + mensaje: string
+        + configurar(): void
+        + notificar(): void
+    }
+
+    class Evento {
+        + id: int
+        + tipo: string
+        + descripcion: string
+        + notificar(): void
+    }
+
+    class Reporte {
+        + id: int
+        + tipo: string
+        + contenido: string
+        + generar(): void
+    }
+}
+
+' ------------ RESERVAS DE ESPACIOS COMUNES ------------
+package "Reserva de Espacios Comunes" {
+    class Reserva {
+        - idReserva: int
+        - fechaReserva: Date
+        - horaInicio: Time
+        - horaFin: Time
+        - estado: String
+        + generarSolicitudReserva(): void
+        + revisarSolicitudReserva(): void
+        + enviarAceptacionReserva(): void
+        + reservarAreaComun(): void
+        + cancelarReserva(): void
+    }
+
+    class EspacioComun {
+        - idEspacio: int
+        - nombreEspacio: String
+        - disponibilidad: boolean
+        + actualizarDisponibilidad(): void
+        + verificarDisponibilidad(): void
+        + actualizarEstado(estado: Boolean): void
+    }
+
+        class Parqueadero {
+        - ubicacion: String
+        - disponibilidad: bool
+        + asignarEspacio(): void
+        + liberarEspacio(): void
+    }
+
+}
+
+' ------------ CHECK-IN ------------
+package "Check-in" {
+    class Visitante {
+        - id: Integer
+        - nombre: String
+        - identificacion: String
+        - detallesContacto: String
+        - motivoVisita: Stringe
+        + agregarVisitante(nombre: String, cedula: String, idContacto: int, motivoVisita: String): Visitante
+        + obtenerVisitante(id: Integer): Visitante
+        + obtenerVisitantes(): List<Visitante>
+    }
+
+    class RegistroEntrada {
+        - id: Integer
+        - fechaRegistro: Date
+        - visitante: Visitante
+        - guardia : Empleado
+        + agregarRegistro(nombre: String, cedula: String, idContacto: int, motivoVisita: String): RegistroEntrada
+        + obtenerRegistro(id: Integer): RegistroEntrada
+        + obtenerRegistros(): List<RegistroEntrada>
+    }
+
+    class Vehiculo {
+        - id: Integer
+        - placa: String
+        - modelo: String
+        - color: String
+        + obtenerDetalles(): String
+        + agregarVehiculo(placa: String, tipo: String, modelo: String): Vehiculo
+        + obtenerVehiculo(id: Integer): Vehiculo
+    }
+}
+
+' ------------ COMUNICACIÓN ------------
+package Comunicación {
+    'Almacenar mensajes como Map
+    class ReporteMensaje {
+        - idReporte: int
+        - contenido: String
+        - fechaCreacion: datetime
+        + generarReporte(): void
+        + visualizarReporte(): void
+    }
+
+    class Comunicado {
+        - empleados: List[Empleado]
+    }
+
+    class Mensaje{
+        - idMensaje: int
+        - contenido: String
+        - destinatarios: List[Usuario]
+        - fechaEnvio: datetime
+        + enviar(): void
+    }
+
+    class AnuncioGeneral{
+        - idAnuncio: int
+        - contenido: String
+        - fechaCreacion: datetime
+        + generar(): void
+        + editar(nuevoContenido: String): void
+        + eliminar(): void
+    }
+}
+
+' ------------ USUARIOS ------------
+' Relación de herencia
+Empleado <|-- Limpieza
+Empleado <|-- Mantenimiento
+
+' Relaciones entre clases
+Usuario --> Verificacion2FA : "necesita"
+Administrador "1..*" --> "1" GestionarCuenta : "utiliza"
+Residente "1..*" --> "1" GestionarCuenta : "utiliza"
+Verificacion2FA "1" --> "1..*" Mensaje : "envia"
+Usuario "1" --> "1..*" Mensaje : "envia"
+
+' ------------ PAGOS Y FINANZAS ------------
+Residente "1" -- "0..*" Multa : tiene >
+Administrador "1" -- "0..*" Multa : gestiona >
+Administrador "1" -- "0..*" Notificacion : envia >
+Notificacion -- Mensaje
+Pago "1" -- "1" MetodoPago : usa >
+Pago "0..*" -- "1" Registro : es registrado en >
+
+Multa "0..*" -- "1" Registro : es registrada en >
+Administrador "1" -- "0..*" Registro : gestiona >
+
+
+MetodoPago <|-- PagoEfectivo
+MetodoPago <|-- PagoTarjeta
+MetodoPago <|-- PagoTransferencia
+
+' ------------ INMUEBLES ------------
+Administrador o-- Alerta
+Administrador o-- Evento
+Administrador o-- Reporte
+
+Usuario o-- Inmueble
+
+Residente o-- SolicitudMantenimiento
+Mantenimiento o-- SolicitudMantenimiento
+
+
+' ------------ RESERVAS DE ESPACIOS COMUNES ------------
+EspacioComun <|-- Parqueadero
+Residente "1" --> "*" Reserva : realiza
+Reserva "1" --o "1" EspacioComun : incluye
+Administrador "1" --> "*" Reserva : gestiona
+Usuario o-- Reserva
+Administrador o-- EspacioComun
+
+
+' ------------ CHECK-IN ------------
+Residente "1" --> "0..*" RegistroEntrada : "solicita"
+
+RegistroEntrada "1" --> "0..*" Mensaje : "genera"
+RegistroEntrada "1" --> "1..*" Visitante : "tiene"
+
+Visitante "1" --> "0..1" Vehiculo : "posee"
+Empleado "1" --> "0..*" RegistroEntrada : "supervisa"
+Empleado "1" --> "0..*" Mensaje : "envía"
+
+
+' ------------ COMUNICACIÓN ------------
+Usuario <|-- Empleado
+Usuario <|-- Administrador
+Usuario <|-- Residente
+
+Administrador "1" --> "0..*" Comunicado: "enviar"
+Administrador "1"--> "0..*" ReporteMensaje: "genera"
+Administrador "1" --> "1..*" AnuncioGeneral: "gestiona"
+
+Comunicado "1" --> "1..*" Empleado: "dirigido a"
+Usuario "1" --> "0..*" Mensaje: "recibe"
+
+Mensaje <|-- Comunicado
+
+
+@enduml

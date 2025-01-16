@@ -1,0 +1,113 @@
+@startuml
+!define Abstract abstract
+
+Abstract class Usuario {
+  + id: int
+  + nombre: string
+  + email: string
+  + telefono: string
+  + iniciarSesion(): void
+  + cerrarSesion(): void
+}
+
+class Administrador {
+  + configurarAlertas(): void
+  + notificarEventos(): void
+  + generarReportes(): void
+  + gestionarAreasComunes(): void
+}
+
+class Residente {
+  + gestionarReservas(): void
+  + registrarSolicitudMantenimiento(): void
+}
+
+class PersonalMantenimiento {
+  + asignarTareas(): void
+  + monitorearMantenimiento(): void
+}
+
+class Inmueble {
+  + id: int
+  + direccion: string
+  + estado: string
+  + registrar(): void
+  + actualizar(): void
+  + consultarDisponibilidad(): bool
+  + administrarEstado(): void
+}
+
+class AreaComun {
+  + id: int
+  + nombre: string
+  + capacidad: int
+  + gestionar(): void
+}
+
+class Reserva {
+  + id: int
+  + fecha: Date
+  + idAreaComun: int
+  + idUsuario: int
+  + crear(): void
+  + cancelar(): void
+}
+
+class SolicitudMantenimiento {
+  + id: int
+  + descripcion: string
+  + estado: string
+  + registrar(): void
+  + asignarTareas(): void
+  + monitorearEstado(): void
+}
+
+class Pago {
+  + id: int
+  + monto: float
+  + fecha: Date
+  + idUsuario: int
+  + registrar(): void
+  + generarRecibo(): void
+}
+
+class Alerta {
+  + id: int
+  + tipo: string
+  + mensaje: string
+  + configurar(): void
+  + notificar(): void
+}
+
+class Evento {
+  + id: int
+  + tipo: string
+  + descripcion: string
+  + notificar(): void
+}
+
+class Reporte {
+  + id: int
+  + tipo: string
+  + contenido: string
+  + generar(): void
+}
+
+Usuario <|-- Administrador
+Usuario <|-- Residente
+Usuario <|-- PersonalMantenimiento
+
+Administrador o-- Alerta
+Administrador o-- Evento
+Administrador o-- Reporte
+Administrador o-- AreaComun
+
+Usuario o-- Inmueble
+Usuario o-- Reserva
+Usuario o-- Pago
+
+Residente o-- SolicitudMantenimiento
+PersonalMantenimiento o-- SolicitudMantenimiento
+
+AreaComun o-- Reserva
+@enduml

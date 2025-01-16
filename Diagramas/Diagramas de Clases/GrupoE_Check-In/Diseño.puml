@@ -1,0 +1,84 @@
+@startuml
+abstract class EspacioComun {
+    -id: int
+    -nombre: String
+    -capacidad: int
+    +verificarDisponibilidad(): Boolean
+    +actualizarEstado(estado: Boolean): void
+}
+
+class Parqueadero {
+    -ubicacion: String
+    -disponibilidad: bool
+    +asignarEspacio(): void
+    +liberarEspacio(): void
+}
+
+class Residente {
+    -id: int
+    -nombre: String
+    -telefonoContacto: String
+    +solicitarParqueadero(): void
+    +notificarLlegadaProgramada(visitante: Visitante): void
+}
+
+class Empleado {
+
+}
+
+class Visitante {
+    - id: Integer
+    - nombre: String
+    - cedula: String
+    - idContacto: Integer
+    - motivoVisita: String
+    + agregarVisitante(nombre: String, cedula: String, idContacto: int, motivoVisita: String): Visitante
+    + obtenerVisitante(id: Integer): Visitante
+    + obtenerVisitantes(): List<Visitante>
+}
+
+class Reserva {
+    -id: int
+    -fecha: Date
+    -hora: Time
+    -departamento: Departamento
+    +generarReserva(): void
+    +cancelarReserva(): void
+}
+
+class RegistroEntrada {
+    - id: Integer
+    - fecha: LocalDateTime
+    - visitante: Visitante
+    - guardia : Empleado
+    + agregarRegistro(nombre: String, cedula: String, idContacto: int, motivoVisita: String): RegistroEntrada
+    + obtenerRegistro(id: Integer): RegistroEntrada
+    + obtenerRegistros(): List<RegistroEntrada>
+
+}
+
+class Mensaje {
+}
+
+
+class Vehiculo {
+    - id: Integer
+    - placa: String
+    - tipo: String
+    - modelo: String
+    + agregarVehiculo(placa: String, tipo: String, modelo: String): Vehiculo
+    + obtenerVehiculo(id: Integer): Vehiculo
+}
+
+EspacioComun <|-- Parqueadero
+Residente "1" --> "0..*" Reserva : "realiza"
+Reserva "1" --> "1" Parqueadero: "usa"
+Residente "1" --> "0..*" RegistroEntrada : "solicita"
+
+RegistroEntrada "1" --> "0..*" Mensaje : "genera"
+RegistroEntrada "1" --> "1..*" Visitante : "tiene"
+
+Visitante "1" --> "0..1" Vehiculo : "posee"
+Empleado "1" --> "0..*" RegistroEntrada : "supervisa"
+Empleado "1" --> "0..*" Mensaje : "envía"
+@enduml

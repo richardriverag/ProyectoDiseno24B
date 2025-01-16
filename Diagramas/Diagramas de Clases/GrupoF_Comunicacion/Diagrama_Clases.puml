@@ -1,0 +1,70 @@
+@startuml
+' Encapsulación
+skinparam classAttributeIconSize 0
+
+class Usuario {
+    - idUsuario: int
+    - nombre: String
+    - email: String
+    + recibirMensaje(mensaje: Mensaje)
+}
+
+class Administrador {
+    + generarReporteMensaje(reporte: Reporte)
+    + modificarAnuncioGeneral(anuncio: AnuncioGeneral)
+    + eliminarAnuncioGeneral(id: int)
+    + generarAnuncioGeneral(anuncio: AnuncioGeneral)
+    + enviarComunicadoEmpleados(comunicado: Comunicado)
+}
+
+class Empleado {
+
+}
+
+class ReporteMensaje {
+    -fechaInicio: datetime
+    -fechaFinal: datetime
+    -contenido: List<Mensaje>
+    -idReporte: int
+    + generarReporte(): ReporteMensaje
+    + visualizarReporte(): void
+}
+
+
+class Comunicado {
+    - empleados: List<Empleado>
+}
+
+class Mensaje{
+    - idMensaje: int
+    - contenido: String
+    - destinatarios: List<Usuario>
+    - fechaEnvio: datetime
+    + enviar(): Mensaje
+    + editar(nuevoContenido: String): Mensaje
+    + eliminar(): void
+}
+
+class AnuncioGeneral{
+    - idAnuncio: int
+    - contenido: String
+    - fechaCreacion: datetime
+    + generar(): AnuncioGeneral
+    + editar(nuevoContenido: String): AnuncioGeneral
+    + eliminar(): void
+}
+
+
+Usuario <|-- Empleado
+Usuario <|-- Administrador
+
+Administrador "1" --> "0..*" Comunicado: "enviar"
+Administrador "1"--> "0..*" ReporteMensaje: "genera"
+Administrador "1" --> "1..*" AnuncioGeneral: "gestiona"
+
+Comunicado "1" --> "1..*" Empleado: "dirigido a"
+Usuario "1" --> "0..*" Mensaje: "recibe"
+
+Mensaje <|-- Comunicado
+
+@enduml

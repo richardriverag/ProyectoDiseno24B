@@ -1,0 +1,48 @@
+@startuml
+left to right direction
+actor "Administrador" as Admin
+actor "Guardia" as Guardia
+actor "Limpieza" as Limpieza
+actor "Residente" as Residente
+actor "Mantenimiento" as Mantenimiento
+actor "Empleado" as Empleado
+actor "Usuario"
+
+' Jerarquía de usuarios
+Usuario <|-- Empleado
+Usuario <|-- Admin
+Usuario <|-- Residente
+Empleado <|-- Limpieza
+Empleado <|-- Mantenimiento
+Empleado <|-- Guardia
+
+package "Gestión de Usuarios" {
+    usecase "Iniciar Sesión" as IniciarSesion
+    usecase "Verificación 2FA" as Verificacion2FA
+    usecase "Recuperar Contraseña" as RecuperarContraseña
+    usecase "Gestionar Cuenta" as GestionarCuenta
+    usecase "Crear Cuenta" as CrearCuenta
+    usecase "Actualizar Cuenta" as ActualizarCuenta
+    usecase "Desactivar Cuenta" as DesactivarCuenta
+}
+
+Admin --> GestionarCuenta
+Usuario --> IniciarSesion
+Residente --> GestionarCuenta
+
+GestionarCuenta <|-- CrearCuenta
+GestionarCuenta <|-- ActualizarCuenta
+GestionarCuenta <|-- DesactivarCuenta
+GestionarCuenta ..> Verificacion2FA : <<include>>
+IniciarSesion ..> Verificacion2FA : <<include>>
+IniciarSesion <. RecuperarContraseña : <<extend>>
+
+
+package Comunicación{
+package "Envío Mensajes"{
+usecase "Enviar Mensaje Directo" as mensajeDirecto
+}
+}
+
+Verificacion2FA .....> mensajeDirecto : <<include>>
+@enduml

@@ -157,3 +157,58 @@ CREATE TABLE Residente_Registro (
     FOREIGN KEY (residente_id) REFERENCES Usuario(id),
     FOREIGN KEY (registro_id) REFERENCES RegistroEntrada(id)
 );
+
+-- Tabla Mensaje
+CREATE TABLE Mensaje (
+    idMensaje INT PRIMARY KEY AUTO_INCREMENT,
+    contenido TEXT NOT NULL,
+    fechaEnvio DATETIME NOT NULL
+);
+
+-- Relación Mensaje - Usuario
+CREATE TABLE Mensaje_Usuario (
+    idMensaje INT,
+    idUsuario_Remitente INT,
+    idUsuario_Emisor INT,
+    PRIMARY KEY (idMensaje, idUsuario_Remitente, idUsuario_Emisor),
+    FOREIGN KEY (idUsuario_Remitente) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (idMensaje) REFERENCES Mensaje(idMensaje),
+    FOREIGN KEY (idUsuario_Emisor) REFERENCES Usuario(idUsuario)
+);
+
+-- Tabla Anuncio General 
+CREATE TABLE AnuncioGeneral (
+    idAnuncio INT PRIMARY KEY AUTO_INCREMENT,
+    contenido TEXT NOT NULL,
+    fechaCreacion DATETIME NOT NULL,
+    idUsuario INT,
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+);
+
+-- Tabla Reporte de mensajes
+CREATE TABLE ReporteMensaje (
+    idReporte INT PRIMARY KEY AUTO_INCREMENT,
+    fechaInicio DATETIME NOT NULL,
+    fechaFinal DATETIME NOT NULL,
+    contenido TEXT,
+    idUsuario INT,
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+);
+
+-- Tabla Comunicado
+CREATE TABLE Comunicado (
+    idComunicado INT PRIMARY KEY AUTO_INCREMENT,
+    contenido TEXT NOT NULL,
+    fechaEnvio DATETIME NOT NULL
+);
+
+-- Relación Comunicado - Empleado
+CREATE TABLE Comunicado_Empleado (
+    idComunicado INT,
+    idUsuario_Remitente INT,
+    idUsuario_Emisor INT,
+    PRIMARY KEY (idComunicado, idUsuario_Remitente, idUsuario_Emisor),
+    FOREIGN KEY (idUsuario_Remitente) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (idComunicado) REFERENCES Comunicado(idComunicado),
+    FOREIGN KEY (idUsuario_Emisor) REFERENCES Usuario(idUsuario)
+);

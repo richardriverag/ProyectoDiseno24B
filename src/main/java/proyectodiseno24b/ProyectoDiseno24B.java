@@ -5,6 +5,8 @@
 package proyectodiseno24b;
 
 import view.FrmUsuarioLogin;
+import view.FrmUsuarioRecuperarPass;
+
 
 /**
  *
@@ -13,7 +15,9 @@ import view.FrmUsuarioLogin;
 public class ProyectoDiseno24B {
 
     public static void main(String[] args) {
-        FrmUsuarioLogin frm= new FrmUsuarioLogin();
-        frm.setVisible(true);
+        FrmUsuarioLogin frm = new FrmUsuarioLogin();    
+        FrmUsuarioRecuperarPass frmR = new FrmUsuarioRecuperarPass();
+
+        frmR.setVisible(true);
     }
 }

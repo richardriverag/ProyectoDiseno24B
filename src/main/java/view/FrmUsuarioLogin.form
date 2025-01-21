@@ -61,9 +61,6 @@
               <Image iconType="3" name="/imagenes/loginImagen1 (1) (1).png"/>
             </Property>
           </Properties>
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
-          </AccessibilityProperties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="510" y="0" width="800" height="720"/>
@@ -143,7 +140,7 @@
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagenes/loginImagen1 (1) (1).png"/>
+                  <Image iconType="3" name="/imagenes/imagenCondominio.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -155,7 +152,7 @@
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagenes/login9 (2).png"/>
+                  <Image iconType="3" name="/imagenes/imagenLogo.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -280,7 +277,7 @@
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagenes/candado (1).png"/>
+                  <Image iconType="3" name="/imagenes/imagenCandado.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -292,7 +289,7 @@
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagenes/usuario (1).png"/>
+                  <Image iconType="3" name="/imagenes/imagenUsuario.png"/>
                 </Property>
               </Properties>
               <Constraints>

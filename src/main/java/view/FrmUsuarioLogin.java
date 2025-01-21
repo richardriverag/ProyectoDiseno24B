@@ -8,12 +8,12 @@ package view;
  *
  * @author Richard
  */
-public class frmUsuarioLogin extends javax.swing.JFrame {
+public class FrmUsuarioLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicial
      */
-    public frmUsuarioLogin() {
+    public FrmUsuarioLogin() {
         initComponents();
     }
 
@@ -57,7 +57,6 @@ public class frmUsuarioLogin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/loginImagen1 (1) (1).png"))); // NOI18N
         panelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 800, 720));
-        jLabel1.getAccessibleContext().setAccessibleName("");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/login9 (2).png"))); // NOI18N
         panelLogin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, 180));
@@ -78,10 +77,10 @@ public class frmUsuarioLogin extends javax.swing.JFrame {
         panelLogin1.setPreferredSize(new java.awt.Dimension(1280, 720));
         panelLogin1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/loginImagen1 (1) (1).png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenCondominio.png"))); // NOI18N
         panelLogin1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 800, 720));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/login9 (2).png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenLogo.png"))); // NOI18N
         panelLogin1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, 180));
 
         jLabel8.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
@@ -121,10 +120,10 @@ public class frmUsuarioLogin extends javax.swing.JFrame {
         });
         panelLogin1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 580, 160, 40));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/candado (1).png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenCandado.png"))); // NOI18N
         panelLogin1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, -1, -1));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario (1).png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenUsuario.png"))); // NOI18N
         panelLogin1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, -1, -1));
 
         panelLogin.add(panelLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -166,21 +165,27 @@ public class frmUsuarioLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmUsuarioLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuarioLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmUsuarioLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuarioLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmUsuarioLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuarioLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmUsuarioLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuarioLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmUsuarioLogin().setVisible(true);
+                new FrmUsuarioLogin().setVisible(true);
             }
         });
     }

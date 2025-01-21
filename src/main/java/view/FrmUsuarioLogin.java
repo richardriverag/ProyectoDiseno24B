@@ -4,6 +4,8 @@
  */
 package view;
 
+import view.*;
+
 /**
  *
  * @author Richard
@@ -36,13 +38,13 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
         txtContrasena = new javax.swing.JPasswordField();
-        btnLogin = new javax.swing.JButton();
+        btnRecuperarPass = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        btnLogin1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         panelLogin1.setBackground(new java.awt.Color(255, 255, 255));
@@ -50,14 +52,14 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
         panelLogin1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenCondominio.png"))); // NOI18N
-        panelLogin1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 800, 720));
+        panelLogin1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 770, 720));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenLogo.png"))); // NOI18N
         panelLogin1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, 180));
 
         jLabel8.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
         jLabel8.setText("contaseña");
-        panelLogin1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, 50));
+        panelLogin1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, 50));
 
         jLabel9.setFont(new java.awt.Font("Perpetua Titling MT", 1, 24)); // NOI18N
         jLabel9.setText("LOGIN ");
@@ -65,47 +67,58 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
         jLabel10.setText("usuario");
-        panelLogin1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+        panelLogin1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
 
         txtNombreUsuario1.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         txtNombreUsuario1.setForeground(new java.awt.Color(204, 204, 204));
         txtNombreUsuario1.setText("Ingrese su nombre de usuario");
         txtNombreUsuario1.setBorder(null);
-        panelLogin1.add(txtNombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 280, 30));
-        panelLogin1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 442, 280, 10));
-        panelLogin1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 280, 10));
+        panelLogin1.add(txtNombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 280, 30));
+        panelLogin1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 280, 10));
+        panelLogin1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 520, 280, 10));
 
         txtContrasena.setForeground(new java.awt.Color(204, 204, 204));
         txtContrasena.setText("jPasswordField1");
         txtContrasena.setBorder(null);
-        panelLogin1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 280, 30));
+        panelLogin1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, 280, 30));
 
-        btnLogin.setBackground(new java.awt.Color(94, 159, 180));
-        btnLogin.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin.setText("ENTRAR");
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+        btnRecuperarPass.setBackground(new java.awt.Color(94, 159, 180));
+        btnRecuperarPass.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        btnRecuperarPass.setForeground(new java.awt.Color(255, 255, 255));
+        btnRecuperarPass.setText("reCUPERAR CONTRASEÑA");
+        btnRecuperarPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRecuperarPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                btnRecuperarPassActionPerformed(evt);
             }
         });
-        panelLogin1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 580, 160, 40));
+        panelLogin1.add(btnRecuperarPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 630, 200, 40));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenCandado.png"))); // NOI18N
-        panelLogin1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, -1, -1));
+        panelLogin1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 490, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenUsuario.png"))); // NOI18N
-        panelLogin1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, -1, -1));
+        panelLogin1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 410, -1, -1));
+
+        btnLogin1.setBackground(new java.awt.Color(94, 159, 180));
+        btnLogin1.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        btnLogin1.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin1.setText("ENTRAR");
+        btnLogin1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogin1ActionPerformed(evt);
+            }
+        });
+        panelLogin1.add(btnLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 160, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 18, Short.MAX_VALUE)
                 .addComponent(panelLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,11 +129,16 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+    private void btnRecuperarPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecuperarPassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoginActionPerformed
+    }//GEN-LAST:event_btnRecuperarPassActionPerformed
+
+    private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogin1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,6 +173,14 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -165,7 +191,8 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogin1;
+    private javax.swing.JButton btnRecuperarPass;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

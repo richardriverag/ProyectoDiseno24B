@@ -15,9 +15,9 @@ import view.FrmUsuarioRecuperarPass;
 public class ProyectoDiseno24B {
 
     public static void main(String[] args) {
-        FrmUsuarioLogin frm = new FrmUsuarioLogin();    
-        FrmUsuarioRecuperarPass frmR = new FrmUsuarioRecuperarPass();
+        FrmUsuarioLogin frmLogin = new FrmUsuarioLogin();    
+        FrmUsuarioRecuperarPass frmRecuperarPass = new FrmUsuarioRecuperarPass();
 
-        frmR.setVisible(true);
+        frmLogin.setVisible(true);
     }
 }

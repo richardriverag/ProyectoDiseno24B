@@ -26,68 +26,166 @@ public class FrmUsuarioRecuperarPass extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        panelLogin1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtCorreo = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtConfContrasena = new javax.swing.JPasswordField();
+        btnRecuperarPass = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtCodValidacion = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel14 = new javax.swing.JLabel();
+        btnValidarCorreo = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        txtContrasena = new javax.swing.JPasswordField();
+        jLabel15 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        txtContrasena2 = new javax.swing.JPasswordField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
+        panelLogin1.setBackground(new java.awt.Color(255, 255, 255));
+        panelLogin1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setText("jButton2");
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenCondominio.png"))); // NOI18N
+        panelLogin1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 770, 720));
 
-        jButton3.setText("jButton3");
+        jLabel8.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
+        jLabel8.setText("CONFIRMAR contRaseña");
+        panelLogin1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, 50));
 
-        jLabel1.setText("jLabel1");
+        jLabel9.setFont(new java.awt.Font("Perpetua Titling MT", 1, 24)); // NOI18N
+        jLabel9.setText("recuperar contraseña");
+        panelLogin1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, 50));
 
-        jLabel2.setText("jLabel2");
+        jLabel10.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
+        jLabel10.setText("correo");
+        panelLogin1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
-        jLabel3.setText("jLabel3");
+        txtCorreo.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        txtCorreo.setForeground(new java.awt.Color(204, 204, 204));
+        txtCorreo.setText("Ingrese su correo electrónico");
+        txtCorreo.setBorder(null);
+        panelLogin1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 280, 30));
+        panelLogin1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 280, 10));
+        panelLogin1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 280, 10));
+
+        txtConfContrasena.setForeground(new java.awt.Color(204, 204, 204));
+        txtConfContrasena.setText("jPasswordField1");
+        txtConfContrasena.setBorder(null);
+        panelLogin1.add(txtConfContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 560, 280, 30));
+
+        btnRecuperarPass.setBackground(new java.awt.Color(94, 159, 180));
+        btnRecuperarPass.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        btnRecuperarPass.setForeground(new java.awt.Color(255, 255, 255));
+        btnRecuperarPass.setText("RECUPERAR CONTRASEÑA");
+        btnRecuperarPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRecuperarPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecuperarPassActionPerformed(evt);
+            }
+        });
+        panelLogin1.add(btnRecuperarPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 630, -1, 40));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenCandado.png"))); // NOI18N
+        panelLogin1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 560, -1, -1));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenUsuario.png"))); // NOI18N
+        panelLogin1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
+        jLabel13.setText("código de validación");
+        panelLogin1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, 30));
+
+        txtCodValidacion.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        txtCodValidacion.setForeground(new java.awt.Color(204, 204, 204));
+        txtCodValidacion.setText("Ingrese EL CÓDIGO DE VALIDACIÓN");
+        txtCodValidacion.setBorder(null);
+        txtCodValidacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodValidacionActionPerformed(evt);
+            }
+        });
+        panelLogin1.add(txtCodValidacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 280, 30));
+        panelLogin1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 280, 10));
+
+        jLabel14.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
+        jLabel14.setText("nUEVA contaseña");
+        panelLogin1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, 50));
+
+        btnValidarCorreo.setBackground(new java.awt.Color(94, 159, 180));
+        btnValidarCorreo.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        btnValidarCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        btnValidarCorreo.setText("validar correo");
+        btnValidarCorreo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnValidarCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarCorreoActionPerformed(evt);
+            }
+        });
+        panelLogin1.add(btnValidarCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 160, 40));
+        panelLogin1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 280, 10));
+
+        txtContrasena.setForeground(new java.awt.Color(204, 204, 204));
+        txtContrasena.setText("jPasswordField1");
+        txtContrasena.setBorder(null);
+        panelLogin1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 280, 30));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenCandado.png"))); // NOI18N
+        panelLogin1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, -1, -1));
+        panelLogin1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 280, 10));
+
+        txtContrasena2.setForeground(new java.awt.Color(204, 204, 204));
+        txtContrasena2.setText("jPasswordField1");
+        txtContrasena2.setBorder(null);
+        panelLogin1.add(txtContrasena2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 560, 280, 30));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenCandado.png"))); // NOI18N
+        panelLogin1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 560, -1, -1));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenUsuario.png"))); // NOI18N
+        panelLogin1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(269, 269, 269)
-                        .addComponent(jLabel1)))
-                .addContainerGap(841, Short.MAX_VALUE))
+                .addComponent(panelLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1))
-                .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel2))
-                .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jLabel3))
-                .addContainerGap(421, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panelLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRecuperarPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecuperarPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRecuperarPassActionPerformed
+
+    private void btnValidarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnValidarCorreoActionPerformed
+
+    private void txtCodValidacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodValidacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodValidacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,11 +224,29 @@ public class FrmUsuarioRecuperarPass extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton btnRecuperarPass;
+    private javax.swing.JButton btnValidarCorreo;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JPanel panelLogin1;
+    private javax.swing.JTextField txtCodValidacion;
+    private javax.swing.JPasswordField txtConfContrasena;
+    private javax.swing.JPasswordField txtContrasena;
+    private javax.swing.JPasswordField txtContrasena2;
+    private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
 }

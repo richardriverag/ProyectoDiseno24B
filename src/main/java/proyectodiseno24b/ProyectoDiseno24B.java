@@ -4,6 +4,8 @@
 
 package proyectodiseno24b;
 
+import view.FrmUsuarioLogin;
+
 /**
  *
  * @author Richard
@@ -11,6 +13,7 @@ package proyectodiseno24b;
 public class ProyectoDiseno24B {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        FrmUsuarioLogin frm= new FrmUsuarioLogin();
+        frm.setVisible(true);
     }
 }

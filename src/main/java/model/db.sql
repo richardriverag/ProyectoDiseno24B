@@ -34,6 +34,9 @@ CREATE TABLE Inmueble (
     id INT AUTO_INCREMENT PRIMARY KEY,
     direccion VARCHAR(255) NOT NULL,
     estado INT NOT NULL,
+    tipo INT NOT NULL,
+    dimensiones VARCHAR(20) NOT NULL,
+    disponibilidad INT NOT NULL,
     usuario_id INT NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
 );

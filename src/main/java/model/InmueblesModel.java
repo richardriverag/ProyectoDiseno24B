@@ -10,16 +10,17 @@ package model;
  */
 public class InmueblesModel {
     private int iD_Inmueble;
-    private String direccion;
+    private String ubicacion;
     private int estado;
     private int tipo;
+    private int habitaciones;
     private String dimensiones;
     private int disponibilidad;
     private int user_ID;
 
     public InmueblesModel(int iD_Inmueble, String direccion, int estado, int tipo, String dimensiones, int disponibilidad, int user_ID) {
         this.iD_Inmueble = iD_Inmueble;
-        this.direccion = direccion;
+        this.ubicacion = direccion;
         this.estado = estado;
         this.tipo = tipo;
         this.dimensiones = dimensiones;
@@ -31,8 +32,8 @@ public class InmueblesModel {
         return iD_Inmueble;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getUbicacion() {
+        return ubicacion;
     }
 
     public int getEstado() {
@@ -41,6 +42,10 @@ public class InmueblesModel {
 
     public int getTipo() {
         return tipo;
+    }
+    
+    public int getHabitaciones() {
+        return habitaciones;
     }
 
     public String getDimensiones() {
@@ -59,8 +64,8 @@ public class InmueblesModel {
         this.iD_Inmueble = iD_Inmueble;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     public void setEstado(int estado) {
@@ -69,6 +74,10 @@ public class InmueblesModel {
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
+    }
+    
+    public void setHabitaciones(int habitaciones) {
+        this.habitaciones = habitaciones;
     }
 
     public void setDimensiones(String dimensiones) {
@@ -83,8 +92,6 @@ public class InmueblesModel {
         this.user_ID = user_ID;
     }
 
-    
-    
     public InmueblesModel catalogo(int id){
         if(this.iD_Inmueble == id){
             return this;    

@@ -348,15 +348,30 @@ public class FrmMenuBar extends javax.swing.JFrame {
             }
         });
         PanelGuardarT.add(btnGuardar);
-        btnGuardar.setBounds(540, 120, 75, 23);
+        btnGuardar.setBounds(540, 120, 79, 27);
 
         PanelPrincipal.add(PanelGuardarT, "card8");
+
+        PanelBuscarT.setLayout(null);
         PanelPrincipal.add(PanelBuscarT, "card9");
+
+        PanelModificarT.setLayout(null);
         PanelPrincipal.add(PanelModificarT, "card10");
+
+        PanelEliminarT.setLayout(null);
         PanelPrincipal.add(PanelEliminarT, "card11");
+
+        PanelPagos.setLayout(null);
         PanelPrincipal.add(PanelPagos, "card12");
+
+        PanelGuardarP.setLayout(null);
         PanelPrincipal.add(PanelGuardarP, "card13");
+
+        PanelBuscarP.setBackground(new java.awt.Color(204, 255, 204));
+        PanelBuscarP.setLayout(null);
         PanelPrincipal.add(PanelBuscarP, "card14");
+
+        PanelModificarP.setLayout(null);
         PanelPrincipal.add(PanelModificarP, "card15");
         PanelPrincipal.add(PanelEliminarP, "card16");
         PanelPrincipal.add(PanelInmuebles, "card17");

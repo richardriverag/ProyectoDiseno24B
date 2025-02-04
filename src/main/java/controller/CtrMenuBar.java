@@ -34,26 +34,7 @@ public class CtrMenuBar  implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == frmConP.jMenuUsuario) {
-            CardLayout cardLayout = (CardLayout) frmConP.PanelPrincipal.getLayout();
-            cardLayout.show(frmConP.PanelPrincipal, "Usuario");
-        } 
-        if (e.getSource() == frmConP.jMenuIUGuardar) {
-            CardLayout cardLayout = (CardLayout) frmConP.PanelPrincipal.getLayout();
-            cardLayout.show(frmConP.PanelPrincipal, "Buscar");
-        } 
-        if (e.getSource() == frmConP.jMenuIUGuardar) {
-            CardLayout cardLayout = (CardLayout) frmConP.PanelPrincipal.getLayout();
-            cardLayout.show(frmConP.PanelPrincipal, "Guardar");
-        } 
-        if (e.getSource() == frmConP.jMenuIUModificar) {
-            CardLayout cardLayout = (CardLayout) frmConP.PanelPrincipal.getLayout();
-            cardLayout.show(frmConP.PanelPrincipal, "Modificar");
-        } 
-        if (e.getSource() == frmConP.jMenuIUEliminar) {
-            CardLayout cardLayout = (CardLayout) frmConP.PanelPrincipal.getLayout();
-            cardLayout.show(frmConP.PanelPrincipal, "Eliminar");
-        } 
+        
     }
 
 }

@@ -4,8 +4,8 @@
  */
 package view;
 
-import controlador.Telecomunicaciones.CtrTelecomunicaciones;
-import controlador.usuarios.CtrUsuario;
+import controller.Telecomunicaciones.CtrTelecomunicaciones;
+import controller.Usuarios.CtrUsuario;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Desktop.Action;
@@ -19,11 +19,11 @@ import javax.swing.JOptionPane;
  *
  * @author RIBZ
  */
-public class frmMenuBar extends javax.swing.JFrame {
+public class FrmMenuBar extends javax.swing.JFrame {
 
      private CardLayout cardLayout;  // Declaración a nivel de clase
 
-    public frmMenuBar() {
+    public FrmMenuBar() {
         initComponents();
             this.setSize(1280,720);
             this.setLocationRelativeTo(null);
@@ -290,7 +290,6 @@ public class frmMenuBar extends javax.swing.JFrame {
         PanelPrincipal.add(PanelUsuarios, "card2");
 
         PanelGuardar.setBackground(new java.awt.Color(89, 116, 112));
-        PanelGuardar.setForeground(new java.awt.Color(0, 0, 0));
         PanelGuardar.setLayout(null);
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -349,7 +348,7 @@ public class frmMenuBar extends javax.swing.JFrame {
             }
         });
         PanelGuardarT.add(btnGuardar);
-        btnGuardar.setBounds(540, 120, 79, 27);
+        btnGuardar.setBounds(540, 120, 75, 23);
 
         PanelPrincipal.add(PanelGuardarT, "card8");
         PanelPrincipal.add(PanelBuscarT, "card9");
@@ -381,7 +380,7 @@ public class frmMenuBar extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> new frmMenuBar().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new FrmMenuBar().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

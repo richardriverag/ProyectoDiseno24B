@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controlador.usuarios;
+package controller.Usuarios;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.frmMenuBar;
+import view.FrmMenuBar;
 
 /**
  *
  * @author LENOVO.USER
  */
 public class CtrUsuario implements ActionListener{
-    private frmMenuBar frmConP;
+    private FrmMenuBar frmConP;
 
-    public CtrUsuario(frmMenuBar frmContenedorPrincipal) {
+    public CtrUsuario(FrmMenuBar frmContenedorPrincipal) {
         this.frmConP = frmContenedorPrincipal;
         this.frmConP.jMenuIUGuardar.addActionListener(this);
         this.frmConP.jMenuIUBuscar.addActionListener(this);

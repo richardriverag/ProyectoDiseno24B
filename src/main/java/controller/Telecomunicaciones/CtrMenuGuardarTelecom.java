@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controlador.Telecomunicaciones;
+package controller.Telecomunicaciones;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.frmMenuBar;
+import view.FrmMenuBar;
 
 /**
  *
@@ -15,9 +15,9 @@ import view.frmMenuBar;
  */
 public class CtrMenuGuardarTelecom implements ActionListener{
     
-    private frmMenuBar frmConP;
+    private FrmMenuBar frmConP;
 
-    public CtrMenuGuardarTelecom(frmMenuBar frmConP) {
+    public CtrMenuGuardarTelecom(FrmMenuBar frmConP) {
         this.frmConP = frmConP;
     }
     

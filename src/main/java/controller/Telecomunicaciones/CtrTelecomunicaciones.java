@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controlador.Telecomunicaciones;
+package controller.Telecomunicaciones;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.frmMenuBar;
+import view.FrmMenuBar;
 
 /**
  *
  * @author LENOVO.USER
  */
 public class CtrTelecomunicaciones implements ActionListener{
-    private frmMenuBar frmConP;
+    private FrmMenuBar frmConP;
 
-    public CtrTelecomunicaciones(frmMenuBar frmContenedorPrincipal) {
+    public CtrTelecomunicaciones(FrmMenuBar frmContenedorPrincipal) {
         this.frmConP = frmContenedorPrincipal;
         this.frmConP.jMenuITGuardar.addActionListener(this);
         this.frmConP.btnGuardar.addActionListener(this);

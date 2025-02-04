@@ -30,6 +30,7 @@ public class CtrMenuBar  implements ActionListener{
     public void iniciar() {
         frmConP.setTitle("Administrador");
         frmConP.setLocation(100,100);
+        frmConP.setVisible(true);
     }
     @Override
     public void actionPerformed(ActionEvent e) {

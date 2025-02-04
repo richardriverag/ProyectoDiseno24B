@@ -4,6 +4,7 @@
 
 package proyectodiseno24b;
 
+import model.InmueblesModel;
 import view.FrmUsuarioLogin;
 import view.FrmUsuarioRecuperarPass;
 
@@ -18,6 +19,6 @@ public class ProyectoDiseno24B {
         FrmUsuarioLogin frmLogin = new FrmUsuarioLogin();    
         FrmUsuarioRecuperarPass frmRecuperarPass = new FrmUsuarioRecuperarPass();
 
-        frmLogin.setVisible(true);
+        frmLogin.setVisible(true);     
     }
 }

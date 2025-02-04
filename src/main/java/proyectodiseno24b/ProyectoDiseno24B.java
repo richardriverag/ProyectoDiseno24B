@@ -5,6 +5,7 @@
 package proyectodiseno24b;
 
 import controller.CtrMenuBar;
+import model.InmueblesModel;
 import view.FrmUsuarioLogin;
 import view.FrmUsuarioRecuperarPass;
 import view.FrmMenuBar;

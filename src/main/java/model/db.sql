@@ -29,13 +29,34 @@ CREATE TABLE Usuario (
     FOREIGN KEY (rol_id) REFERENCES Roles(id)
 );
 
+-- Tabla Edificio
+CREATE TABLE Edificio (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    numero_pisos INT NOT NULL,
+    administrador_id INT NOT NULL,
+    FOREIGN KEY (administrador_id) REFERENCES Usuario(id)
+);
+-- Tabla de conexion Inmueble-Edificio
+CREATE TABLE Edificio_Inmueble (
+    edificio_id INT NOT NULL,
+    inmueble_id INT NOT NULL,
+    PRIMARY KEY (edificio_id, inmueble_id),
+    FOREIGN KEY (edificio_id) REFERENCES Edificio(id),
+    FOREIGN KEY (inmueble_id) REFERENCES Inmueble(id)
+);
 -- Tabla Inmueble
 CREATE TABLE Inmueble (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    direccion VARCHAR(255) NOT NULL,
+    ubicacion VARCHAR(255) NOT NULL,
     estado INT NOT NULL,
-    usuario_id INT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
+    tipo INT NOT NULL,
+    habitaciones INT NOT NULL DEFAULT 1,
+    dimensiones VARCHAR(20) NOT NULL,
+    disponibilidad INT NOT NULL,
+    propietario_id INT,
+    fk_proprietario_inmueble FOREIGN KEY (propietario_id) REFERENCES Usuario(id)
 );
 
 -- Tabla SolicitudMantenimiento

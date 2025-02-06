@@ -373,6 +373,8 @@ public class FrmMenuBar extends javax.swing.JFrame {
 
         PanelModificarP.setLayout(null);
         PanelPrincipal.add(PanelModificarP, "card15");
+
+        PanelEliminarP.setLayout(null);
         PanelPrincipal.add(PanelEliminarP, "card16");
         PanelPrincipal.add(PanelInmuebles, "card17");
         PanelPrincipal.add(PanelGuardarI, "card18");

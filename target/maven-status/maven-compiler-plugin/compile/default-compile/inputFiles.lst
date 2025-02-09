@@ -3,8 +3,16 @@ C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\contr
 C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\controller\Telecomunicaciones\CtrMenuGuardarTelecom.java
 C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\controller\Telecomunicaciones\CtrTelecomunicaciones.java
 C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\controller\Usuarios\CtrUsuario.java
+C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\model\AlertaModel.java
 C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\model\Conexion.java
+C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\model\EventoModel.java
+C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\model\InmueblesModel.java
+C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\model\ReporteModel.java
+C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\model\SolicitudMantenimientoModel.java
 C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\proyectodiseno24b\ProyectoDiseno24B.java
+C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\view\comunicacion\FrmMensaje.java
+C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\view\comunicacion\FrmMensajeAdmin.java
+C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\view\comunicacion\FrmReporte.java
 C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\view\FrmMenuBar.java
 C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\view\FrmUsuarioLogin.java
 C:\Users\ferkhan\work-directory\university\ProyectoDiseno24B\src\main\java\view\FrmUsuarioRecuperarPass.java

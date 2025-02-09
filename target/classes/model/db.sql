@@ -29,13 +29,34 @@ CREATE TABLE Usuario (
     FOREIGN KEY (rol_id) REFERENCES Roles(id)
 );
 
+-- Tabla Edificio
+CREATE TABLE Edificio (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    numero_pisos INT NOT NULL,
+    administrador_id INT NOT NULL,
+    FOREIGN KEY (administrador_id) REFERENCES Usuario(id)
+);
+-- Tabla de conexion Inmueble-Edificio
+CREATE TABLE Edificio_Inmueble (
+    edificio_id INT NOT NULL,
+    inmueble_id INT NOT NULL,
+    PRIMARY KEY (edificio_id, inmueble_id),
+    FOREIGN KEY (edificio_id) REFERENCES Edificio(id),
+    FOREIGN KEY (inmueble_id) REFERENCES Inmueble(id)
+);
 -- Tabla Inmueble
 CREATE TABLE Inmueble (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    direccion VARCHAR(255) NOT NULL,
+    ubicacion VARCHAR(255) NOT NULL,
     estado INT NOT NULL,
-    usuario_id INT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
+    tipo INT NOT NULL,
+    habitaciones INT NOT NULL DEFAULT 1,
+    dimensiones VARCHAR(20) NOT NULL,
+    disponibilidad INT NOT NULL,
+    propietario_id INT,
+    fk_proprietario_inmueble FOREIGN KEY (propietario_id) REFERENCES Usuario(id)
 );
 
 -- Tabla SolicitudMantenimiento
@@ -156,4 +177,59 @@ CREATE TABLE Residente_Registro (
     PRIMARY KEY (residente_id, registro_id),
     FOREIGN KEY (residente_id) REFERENCES Usuario(id),
     FOREIGN KEY (registro_id) REFERENCES RegistroEntrada(id)
+);
+
+-- Tabla Mensaje
+CREATE TABLE Mensaje (
+    idMensaje INT PRIMARY KEY AUTO_INCREMENT,
+    contenido TEXT NOT NULL,
+    fechaEnvio DATETIME NOT NULL
+);
+
+-- Relación Mensaje - Usuario
+CREATE TABLE Mensaje_Usuario (
+    idMensaje INT,
+    idUsuario_Remitente INT,
+    idUsuario_Emisor INT,
+    PRIMARY KEY (idMensaje, idUsuario_Remitente, idUsuario_Emisor),
+    FOREIGN KEY (idUsuario_Remitente) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (idMensaje) REFERENCES Mensaje(idMensaje),
+    FOREIGN KEY (idUsuario_Emisor) REFERENCES Usuario(idUsuario)
+);
+
+-- Tabla Anuncio General 
+CREATE TABLE AnuncioGeneral (
+    idAnuncio INT PRIMARY KEY AUTO_INCREMENT,
+    contenido TEXT NOT NULL,
+    fechaCreacion DATETIME NOT NULL,
+    idUsuario INT,
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+);
+
+-- Tabla Reporte de mensajes
+CREATE TABLE ReporteMensaje (
+    idReporte INT PRIMARY KEY AUTO_INCREMENT,
+    fechaInicio DATETIME NOT NULL,
+    fechaFinal DATETIME NOT NULL,
+    contenido TEXT,
+    idUsuario INT,
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+);
+
+-- Tabla Comunicado
+CREATE TABLE Comunicado (
+    idComunicado INT PRIMARY KEY AUTO_INCREMENT,
+    contenido TEXT NOT NULL,
+    fechaEnvio DATETIME NOT NULL
+);
+
+-- Relación Comunicado - Empleado
+CREATE TABLE Comunicado_Empleado (
+    idComunicado INT,
+    idUsuario_Remitente INT,
+    idUsuario_Emisor INT,
+    PRIMARY KEY (idComunicado, idUsuario_Remitente, idUsuario_Emisor),
+    FOREIGN KEY (idUsuario_Remitente) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (idComunicado) REFERENCES Comunicado(idComunicado),
+    FOREIGN KEY (idUsuario_Emisor) REFERENCES Usuario(idUsuario)
 );

@@ -4,6 +4,7 @@
  */
 package view.comunicacion;
 
+import view.*;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -113,7 +114,7 @@ public class FrmMensaje extends javax.swing.JFrame {
 
         // Crear el botón con una imagen
         JButton btnEnviarMensaje = new JButton();
-        ImageIcon iconoEnviar = new ImageIcon(getClass().getResource("/imagenescomunicacion/mensaje.png")); // Ruta de la imagen
+        ImageIcon iconoEnviar = new ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/mensaje.png")); // Ruta de la imagen
         btnEnviarMensaje.setIcon(iconoEnviar);
         btnEnviarMensaje.setContentAreaFilled(false);
         btnEnviarMensaje.setBorderPainted(false);
@@ -323,7 +324,7 @@ public class FrmMensaje extends javax.swing.JFrame {
 
         // Crear el botón con la imagen
         JButton btnMenu = new JButton();
-        ImageIcon iconoMenu = new ImageIcon(getClass().getResource("/imagenescomunicacion/tres-puntos.png")); // Ruta de la imagen del menú
+        ImageIcon iconoMenu = new ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/tres-puntos.png")); // Ruta de la imagen del menú
         btnMenu.setIcon(iconoMenu);
         btnMenu.setContentAreaFilled(false);
         btnMenu.setBorderPainted(false);
@@ -382,7 +383,7 @@ public class FrmMensaje extends javax.swing.JFrame {
 
         public UsuarioRenderer() {
             // Cargar el icono por defecto desde recursos
-            icono = new ImageIcon(getClass().getResource("/imagenescomunicacion/usuario.png"));
+            icono = new ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/usuario.png"));
         }
 
         @Override
@@ -508,11 +509,11 @@ public class FrmMensaje extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnResidentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/chatUsuarios.png"))); // NOI18N
+        btnResidentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/chatUsuarios.png"))); // NOI18N
 
-        btnAnuncioGeneral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/altavoz.png"))); // NOI18N
+        btnAnuncioGeneral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/altavoz.png"))); // NOI18N
 
-        btnComunicado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/trabajadores.png"))); // NOI18N
+        btnComunicado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/trabajadores.png"))); // NOI18N
 
         lsUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lsUsuarios.setModel(new javax.swing.AbstractListModel<String>() {
@@ -558,7 +559,7 @@ public class FrmMensaje extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 971, Short.MAX_VALUE)
+            .addGap(0, 997, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -571,12 +572,12 @@ public class FrmMensaje extends javax.swing.JFrame {
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jMenuBar1.setPreferredSize(new java.awt.Dimension(70, 40));
 
-        mbUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbUsuarios.setText("Usuarios");
         mbUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.add(mbUsuarios);
 
-        mbComunicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbComunicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbComunicacion.setText("Comunicación");
         mbComunicacion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -600,22 +601,22 @@ public class FrmMensaje extends javax.swing.JFrame {
 
         jMenuBar1.add(mbComunicacion);
 
-        mbPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbPagos.setText("Pagos");
         mbPagos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.add(mbPagos);
 
-        mbInmuebles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbInmuebles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbInmuebles.setText("Inmuebles");
         mbInmuebles.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.add(mbInmuebles);
 
-        mbEspaciosComunes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbEspaciosComunes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbEspaciosComunes.setText("Espacios Comunes");
         mbEspaciosComunes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.add(mbEspaciosComunes);
 
-        mbCheckIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbCheckIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbCheckIn.setText("Check-In");
         mbCheckIn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.add(mbCheckIn);
@@ -675,6 +676,7 @@ public class FrmMensaje extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmMensaje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

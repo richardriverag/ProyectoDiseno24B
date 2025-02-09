@@ -4,11 +4,10 @@
 
 package proyectodiseno24b;
 
-import controller.CtrMenuBar;
-import model.InmueblesModel;
-import view.FrmUsuarioLogin;
-import view.FrmUsuarioRecuperarPass;
-import view.FrmMenuBar;
+
+import view.comunicacion.FrmReporte;
+import view.comunicacion.FrmMensaje;
+import view.comunicacion.FrmMensajeAdmin;
 
 /**
  *
@@ -17,10 +16,13 @@ import view.FrmMenuBar;
 public class ProyectoDiseno24B {
 
     public static void main(String[] args) {
-        FrmUsuarioLogin frmLogin = new FrmUsuarioLogin();    
-        FrmUsuarioRecuperarPass frmRecuperarPass = new FrmUsuarioRecuperarPass();
-        FrmMenuBar frMenu = new FrmMenuBar();
-        CtrMenuBar menu = new CtrMenuBar(frMenu);
-        menu.iniciar();
+        FrmMensaje frm1 = new FrmMensaje();
+        FrmMensajeAdmin frma = new FrmMensajeAdmin();
+        FrmReporte frm = new FrmReporte();
+        
+        
+        frm.setVisible(true);
+        frm1.setVisible(true);
+        frma.setVisible(true);
     }
 }

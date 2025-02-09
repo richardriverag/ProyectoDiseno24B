@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view;
+package view.comunicacion;
 
+import view.*;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
-//import com.formdev.flatlaf.*;  // O el tema que prefieras (FlatDarkLaf, FlatIntelliJLaf, etc.)
+import com.formdev.flatlaf.*;  // O el tema que prefieras (FlatDarkLaf, FlatIntelliJLaf, etc.)
 import java.awt.Color;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -75,7 +76,7 @@ public class FrmReporte extends javax.swing.JFrame {
             e.printStackTrace();
         }
         // Crear un ImageIcon con la imagen personalizada (con fondo transparente)
-        ImageIcon iconoCalendario = new ImageIcon(getClass().getResource("/imagenescomunicacion/calendario2.png"));
+        ImageIcon iconoCalendario = new ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/calendario2.png"));
 
         // Cambiar el ícono del botón del calendario
         jDateChooserInicio.getCalendarButton().setIcon(iconoCalendario);
@@ -209,7 +210,6 @@ public class FrmReporte extends javax.swing.JFrame {
         mbCheckIn = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -220,7 +220,7 @@ public class FrmReporte extends javax.swing.JFrame {
         jLabel2.setText("Fecha Final");
 
         btnGenerarReporte.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnGenerarReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/generarReportes.png"))); // NOI18N
+        btnGenerarReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/generarReportes.png"))); // NOI18N
         btnGenerarReporte.setText("Generar Reporte");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -297,12 +297,12 @@ public class FrmReporte extends javax.swing.JFrame {
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jMenuBar1.setPreferredSize(new java.awt.Dimension(70, 40));
 
-        mbUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbUsuarios.setText("Usuarios");
         mbUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.add(mbUsuarios);
 
-        mbComunicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbComunicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbComunicacion.setText("Comunicación");
         mbComunicacion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -326,22 +326,22 @@ public class FrmReporte extends javax.swing.JFrame {
 
         jMenuBar1.add(mbComunicacion);
 
-        mbPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbPagos.setText("Pagos");
         mbPagos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.add(mbPagos);
 
-        mbInmuebles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbInmuebles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbInmuebles.setText("Inmuebles");
         mbInmuebles.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.add(mbInmuebles);
 
-        mbEspaciosComunes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbEspaciosComunes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbEspaciosComunes.setText("Espacios Comunes");
         mbEspaciosComunes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.add(mbEspaciosComunes);
 
-        mbCheckIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenescomunicacion/grupo.png"))); // NOI18N
+        mbCheckIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/grupo.png"))); // NOI18N
         mbCheckIn.setText("Check-In");
         mbCheckIn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.add(mbCheckIn);
@@ -402,6 +402,7 @@ public class FrmReporte extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmReporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

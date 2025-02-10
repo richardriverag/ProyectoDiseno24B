@@ -13,11 +13,19 @@ import controller.Usuarios.CtrUsuario;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Desktop.Action;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -51,6 +59,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuInmuebles = new javax.swing.JMenu();
         jMenuEspaciosComunes = new javax.swing.JMenu();
         jMenuCheckIn = new javax.swing.JMenu();
+        //jMenuConfig = new javax.swing.JMenu();
         
         jMenuIUsuarios1 = new javax.swing.JMenuItem();
         jMenuIUsuarios2 = new javax.swing.JMenuItem();
@@ -81,6 +90,9 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuICI2 = new javax.swing.JMenuItem();
         jMenuICIModificar = new javax.swing.JMenuItem();
         jMenuICIEliminar = new javax.swing.JMenuItem();
+        
+        //jMenuISalir = new javax.swing.JMenuItem();
+        //jMenuIModoV = new javax.swing.JMenuItem();
 
         
         jMenuUsuario.setText("Usuario");
@@ -97,7 +109,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
         
         //MenuTelecomunicaciones
         jMenuTelecomunicaciones.setText("Telecomunicaciones");
-        jMenuTelecomunicaciones.setIcon(obtenerImagen(logo_Usuario));
+        jMenuTelecomunicaciones.setIcon(obtenerImagen(logo_Telecomunicaciones));
         jMenuTelecomunicaciones.setOpaque(true);
         jMenuTelecomunicaciones.setBackground(mColorFondoMenu);
         jMenuTelecomunicaciones.setForeground(Color.WHITE);
@@ -110,7 +122,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
         
         //MenuPagos
         jMenuPagos.setText("Pagos");
-        jMenuPagos.setIcon(obtenerImagen(logo_Usuario));
+        jMenuPagos.setIcon(obtenerImagen(logo_Pagos));
         jMenuPagos.setOpaque(true);
         jMenuPagos.setBackground(mColorFondoMenu);
         jMenuPagos.setForeground(Color.WHITE);
@@ -123,7 +135,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
         
         //MenuInmuebles
         jMenuInmuebles.setText("Inmuebles");
-        jMenuInmuebles.setIcon(obtenerImagen(logo_Usuario));
+        jMenuInmuebles.setIcon(obtenerImagen(logo_Inmuebles));
         jMenuInmuebles.setOpaque(true);
         jMenuInmuebles.setBackground(mColorFondoMenu);
         jMenuInmuebles.setForeground(Color.WHITE);
@@ -136,7 +148,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
         
         //MenuEspaciosComunes
         jMenuEspaciosComunes.setText("Espacios Comunes");
-        jMenuEspaciosComunes.setIcon(obtenerImagen(logo_Usuario));
+        jMenuEspaciosComunes.setIcon(obtenerImagen(logo_EspaciosComunes));
         jMenuEspaciosComunes.setOpaque(true);
         jMenuEspaciosComunes.setBackground(mColorFondoMenu);
         jMenuEspaciosComunes.setForeground(Color.WHITE);
@@ -147,9 +159,9 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuIECModificar.setText("MenuItem3");
         jMenuIECEliminar.setText("MenuItem4");
         
-        //MenuEspaciosComunes
+        //MenuCheckIn
         jMenuCheckIn.setText("Check-In");
-        jMenuCheckIn.setIcon(obtenerImagen(logo_Usuario));
+        jMenuCheckIn.setIcon(obtenerImagen(logo_CheckIn));
         jMenuCheckIn.setOpaque(true);
         jMenuCheckIn.setBackground(mColorFondoMenu);
         jMenuCheckIn.setForeground(Color.WHITE);
@@ -159,6 +171,17 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuICI2.setText("MenuItem2");
         jMenuICIModificar.setText("MenuItem3");
         jMenuICIEliminar.setText("MenuItem4");
+        
+        //MenuCheckIn
+        jMenuCheckIn.setText("Check-In");
+        jMenuCheckIn.setIcon(obtenerImagen(logo_CheckIn));
+        jMenuCheckIn.setOpaque(true);
+        jMenuCheckIn.setBackground(mColorFondoMenu);
+        jMenuCheckIn.setForeground(Color.WHITE);
+        jMenuCheckIn.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
+        
+        //jMenuISalir.setText("Cerrar Sesión");
+        //jMenuIModoV.setText("modo");
         
         //Botones
         
@@ -230,7 +253,10 @@ public class FrmMenuBar extends javax.swing.JFrame {
         mbMenuBar.add(jMenuEspaciosComunes);
         mbMenuBar.add(jMenuCheckIn);
         
-        mbMenuBar.setPreferredSize(new java.awt.Dimension(this.getWidth(), 50)); // Ancho igual al frame y altura 50
+        mbMenuBar.setPreferredSize(new java.awt.Dimension(this.getWidth(), 50));
+        mbMenuBar.setLayout(new GridLayout(1, 7)); // Alinear elementos a la izquierda
+       
+        // Ancho igual al frame y altura 50
         // Crear una nueva fuente
         /*java.awt.Font font = new java.awt.Font("Arial", java.awt.Font.BOLD, 16); // Tamaño de fuente 14 y estilo negrita
 
@@ -241,9 +267,34 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuIUsuarios2.setFont(font1);
         jMenuIUsuarios3.setFont(font1);
         jMenuIUsuarios4.setFont(font1);*/
+        
+        //////////////////////////
+        btnSalir.setFocusable(false);
+        btnSalir.setBackground(Color.RED);
+        btnSalir.setForeground(Color.WHITE);
+        btnSalir.setBorderPainted(false);
+        //mbMenuBar.add(btnSalir);
+        
+        panelBotones.setBackground(new Color(47, 79, 79));
+        //panelBotones.setLayout(new GridLayout(1, 2));
+        panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.X_AXIS));
 
+        panelBotones.add(Box.createHorizontalGlue());  // Agrega espacio flexible antes de los bo
+        panelBotones.add(btnSalir);
+        panelBotones.add(Box.createHorizontalGlue());  // Agrega espacio flexible después de los botones
+
+
+        mbMenuBar.add(panelBotones);
+        
+        btnSalir.addActionListener((ActionEvent e) ->{
+            FrmUsuarioLogin login = new FrmUsuarioLogin();
+            login.setVisible(true);
+            
+            this.dispose();
+        });
     }
 
+    
     private void cambiarPanel(String Panel) {
         cardLayout.show(PanelPrincipal, Panel);
     }
@@ -454,11 +505,22 @@ public class FrmMenuBar extends javax.swing.JFrame {
     public javax.swing.JMenuItem jMenuICIEliminar;
     public javax.swing.JMenuItem jMenuICIModificar;
     
+    //public javax.swing.JMenu jMenuConfig;
+    //public javax.swing.JMenuItem jMenuISalir;
+    
     public String logo_Usuario= "/imagenes/clientes.png";
+    public String logo_Telecomunicaciones= "/imagenes/telecomunicaciones.png";
+    public String logo_Pagos= "/imagenes/metodo-de-pago.png";
+    public String logo_Inmuebles= "/imagenes/enlace.png";
+    public String logo_EspaciosComunes= "/imagenes/pesa.png";
+    public String logo_CheckIn= "/imagenes/portapapeles.png";
 
    
     public Color mColorFondoMenu= new Color(47, 79, 79);
-
-
+    
+    // Crear los botones con iconos
+        JButton btnSalir = new JButton("Salir");
     // End of variables declaration         
+        JPanel panelBotones = new JPanel();
+       
 }

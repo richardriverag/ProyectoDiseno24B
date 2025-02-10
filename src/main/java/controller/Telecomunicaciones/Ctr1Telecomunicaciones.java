@@ -13,19 +13,20 @@ import view.FrmMenuBar;
  *
  * @author LENOVO.USER
  */
-public class Ctr3Telecomunicaciones implements ActionListener {
+public class Ctr1Telecomunicaciones implements ActionListener{
     
     private FrmMenuBar frmConP;
 
-    public Ctr3Telecomunicaciones(FrmMenuBar frmConP) {
+    public Ctr1Telecomunicaciones(FrmMenuBar frmConP) {
         this.frmConP = frmConP;
     }
     
     
+    
     public void iniciar(){
-        CardLayout cardLayout = (CardLayout) frmConP.PanelPrincipal.getLayout();
-        cardLayout.show(frmConP.PanelPrincipal, "card10"); // Mostrar el panel de guardar
-        System.out.println("Panel 3 Telecomunicaciones mostrado.");
+       CardLayout cardLayout = (CardLayout) frmConP.PanelPrincipal.getLayout();
+        cardLayout.show(frmConP.PanelPrincipal, "card8"); // Mostrar el panel de guardar
+        System.out.println("Panel MenuItem 1 mostrado.");
     }
 
     @Override
@@ -33,6 +34,5 @@ public class Ctr3Telecomunicaciones implements ActionListener {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-       
     
 }

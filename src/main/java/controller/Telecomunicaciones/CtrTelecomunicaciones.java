@@ -4,7 +4,7 @@
  */
 package controller.Telecomunicaciones;
 
-import java.awt.CardLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import view.FrmMenuBar;
@@ -18,22 +18,29 @@ public class CtrTelecomunicaciones implements ActionListener{
 
     public CtrTelecomunicaciones(FrmMenuBar frmContenedorPrincipal) {
         this.frmConP = frmContenedorPrincipal;
-        this.frmConP.jMenuITGuardar.addActionListener(this);
-        this.frmConP.btnGuardar.addActionListener(this);
+        this.frmConP.jMenuIT1.addActionListener(this);
+        this.frmConP.jMenuIT2.addActionListener(this);
     }
-  public void iniciar() {
-        // Opcional: Lógica para inicializar este módulo
-        System.out.println("Módulo de Telecomunicaciones iniciado.");
-    }
+
+  
+  /*
+  En el controller telecomunicaciones se trabajan los Menu items que se necesiten, este con el objetivo de que cada grupo obtenga individualidad
+  En el caso de querer agregar más menu items se requiere agregarlo en la vista FrmMenuBar, importante que en los layout sea de tipo null ya 
+  que se trabaja cardLayout
+  */
     @Override
     public void actionPerformed(ActionEvent e) {
         //Boton Guardar
         
-        if(e.getSource() == frmConP.jMenuITGuardar){
+        if(e.getSource() == frmConP.jMenuIT1){
             
-            CtrMenuGuardarTelecom ctrGuardarT = new CtrMenuGuardarTelecom(frmConP);
+            Ctr1Telecomunicaciones ctrGuardarT = new Ctr1Telecomunicaciones(frmConP);
             ctrGuardarT.iniciar();
         }
-        
+        if(e.getSource() == frmConP.jMenuIT2){
+            Ctr2Telecomunicaciones ctr2T = new Ctr2Telecomunicaciones(frmConP);
+            ctr2T.iniciar();
+        }
+   
     }
 }

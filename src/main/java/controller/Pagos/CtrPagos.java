@@ -4,10 +4,35 @@
  */
 package controller.Pagos;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import view.FrmMenuBar;
+
 /**
  *
  * @author LENOVO.USER
  */
-public class CtrPagos {
+public class CtrPagos implements ActionListener {
     
+    private FrmMenuBar frmConP;
+
+    public CtrPagos(FrmMenuBar frmConP) {
+        this.frmConP = frmConP;
+        this.frmConP.jMenuIP1.addActionListener(this);
+        this.frmConP.jMenuIP2.addActionListener(this);
+    }
+    
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == frmConP.jMenuIP1){
+            ctr1Pagos ctr1 = new ctr1Pagos(frmConP);
+            ctr1.iniciar();
+        }
+        if(e.getSource() == frmConP.jMenuIP2){
+            ctr2Pagos ctr2 = new ctr2Pagos(frmConP);
+            ctr2.iniciar();
+        }
+    }
+       
 }

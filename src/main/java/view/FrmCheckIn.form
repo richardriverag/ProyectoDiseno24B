@@ -65,7 +65,7 @@
               <Color blue="fa" green="fa" red="fa" type="rgb"/>
             </Property>
             <Property name="opaque" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="100" type="code"/>
+              <Connection code="false" type="code"/>
             </Property>
           </Properties>
           <Constraints>

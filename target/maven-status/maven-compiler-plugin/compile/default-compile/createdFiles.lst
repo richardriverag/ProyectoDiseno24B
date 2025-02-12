@@ -1,5 +1,6 @@
 view\comunicacion\FrmMensajeAdmin$1.class
 view\comunicacion\FrmMensaje.class
+controller\Usuarios\Ctr1Usuario.class
 model\comunicacionModel\DbAnuncioGeneral.class
 view\FrmUsuarioRecuperarPass$3.class
 view\check_in\Check_In$7.class

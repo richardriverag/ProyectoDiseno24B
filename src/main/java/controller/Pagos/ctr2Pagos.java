@@ -7,16 +7,16 @@ package controller.Pagos;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.FrmMenuBar;
+import view.frmMenuBar;
 
 /**
  *
  * @author LENOVO.USER
  */
 public class ctr2Pagos implements ActionListener{
-        private FrmMenuBar frmConP;
+        private frmMenuBar frmConP;
 
-    public ctr2Pagos(FrmMenuBar frmConP) {
+    public ctr2Pagos(frmMenuBar frmConP) {
         this.frmConP = frmConP;
     }
     public void iniciar(){

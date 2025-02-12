@@ -9,16 +9,16 @@ import controller.EspaciosComunes.ctr2EspaciosComunes;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.FrmMenuBar;
+import view.frmMenuBar;
 
 /**
  *
  * @author LENOVO.USER
  */
 public class CtrCheckIn implements ActionListener {
-    private FrmMenuBar frmConP;
+    private frmMenuBar frmConP;
 
-    public CtrCheckIn(FrmMenuBar frmConP) {
+    public CtrCheckIn(frmMenuBar frmConP) {
         this.frmConP = frmConP;
         this.frmConP.jMenuICI1.addActionListener(this);
         this.frmConP.jMenuICI2.addActionListener(this);

@@ -7,7 +7,7 @@ package controller.Pagos;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.FrmMenuBar;
+import view.frmMenuBar;
 
 /**
  *
@@ -15,9 +15,9 @@ import view.FrmMenuBar;
  */
 public class ctr1Pagos implements ActionListener {
     
-    private FrmMenuBar frmConP;
+    private frmMenuBar frmConP;
 
-    public ctr1Pagos(FrmMenuBar frmConP) {
+    public ctr1Pagos(frmMenuBar frmConP) {
         this.frmConP = frmConP;
     }
     

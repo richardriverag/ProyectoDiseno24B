@@ -6,7 +6,7 @@ package controller.Pagos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.FrmMenuBar;
+import view.frmMenuBar;
 
 /**
  *
@@ -14,9 +14,9 @@ import view.FrmMenuBar;
  */
 public class CtrPagos implements ActionListener {
     
-    private FrmMenuBar frmConP;
+    private frmMenuBar frmConP;
 
-    public CtrPagos(FrmMenuBar frmConP) {
+    public CtrPagos(frmMenuBar frmConP) {
         this.frmConP = frmConP;
         this.frmConP.jMenuIP1.addActionListener(this);
         this.frmConP.jMenuIP2.addActionListener(this);

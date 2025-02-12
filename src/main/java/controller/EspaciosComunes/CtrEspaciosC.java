@@ -8,16 +8,16 @@ import controller.Inmuebles.ctr1Inmuebles;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.FrmMenuBar;
+import view.frmMenuBar;
 
 /**
  *
  * @author LENOVO.USER
  */
 public class CtrEspaciosC implements ActionListener{
-    private FrmMenuBar frmConP;
+    private frmMenuBar frmConP;
 
-    public CtrEspaciosC(FrmMenuBar frmConP) {
+    public CtrEspaciosC(frmMenuBar frmConP) {
         this.frmConP = frmConP;
         this.frmConP.jMenuIEC1.addActionListener(this);
         this.frmConP.jMenuIEC2.addActionListener(this);

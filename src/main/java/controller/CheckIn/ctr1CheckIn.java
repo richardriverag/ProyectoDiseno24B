@@ -7,16 +7,16 @@ package controller.CheckIn;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.FrmMenuBar;
+import view.frmMenuBar;
 
 /**
  *
  * @author LENOVO.USER
  */
 public class ctr1CheckIn implements ActionListener{
-    private FrmMenuBar frmConP;
+    private frmMenuBar frmConP;
 
-    public ctr1CheckIn(FrmMenuBar frmConP) {
+    public ctr1CheckIn(frmMenuBar frmConP) {
         this.frmConP = frmConP;
     }
     

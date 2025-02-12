@@ -6,10 +6,11 @@ package proyectodiseno24b;
 
 
 import controller.CtrMenuBar;
-import view.FrmMenuBar;
+import view.frmMenuBar;
 import view.comunicacion.FrmReporte;
 import view.comunicacion.FrmMensaje;
 import view.comunicacion.FrmMensajeAdmin;
+import view.frmMenuBar;
 
 /**
  *
@@ -18,7 +19,9 @@ import view.comunicacion.FrmMensajeAdmin;
 public class ProyectoDiseno24B {
 
     public static void main(String[] args) {
-        FrmMensaje frm1 = new FrmMensaje();
+        frmMenuBar frmMB = new frmMenuBar();
+        frmMB.setVisible(true);
+        /*FrmMensaje frm1 = new FrmMensaje();
         FrmMensajeAdmin frma = new FrmMensajeAdmin();
         FrmReporte frm = new FrmReporte();
         FrmMenuBar frmConP = new FrmMenuBar();
@@ -29,5 +32,8 @@ public class ProyectoDiseno24B {
         //frm.setVisible(true);
         //frm1.setVisible(true);
         //frma.setVisible(true);
+        frm.setVisible(true);
+        frm1.setVisible(true);
+        frma.setVisible(true);*/
     }
 }

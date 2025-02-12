@@ -8,25 +8,25 @@ import controller.Pagos.ctr1Pagos;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.FrmMenuBar;
+import view.frmMenuBar;
 
 /**
  *
  * @author LENOVO.USER
  */
 public class Ctr2Telecomunicaciones implements ActionListener{
-    private FrmMenuBar frmConP;
+    private frmMenuBar frmConP;
     
 
 
-    public Ctr2Telecomunicaciones(FrmMenuBar frmConP) {
+    public Ctr2Telecomunicaciones(frmMenuBar frmConP) {
         this.frmConP = frmConP;
     }
     
     public void iniciar(){
 
         CardLayout cardLayout = (CardLayout) frmConP.PanelPrincipal.getLayout();
-        cardLayout.show(frmConP.PanelPrincipal, "card9"); //Importante que coincida la asignacion del panel, el nombre se pude conocer el la vusta FrmMenuBar
+        cardLayout.show(frmConP.PanelPrincipal, "card9"); //Importante que coincida la asignacion del panel, el nombre se pude conocer el la vusta frmMenuBar
         System.out.println("Panel 2 mostrado.");
     }
 

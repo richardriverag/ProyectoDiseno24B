@@ -48,6 +48,20 @@ public class frmMenuBar extends javax.swing.JFrame {
         new CtrPagos(this);
         new CtrEspaciosC(this);
         new CtrCheckIn(this);
+        
+        // Instancia de los frames 
+        
+        // Check-in
+        FrmCheckIn frmCheckIn = new FrmCheckIn();
+        
+        // Configuración de los frames
+        
+        // Check-in
+        PanelCheckIn1.setLayout(new java.awt.BorderLayout());
+        PanelCheckIn1.add(frmCheckIn.getContentPane(), java.awt.BorderLayout.CENTER); 
+        PanelCheckIn1.setVisible(false); 
+        PanelCheckIn1.repaint();
+        PanelCheckIn1.revalidate();
     }
 
     private void inicializacionItemsMenuBar() {
@@ -82,7 +96,7 @@ public class frmMenuBar extends javax.swing.JFrame {
         jMenuIIEliminar = new javax.swing.JMenuItem();
 
         jMenuIEC1 = new javax.swing.JMenuItem();
-       jMenuIEC2 = new javax.swing.JMenuItem();
+        jMenuIEC2 = new javax.swing.JMenuItem();
         jMenuIECModificar = new javax.swing.JMenuItem();
         jMenuIECEliminar = new javax.swing.JMenuItem();
 
@@ -155,30 +169,22 @@ public class frmMenuBar extends javax.swing.JFrame {
         jMenuEspaciosComunes.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
         
         jMenuIEC1.setText("MenuItem1");
-       jMenuIEC2.setText("MenuItem2");
+        jMenuIEC2.setText("MenuItem2");
         jMenuIECModificar.setText("MenuItem3");
         jMenuIECEliminar.setText("MenuItem4");
         
         //MenuCheckIn
+        jMenuCheckIn = new javax.swing.JMenu();
         jMenuCheckIn.setText("Check-In");
         jMenuCheckIn.setIcon(obtenerImagen(logo_CheckIn));
         jMenuCheckIn.setOpaque(true);
         jMenuCheckIn.setBackground(mColorFondoMenu);
         jMenuCheckIn.setForeground(Color.WHITE);
-        jMenuCheckIn.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
+        jMenuCheckIn.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50));
         
         jMenuICI1.setText("MenuItem1");
-        jMenuICI2.setText("MenuItem2");
         jMenuICIModificar.setText("MenuItem3");
         jMenuICIEliminar.setText("MenuItem4");
-        
-        //MenuCheckIn
-        jMenuCheckIn.setText("Check-In");
-        jMenuCheckIn.setIcon(obtenerImagen(logo_CheckIn));
-        jMenuCheckIn.setOpaque(true);
-        jMenuCheckIn.setBackground(mColorFondoMenu);
-        jMenuCheckIn.setForeground(Color.WHITE);
-        jMenuCheckIn.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
         
         //jMenuISalir.setText("Cerrar Sesión");
         //jMenuIModoV.setText("modo");
@@ -237,11 +243,12 @@ public class frmMenuBar extends javax.swing.JFrame {
         
         //Check-In
         jMenuCheckIn.addActionListener((ActionEvent e) -> {
-            cambiarPanel("Check In"); 
+            cambiarPanelFrm("Check In"); 
         });
-        
-        jMenuCheckIn.add(jMenuICI1); 
-        jMenuCheckIn.add(jMenuICI2); 
+         jMenuCheckIn.add(jMenuICI1);
+         
+         
+                     
         //jMenuCheckIn.add(jMenuICIModificar); 
         //jMenuCheckIn.add(jMenuICIEliminar); 
        
@@ -297,6 +304,12 @@ public class frmMenuBar extends javax.swing.JFrame {
     
     private void cambiarPanel(String Panel) {
         cardLayout.show(PanelPrincipal, Panel);
+    }
+     
+    private void cambiarPanelFrm(String panel) {
+        if (panel.equals("Check In")) {
+                PanelCheckIn1.setVisible(true);
+        }
     }
 
     private Icon obtenerImagen(String ruta){
@@ -355,7 +368,6 @@ public class frmMenuBar extends javax.swing.JFrame {
         PanelEC2 = new javax.swing.JPanel();
         PanelCheckIn = new javax.swing.JPanel();
         PanelCheckIn1 = new javax.swing.JPanel();
-        PanelCheckIn2 = new javax.swing.JPanel();
         mbMenuBar = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -604,9 +616,12 @@ public class frmMenuBar extends javax.swing.JFrame {
         PanelPrincipal.add(PanelEspaciosComunes, "card22");
         PanelPrincipal.add(PanelEC1, "card23");
         PanelPrincipal.add(PanelEC2, "card24");
+
+        PanelCheckIn.setBackground(new java.awt.Color(204, 204, 204));
         PanelPrincipal.add(PanelCheckIn, "card25");
+
+        PanelCheckIn1.setBackground(new java.awt.Color(102, 0, 102));
         PanelPrincipal.add(PanelCheckIn1, "card26");
-        PanelPrincipal.add(PanelCheckIn2, "card27");
 
         getContentPane().add(PanelPrincipal, java.awt.BorderLayout.CENTER);
         setJMenuBar(mbMenuBar);
@@ -647,7 +662,6 @@ public class frmMenuBar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCheckIn;
     private javax.swing.JPanel PanelCheckIn1;
-    private javax.swing.JPanel PanelCheckIn2;
     private javax.swing.JPanel PanelEC1;
     private javax.swing.JPanel PanelEC2;
     private javax.swing.JPanel PanelEliminar;

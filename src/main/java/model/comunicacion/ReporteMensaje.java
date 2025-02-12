@@ -5,6 +5,7 @@
 package model.comunicacionModel;
 
 import java.util.Date;
+import model.comunicacion.UsuarioModel;
 
 
 public class ReporteMensaje {

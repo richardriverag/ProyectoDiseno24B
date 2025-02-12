@@ -31,11 +31,11 @@ import javax.swing.JPanel;
  *
  * @author RIBZ
  */
-public class FrmMenuBar extends javax.swing.JFrame {
+public class frmMenuBar extends javax.swing.JFrame {
 
      private CardLayout cardLayout;  // Declaración a nivel de clase
 
-    public FrmMenuBar() {
+    public frmMenuBar() {
         initComponents();
             this.setSize(1280,720);
             this.setLocationRelativeTo(null);
@@ -102,7 +102,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuUsuario.setForeground(Color.WHITE);
         jMenuUsuario.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
         //MenuItems     
-        jMenuIUsuarios1.setText("MenuItem1");
+        jMenuIUsuarios1.setText("Crear cuenta");
         jMenuIUsuarios2.setText("MenuItem2");
         jMenuIUsuarios3.setText("MenuItem3");
         jMenuIUsuarios4.setText("MenuItem4");
@@ -314,7 +314,26 @@ public class FrmMenuBar extends javax.swing.JFrame {
         PanelPrincipal = new javax.swing.JPanel();
         PanelUsuarios = new javax.swing.JPanel();
         PanelGuardar = new javax.swing.JPanel();
+        txtCedulaUsuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        txtNombreUsuario = new javax.swing.JTextField();
+        txtCorreoUsuario = new javax.swing.JTextField();
+        txtPassUsuario = new javax.swing.JPasswordField();
+        txtPassConfirmarUsuario = new javax.swing.JPasswordField();
+        txtTelefonoUsuario = new javax.swing.JTextField();
+        comboRolUsuario = new javax.swing.JComboBox<>();
+        txtSueldo = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        btnCrearUsuario = new javax.swing.JButton();
         PanerBuscar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         PanelModificar = new javax.swing.JPanel();
@@ -347,14 +366,185 @@ public class FrmMenuBar extends javax.swing.JFrame {
         PanelUsuarios.setBackground(new java.awt.Color(80, 200, 120));
         PanelPrincipal.add(PanelUsuarios, "card2");
 
-        PanelGuardar.setBackground(new java.awt.Color(89, 116, 112));
+        PanelGuardar.setBackground(new java.awt.Color(255, 248, 237));
+
+        txtCedulaUsuario.setText(" ");
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel1.setFont(new java.awt.Font("Source Code Pro Light", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Source Code Pro Light", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Guardar ");
+        jLabel1.setText("Crear cuenta");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        PanelGuardar.add(jLabel1);
+
+        txtNombreUsuario.setText(" ");
+        txtNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreUsuarioActionPerformed(evt);
+            }
+        });
+
+        txtCorreoUsuario.setText(" ");
+        txtCorreoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoUsuarioActionPerformed(evt);
+            }
+        });
+
+        txtTelefonoUsuario.setText(" ");
+
+        comboRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Residente", "Administrador", "Guardia", "Limpieza", "Mantenimiento" }));
+
+        txtSueldo.setText(" ");
+        txtSueldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSueldoActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel5.setText("Rol");
+
+        jLabel6.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel6.setText("Número de cédula");
+
+        jLabel7.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel7.setText("Confirmar contraseña");
+
+        jLabel8.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel8.setText("Nombre");
+
+        jLabel9.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel9.setText("Contraseña");
+
+        jLabel10.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel10.setText("Teléfono");
+
+        jLabel11.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel11.setText("Correo electrónico");
+
+        jLabel13.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
+        jLabel13.setText("Fecha contratación");
+
+        jLabel14.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
+        jLabel14.setText("Sueldo");
+
+        btnCrearUsuario.setText("Crear");
+        btnCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearUsuarioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelGuardarLayout = new javax.swing.GroupLayout(PanelGuardar);
+        PanelGuardar.setLayout(PanelGuardarLayout);
+        PanelGuardarLayout.setHorizontalGroup(
+            PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelGuardarLayout.createSequentialGroup()
+                .addGap(402, 402, 402)
+                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelGuardarLayout.createSequentialGroup()
+                        .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtCedulaUsuario)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel8)
+                            .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(59, 59, 59)
+                        .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(txtPassUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassConfirmarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PanelGuardarLayout.createSequentialGroup()
+                        .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCorreoUsuario)
+                                    .addComponent(jLabel11))
+                                .addGap(58, 58, 58)
+                                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                        .addComponent(txtTelefonoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(195, 195, 195))))
+                            .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14))
+                                .addGap(59, 59, 59)
+                                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(134, 134, 134))))
+            .addGroup(PanelGuardarLayout.createSequentialGroup()
+                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelGuardarLayout.createSequentialGroup()
+                        .addGap(436, 436, 436)
+                        .addComponent(jLabel1))
+                    .addGroup(PanelGuardarLayout.createSequentialGroup()
+                        .addGap(530, 530, 530)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboRolUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelGuardarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCrearUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(503, 503, 503))
+        );
+        PanelGuardarLayout.setVerticalGroup(
+            PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelGuardarLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jLabel1)
+                .addGap(35, 35, 35)
+                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelGuardarLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCedulaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelGuardarLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPassUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelGuardarLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPassConfirmarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelGuardarLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelGuardarLayout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCorreoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelGuardarLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel10)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtTelefonoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboRolUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addComponent(btnCrearUsuario)
+                .addGap(75, 75, 75))
+        );
 
         PanelPrincipal.add(PanelGuardar, "card3");
 
@@ -428,13 +618,29 @@ public class FrmMenuBar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void txtNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreUsuarioActionPerformed
+
+    private void txtCorreoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoUsuarioActionPerformed
+
+    private void txtSueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSueldoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSueldoActionPerformed
+
+    private void btnCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearUsuarioActionPerformed
+
 
     /**
      * @param args the command line arguments
      */
     
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> new FrmMenuBar().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new frmMenuBar().setVisible(true));
         
     }
 
@@ -460,12 +666,31 @@ public class FrmMenuBar extends javax.swing.JFrame {
     private javax.swing.JPanel PanelTelecomunicaciones;
     public javax.swing.JPanel PanelUsuarios;
     private javax.swing.JPanel PanerBuscar;
+    public javax.swing.JButton btnCrearUsuario;
     public javax.swing.JButton btnGuardar;
+    public javax.swing.JComboBox<String> comboRolUsuario;
+    public com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar mbMenuBar;
+    public javax.swing.JTextField txtCedulaUsuario;
+    public javax.swing.JTextField txtCorreoUsuario;
+    public javax.swing.JTextField txtNombreUsuario;
+    public javax.swing.JPasswordField txtPassConfirmarUsuario;
+    public javax.swing.JPasswordField txtPassUsuario;
+    public javax.swing.JTextField txtSueldo;
+    public javax.swing.JTextField txtTelefonoUsuario;
     // End of variables declaration//GEN-END:variables
  // Declaración de los menús
     public javax.swing.JMenu jMenuUsuario;

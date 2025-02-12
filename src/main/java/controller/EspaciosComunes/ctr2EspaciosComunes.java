@@ -7,16 +7,16 @@ package controller.EspaciosComunes;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.FrmMenuBar;
+import view.frmMenuBar;
 
 /**
  *
  * @author LENOVO.USER
  */
 public class ctr2EspaciosComunes implements ActionListener {
-    private FrmMenuBar frmConP;
+    private frmMenuBar frmConP;
 
-    public ctr2EspaciosComunes(FrmMenuBar frmConP) {
+    public ctr2EspaciosComunes(frmMenuBar frmConP) {
         this.frmConP = frmConP;
     }
     

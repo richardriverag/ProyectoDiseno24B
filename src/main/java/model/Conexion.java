@@ -14,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
+
 //    private static String url = "jdbc:mysql://bsifaecly7cl2qm8ent0-mysql.services.clever-cloud.com:3306/bsifaecly7cl2qm8ent0";
 //    private static String user = "u3cuki32eefgdj5y";
 //    private static String password = "gbXtPlxPG15rpOmYbqgU";

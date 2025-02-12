@@ -29,16 +29,28 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
             
             //Instancear controlador
             CtrLogin login = new CtrLogin();
+            frmMenuBar frmConP = new frmMenuBar();
+            
+            
+           
             if(user.isEmpty() || pass.isEmpty()){
                 intentos++;
-                JOptionPane.showMessageDialog(null, "Ingrese un usuario y contraseña. Intento "+intentos+" de"+MAX_INTENTOS);
+                JOptionPane.showMessageDialog(null, "Ingrese un usuario y/o contraseña. Intento "+intentos+" de "+MAX_INTENTOS);
+                txtNombreUser.setText("");
+                txtContrasena.setText("");
                 
             }else if(login.loginUsuario(user, pass)){
                 JOptionPane.showMessageDialog(null, "Bienvenido");
                 intentos = 0;
+                frmConP.setVisible(true);
+                this.dispose();
+                
+                
             }else{
                 intentos++;
                 JOptionPane.showMessageDialog(null, "El usuario no existe. Intento " + intentos+ " de " + MAX_INTENTOS);
+                txtNombreUser.setText("");
+                txtContrasena.setText("");
             }
             
             if(intentos >= MAX_INTENTOS){

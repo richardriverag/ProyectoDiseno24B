@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
 import model.Conexion;   
+import model.comunicacion.UsuarioModel;
 
 public class DbReporteMensaje {
 

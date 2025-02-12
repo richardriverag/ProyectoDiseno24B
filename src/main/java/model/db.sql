@@ -1,7 +1,5 @@
 DROP DATABASE condominios;
-
 CREATE DATABASE IF NOT EXISTS condominios;
-
 USE condominios;
 
 -- CREATE TABLE ...
@@ -9,12 +7,12 @@ USE condominios;
 CREATE DATABASE IF NOT EXISTS SistemaUnificado;
 USE SistemaUnificado;
 
+-- MÓDULO DE USUARIOS
 -- Tabla Roles
 CREATE TABLE Roles (
-    id INT PRIMARY KEY,
-    nombre VARCHAR(20) NOT NULL UNIQUE
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) UNIQUE NOT NULL
 );
-
 -- Tabla Usuario
 CREATE TABLE Usuario (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -26,212 +24,143 @@ CREATE TABLE Usuario (
     rol_id INT NOT NULL,
     salario FLOAT DEFAULT NULL,
     fecha_contrato DATE DEFAULT NULL,
-    FOREIGN KEY (rol_id) REFERENCES Roles(id)
+    FOREIGN KEY (rol_id) REFERENCES Roles(id) ON DELETE CASCADE
 );
 
--- Tabla Edificio
-CREATE TABLE Edificio (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
-    direccion VARCHAR(255) NOT NULL,
-    numero_pisos INT NOT NULL,
-    administrador_id INT NOT NULL,
-    FOREIGN KEY (administrador_id) REFERENCES Usuario(id)
+-- MÓDULO FINANZAS Y PAGOS
+CREATE TABLE MetodoPago (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR(50) NOT NULL
 );
--- Tabla de conexion Inmueble-Edificio
-CREATE TABLE Edificio_Inmueble (
-    edificio_id INT NOT NULL,
-    inmueble_id INT NOT NULL,
-    PRIMARY KEY (edificio_id, inmueble_id),
-    FOREIGN KEY (edificio_id) REFERENCES Edificio(id),
+CREATE TABLE Pago (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario_id INT NOT NULL,
+    monto DECIMAL(10, 2) NOT NULL,
+    fecha DATE NOT NULL,
+    metodo_pago_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
+    FOREIGN KEY (metodo_pago_id) REFERENCES MetodoPago(id)
+);
+CREATE TABLE Multa (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario_id INT NOT NULL,
+    monto DECIMAL(10, 2) NOT NULL,
+    descripcion TEXT NOT NULL,
+    fecha DATE NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
+);
+CREATE TABLE Cuota (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pago_id INT NOT NULL,
+    monto DECIMAL(10, 2) NOT NULL,
+    fecha_pago DATE NOT NULL,
+    estado ENUM('Pendiente', 'Pagado') NOT NULL,
+    FOREIGN KEY (pago_id) REFERENCES Pago(id)
+);
+
+-- MODULO DE RESIDENTES
+CREATE TABLE Inmueble (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    direccion VARCHAR(255) NOT NULL,
+    estado VARCHAR(50) NOT NULL  
+);
+
+CREATE TABLE SolicitudMantenimiento (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario_id INT NOT NULL,  
+    inmueble_id INT NOT NULL, 
+    descripcion TEXT NOT NULL,
+    estado VARCHAR(50) NOT NULL, 
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
     FOREIGN KEY (inmueble_id) REFERENCES Inmueble(id)
 );
--- Tabla Inmueble
-CREATE TABLE Inmueble (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    ubicacion VARCHAR(255) NOT NULL,
-    estado INT NOT NULL,
-    tipo INT NOT NULL,
-    habitaciones INT NOT NULL DEFAULT 1,
-    dimensiones VARCHAR(20) NOT NULL,
-    disponibilidad INT NOT NULL,
-    propietario_id INT,
-    FOREIGN KEY (propietario_id) REFERENCES Usuario(id)
+
+CREATE TABLE ReservaInmueble (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario_id INT NOT NULL, 
+    inmueble_id INT NOT NULL, 
+    fecha_reserva DATE NOT NULL,  
+    fecha_inicio DATE NOT NULL,  
+    fecha_fin DATE NOT NULL,      
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
+    FOREIGN KEY (inmueble_id) REFERENCES Inmueble(id)
 );
 
--- Tabla SolicitudMantenimiento
-CREATE TABLE SolicitudMantenimiento (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    descripcion TEXT NOT NULL,
-    estado INT NOT NULL,
-    residente_id INT NOT NULL,
-    mantenimiento_id INT NOT NULL,
-    FOREIGN KEY (residente_id) REFERENCES Usuario(id),
-    FOREIGN KEY (mantenimiento_id) REFERENCES Usuario(id)
-);
-
--- Tabla Alerta
-CREATE TABLE Mensaje (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    contenido TEXT NOT NULL,
-    fechaEnvio DATETIME NOT NULL,
-    remitente_id INT NOT NULL,
-    destinatario_id INT DEFAULT NULL,
-    tipo ENUM('mensaje', 'comunicado', 'alerta') NOT NULL,
-    FOREIGN KEY (remitente_id) REFERENCES Usuario(id),
-    FOREIGN KEY (destinatario_id) REFERENCES Usuario(id)
-);
-
--- Tabla Evento
-CREATE TABLE Evento (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    tipo INT NOT NULL,
-    descripcion TEXT NOT NULL,
-    administrador_id INT NOT NULL,
-    FOREIGN KEY (administrador_id) REFERENCES Usuario(id)
-);
-
--- Tabla Reporte
-CREATE TABLE Reporte (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    tipo INT NOT NULL,
-    contenido TEXT NOT NULL,
-    administrador_id INT NOT NULL,
-    FOREIGN KEY (administrador_id) REFERENCES Usuario(id)
-);
-
--- Tabla Transaccion
-CREATE TABLE Transaccion (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    cedula_usuario VARCHAR(20) NOT NULL,
-    monto DOUBLE NOT NULL,
-    fecha DATE NOT NULL,
-    tipo ENUM('multa', 'pago') NOT NULL,
-    descripcion VARCHAR(255),
-    estado BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (cedula_usuario) REFERENCES Usuario(cedula)
-);
-
--- Tabla EspacioComun
+-- MÓDULO RESERVAS
 CREATE TABLE EspacioComun (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    disponibilidad BOOLEAN NOT NULL
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,  
+    disponibilidad BOOLEAN NOT NULL  
 );
 
--- Relación EspacioComun_Vehiculo
-CREATE TABLE EspacioComun_Vehiculo (
-    idEspacio INT NOT NULL,
-    idVehiculo INT NOT NULL,
-    PRIMARY KEY (idEspacio, idVehiculo),
-    FOREIGN KEY (idEspacio) REFERENCES EspacioComun(id),
-    FOREIGN KEY (idVehiculo) REFERENCES Vehiculo(id)
+CREATE TABLE ReservaEspacio (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario_id INT NOT NULL,  
+    espacio_id INT NOT NULL,  
+    fecha DATE NOT NULL,  
+    hora_inicio TIME NOT NULL,  
+    hora_fin TIME NOT NULL,
+    estado VARCHAR(50) NOT NULL,  
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
+    FOREIGN KEY (espacio_id) REFERENCES EspacioComun(id)
 );
 
--- Tabla Reserva
-CREATE TABLE Reserva (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    cedula_residente VARCHAR(20),
-    idEspacio INT,
-    fechaReserva DATE NOT NULL,
-    horaInicio TIME NOT NULL,
-    horaFin TIME NOT NULL,
-    estado VARCHAR(20) NOT NULL,
-    FOREIGN KEY (cedula_residente) REFERENCES Usuario(cedula),
-    FOREIGN KEY (idEspacio) REFERENCES EspacioComun(id)
-);
 
--- Tabla Visitante
+-- MÓDULO CHECK-IN
 CREATE TABLE Visitante (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
-    identificacion VARCHAR(255) NOT NULL UNIQUE,
-    detallesContacto VARCHAR(255) NOT NULL,
-    motivoVisita VARCHAR(255) NOT NULL
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    identificacion VARCHAR(20) UNIQUE NOT NULL,
+    detalles_contacto VARCHAR(255),
+    motivo_visita TEXT NOT NULL
 );
 
--- Tabla Vehiculo
 CREATE TABLE Vehiculo (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    placa VARCHAR(20) NOT NULL UNIQUE,
-    modelo VARCHAR(100) NOT NULL,
-    color VARCHAR(50) NOT NULL,
-    visitante_id INT,
-    FOREIGN KEY (visitante_id) REFERENCES Visitante(id) ON DELETE SET NULL
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    placa VARCHAR(15) UNIQUE NOT NULL,  
+    modelo VARCHAR(50) NOT NULL,       
+    color VARCHAR(20) NOT NULL,         
+    visitante_id INT NOT NULL,          
+    FOREIGN KEY (visitante_id) REFERENCES Visitante(id)
 );
 
--- Tabla RegistroEntrada
 CREATE TABLE RegistroEntrada (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    fechaRegistro DATE NOT NULL,
-    visitante_id INT NOT NULL,
-    guardia_id INT NOT NULL,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  
+    visitante_id INT NOT NULL,                         
+    usuario_id INT NOT NULL,                             
     FOREIGN KEY (visitante_id) REFERENCES Visitante(id),
-    FOREIGN KEY (guardia_id) REFERENCES Usuario(id)
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
 );
 
--- Relación Residente_Registro
-CREATE TABLE Residente_Registro (
-    residente_id INT NOT NULL,
-    registro_id INT NOT NULL,
-    PRIMARY KEY (residente_id, registro_id),
-    FOREIGN KEY (residente_id) REFERENCES Usuario(id),
-    FOREIGN KEY (registro_id) REFERENCES RegistroEntrada(id)
-);
-
--- Tabla Mensaje
--- CREATE TABLE Mensaje (
---    idMensaje INT PRIMARY KEY AUTO_INCREMENT,
---    contenido TEXT NOT NULL,
---    fechaEnvio DATETIME NOT NULL
--- );
-
--- Relación Mensaje - Usuario
-CREATE TABLE Mensaje_Usuario (
-    idMensaje INT,
-    idUsuario_Remitente INT,
-    idUsuario_Emisor INT,
-    PRIMARY KEY (idMensaje, idUsuario_Remitente, idUsuario_Emisor),
-    FOREIGN KEY (idMensaje) REFERENCES Mensaje(id) ON DELETE CASCADE,
-    FOREIGN KEY (idUsuario_Remitente) REFERENCES Usuario(id) ON DELETE CASCADE,
-    FOREIGN KEY (idUsuario_Emisor) REFERENCES Usuario(id) ON DELETE CASCADE
-);
-
--- Tabla Anuncio General 
-CREATE TABLE AnuncioGeneral (
-    idAnuncio INT PRIMARY KEY AUTO_INCREMENT,
-    contenido TEXT NOT NULL,
-    fechaCreacion DATETIME NOT NULL,
-    idUsuario INT,
-    FOREIGN KEY (idUsuario) REFERENCES Usuario(id)
-);
-
--- Tabla Reporte de mensajes
-CREATE TABLE ReporteMensaje (
-    idReporte INT PRIMARY KEY AUTO_INCREMENT,
-    fechaInicio DATETIME NOT NULL,
-    fechaFinal DATETIME NOT NULL,
-    contenido TEXT,
-    idUsuario INT,
-    FOREIGN KEY (idUsuario) REFERENCES Usuario(id) ON DELETE CASCADE
-);
-
--- Tabla Comunicado
+-- MÓDULO COMUNICADO
 CREATE TABLE Comunicado (
-    idComunicado INT PRIMARY KEY AUTO_INCREMENT,
-    contenido TEXT NOT NULL,
-    fechaEnvio DATETIME NOT NULL
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(255) NOT NULL,          
+    contenido TEXT NOT NULL,               
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    tipo ENUM('global', 'residente', 'trabajador') NOT NULL, 
+    enviado_por INT NOT NULL,              
+    FOREIGN KEY (enviado_por) REFERENCES Usuario(id), 
+    estado ENUM('activo', 'eliminado') DEFAULT 'activo'
 );
 
--- Relación Comunicado - Empleado
-CREATE TABLE Comunicado_Empleado (
-    idComunicado INT,
-    idUsuario_Remitente INT,
-    idUsuario_Emisor INT,
-    PRIMARY KEY (idComunicado, idUsuario_Remitente, idUsuario_Emisor),
-    FOREIGN KEY (idUsuario_Remitente) REFERENCES Usuario(id),
-    FOREIGN KEY (idComunicado) REFERENCES Comunicado(idComunicado),
-    FOREIGN KEY (idUsuario_Emisor) REFERENCES Usuario(id)
+CREATE TABLE MensajeDirecto (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    mensaje TEXT NOT NULL,                  
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    remitente_id INT NOT NULL,              
+    destinatario_id INT NOT NULL,           
+    FOREIGN KEY (remitente_id) REFERENCES Usuario(id),  
+    FOREIGN KEY (destinatario_id) REFERENCES Usuario(id) 
 );
 
--- SHOW TABLES;
+CREATE TABLE Reporte (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    comunicado_id INT NOT NULL,           
+    reporte TEXT NOT NULL,                 
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    enviado_por INT NOT NULL,             
+    FOREIGN KEY (comunicado_id) REFERENCES Comunicado(id), 
+    FOREIGN KEY (enviado_por) REFERENCES Usuario(id)      
+);

@@ -22,10 +22,7 @@ public class CtrMenuBar  implements ActionListener{
     
     public CtrMenuBar(FrmMenuBar frmContenedorPrincipal){
         this.frmConP = frmContenedorPrincipal;
-        this.frmConP.jMenuIUGuardar.addActionListener(this);
-        this.frmConP.jMenuIUBuscar.addActionListener(this);
-        this.frmConP.jMenuIUModificar.addActionListener(this);
-        this.frmConP.jMenuIUEliminar.addActionListener(this);
+       
     }
     public void iniciar() {
         frmConP.setTitle("Administrador");
@@ -34,7 +31,6 @@ public class CtrMenuBar  implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        
     }
 
 }

@@ -13,11 +13,11 @@ import view.FrmMenuBar;
  *
  * @author LENOVO.USER
  */
-public class CtrMenuGuardarTelecom implements ActionListener{
+public class Ctr1Telecomunicaciones implements ActionListener{
     
     private FrmMenuBar frmConP;
 
-    public CtrMenuGuardarTelecom(FrmMenuBar frmConP) {
+    public Ctr1Telecomunicaciones(FrmMenuBar frmConP) {
         this.frmConP = frmConP;
     }
     
@@ -26,7 +26,7 @@ public class CtrMenuGuardarTelecom implements ActionListener{
     public void iniciar(){
        CardLayout cardLayout = (CardLayout) frmConP.PanelPrincipal.getLayout();
         cardLayout.show(frmConP.PanelPrincipal, "card8"); // Mostrar el panel de guardar
-        System.out.println("Panel Guardar mostrado.");
+        System.out.println("Panel MenuItem 1 mostrado.");
     }
 
     @Override

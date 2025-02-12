@@ -4,16 +4,28 @@
  */
 package view;
 
+import controller.CheckIn.CtrCheckIn;
+import controller.EspaciosComunes.CtrEspaciosC;
+import controller.Inmuebles.CtrInmuebles;
+import controller.Pagos.CtrPagos;
 import controller.Telecomunicaciones.CtrTelecomunicaciones;
 import controller.Usuarios.CtrUsuario;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Desktop.Action;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -32,6 +44,10 @@ public class FrmMenuBar extends javax.swing.JFrame {
         cardLayout = (CardLayout) PanelPrincipal.getLayout();
         new CtrUsuario(this);
         new CtrTelecomunicaciones(this);
+        new CtrInmuebles(this);
+        new CtrPagos(this);
+        new CtrEspaciosC(this);
+        new CtrCheckIn(this);
     }
 
     private void inicializacionItemsMenuBar() {
@@ -43,36 +59,40 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuInmuebles = new javax.swing.JMenu();
         jMenuEspaciosComunes = new javax.swing.JMenu();
         jMenuCheckIn = new javax.swing.JMenu();
+        //jMenuConfig = new javax.swing.JMenu();
         
-        jMenuIUGuardar = new javax.swing.JMenuItem();
-        jMenuIUBuscar = new javax.swing.JMenuItem();
-        jMenuIUModificar = new javax.swing.JMenuItem();
-        jMenuIUEliminar = new javax.swing.JMenuItem();
+        jMenuIUsuarios1 = new javax.swing.JMenuItem();
+        jMenuIUsuarios2 = new javax.swing.JMenuItem();
+        jMenuIUsuarios3 = new javax.swing.JMenuItem();
+        jMenuIUsuarios4 = new javax.swing.JMenuItem();
         
-        jMenuITGuardar = new javax.swing.JMenuItem();
-        jMenuITBuscar = new javax.swing.JMenuItem();
+        jMenuIT1 = new javax.swing.JMenuItem();
+        jMenuIT2 = new javax.swing.JMenuItem();
         jMenuITModificar = new javax.swing.JMenuItem();
         jMenuITEliminar = new javax.swing.JMenuItem();
 
-        jMenuIPGuardar = new javax.swing.JMenuItem();
-        jMenuIPBuscar = new javax.swing.JMenuItem();
+        jMenuIP1 = new javax.swing.JMenuItem();
+        jMenuIP2 = new javax.swing.JMenuItem();
         jMenuIPModificar = new javax.swing.JMenuItem();
         jMenuIPEliminar = new javax.swing.JMenuItem();
 
-        jMenuIIGuardar = new javax.swing.JMenuItem();
-        jMenuIIBuscar = new javax.swing.JMenuItem();
+        jMenuII1 = new javax.swing.JMenuItem();
+        jMenuII2 = new javax.swing.JMenuItem();
         jMenuIIModificar = new javax.swing.JMenuItem();
         jMenuIIEliminar = new javax.swing.JMenuItem();
 
-        jMenuIECGuardar = new javax.swing.JMenuItem();
-        jMenuIECBuscar = new javax.swing.JMenuItem();
+        jMenuIEC1 = new javax.swing.JMenuItem();
+       jMenuIEC2 = new javax.swing.JMenuItem();
         jMenuIECModificar = new javax.swing.JMenuItem();
         jMenuIECEliminar = new javax.swing.JMenuItem();
 
-        jMenuICIGuardar = new javax.swing.JMenuItem();
-        jMenuICIBuscar = new javax.swing.JMenuItem();
+        jMenuICI1 = new javax.swing.JMenuItem();
+        jMenuICI2 = new javax.swing.JMenuItem();
         jMenuICIModificar = new javax.swing.JMenuItem();
         jMenuICIEliminar = new javax.swing.JMenuItem();
+        
+        //jMenuISalir = new javax.swing.JMenuItem();
+        //jMenuIModoV = new javax.swing.JMenuItem();
 
         
         jMenuUsuario.setText("Usuario");
@@ -82,75 +102,86 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuUsuario.setForeground(Color.WHITE);
         jMenuUsuario.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
         //MenuItems     
-        jMenuIUGuardar.setText("Guardar");
-        jMenuIUBuscar.setText("Buscar");
-        jMenuIUModificar.setText("Modificar");
-        jMenuIUEliminar.setText("Eliminar");
+        jMenuIUsuarios1.setText("MenuItem1");
+        jMenuIUsuarios2.setText("MenuItem2");
+        jMenuIUsuarios3.setText("MenuItem3");
+        jMenuIUsuarios4.setText("MenuItem4");
         
         //MenuTelecomunicaciones
         jMenuTelecomunicaciones.setText("Telecomunicaciones");
-        jMenuTelecomunicaciones.setIcon(obtenerImagen(logo_Usuario));
+        jMenuTelecomunicaciones.setIcon(obtenerImagen(logo_Telecomunicaciones));
         jMenuTelecomunicaciones.setOpaque(true);
         jMenuTelecomunicaciones.setBackground(mColorFondoMenu);
         jMenuTelecomunicaciones.setForeground(Color.WHITE);
         jMenuTelecomunicaciones.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
        
-        jMenuITGuardar.setText("Guardar");
-        jMenuITBuscar.setText("Buscar");
-        jMenuITModificar.setText("Modificar");
-        jMenuITEliminar.setText("Eliminar");
+        jMenuIT1.setText("MenuItem1");
+        jMenuIT2.setText("MenuItem2");
+        jMenuITModificar.setText("MenuItem3");
+        jMenuITEliminar.setText("MenuItem4");
         
         //MenuPagos
         jMenuPagos.setText("Pagos");
-        jMenuPagos.setIcon(obtenerImagen(logo_Usuario));
+        jMenuPagos.setIcon(obtenerImagen(logo_Pagos));
         jMenuPagos.setOpaque(true);
         jMenuPagos.setBackground(mColorFondoMenu);
         jMenuPagos.setForeground(Color.WHITE);
         jMenuPagos.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
         
-        jMenuIPGuardar.setText("Guardar");
-        jMenuIPBuscar.setText("Buscar");
-        jMenuIPModificar.setText("Modificar");
-        jMenuIPEliminar.setText("Eliminar");
+        jMenuIP1.setText("MenuItem1");
+        jMenuIP2.setText("MenuItem2");
+        jMenuIPModificar.setText("MenuItem3");
+        jMenuIPEliminar.setText("MenuItem4");
         
         //MenuInmuebles
         jMenuInmuebles.setText("Inmuebles");
-        jMenuInmuebles.setIcon(obtenerImagen(logo_Usuario));
+        jMenuInmuebles.setIcon(obtenerImagen(logo_Inmuebles));
         jMenuInmuebles.setOpaque(true);
         jMenuInmuebles.setBackground(mColorFondoMenu);
         jMenuInmuebles.setForeground(Color.WHITE);
         jMenuInmuebles.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
         
-        jMenuIIGuardar.setText("Guardar");
-        jMenuIIBuscar.setText("Buscar");
-        jMenuIIModificar.setText("Modificar");
-        jMenuIIEliminar.setText("Eliminar");
+        jMenuII1.setText("MenuItem1");
+        jMenuII2.setText("MenuItem2");
+        jMenuIIModificar.setText("MenuItem3");
+        jMenuIIEliminar.setText("MenuItem4");
         
         //MenuEspaciosComunes
         jMenuEspaciosComunes.setText("Espacios Comunes");
-        jMenuEspaciosComunes.setIcon(obtenerImagen(logo_Usuario));
+        jMenuEspaciosComunes.setIcon(obtenerImagen(logo_EspaciosComunes));
         jMenuEspaciosComunes.setOpaque(true);
         jMenuEspaciosComunes.setBackground(mColorFondoMenu);
         jMenuEspaciosComunes.setForeground(Color.WHITE);
         jMenuEspaciosComunes.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
         
-        jMenuIECGuardar.setText("Guardar");
-        jMenuIECBuscar.setText("Buscar");
-        jMenuIECModificar.setText("Modificar");
-        jMenuIECEliminar.setText("Eliminar");
+        jMenuIEC1.setText("MenuItem1");
+       jMenuIEC2.setText("MenuItem2");
+        jMenuIECModificar.setText("MenuItem3");
+        jMenuIECEliminar.setText("MenuItem4");
         
-        //MenuEspaciosComunes
+        //MenuCheckIn
         jMenuCheckIn.setText("Check-In");
-        jMenuCheckIn.setIcon(obtenerImagen(logo_Usuario));
+        jMenuCheckIn.setIcon(obtenerImagen(logo_CheckIn));
         jMenuCheckIn.setOpaque(true);
         jMenuCheckIn.setBackground(mColorFondoMenu);
         jMenuCheckIn.setForeground(Color.WHITE);
         jMenuCheckIn.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
         
-        jMenuICIGuardar.setText("Guardar");
-        jMenuICIBuscar.setText("Buscar");
-        jMenuICIModificar.setText("Modificar");
-        jMenuICIEliminar.setText("Eliminar");
+        jMenuICI1.setText("MenuItem1");
+        jMenuICI2.setText("MenuItem2");
+        jMenuICIModificar.setText("MenuItem3");
+        jMenuICIEliminar.setText("MenuItem4");
+        
+        //MenuCheckIn
+        jMenuCheckIn.setText("Check-In");
+        jMenuCheckIn.setIcon(obtenerImagen(logo_CheckIn));
+        jMenuCheckIn.setOpaque(true);
+        jMenuCheckIn.setBackground(mColorFondoMenu);
+        jMenuCheckIn.setForeground(Color.WHITE);
+        jMenuCheckIn.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
+        
+        //jMenuISalir.setText("Cerrar Sesión");
+        //jMenuIModoV.setText("modo");
         
         //Botones
         
@@ -159,60 +190,60 @@ public class FrmMenuBar extends javax.swing.JFrame {
             cambiarPanel("Usuarios");
         });
         
-        jMenuUsuario.add(jMenuIUGuardar);
-        jMenuUsuario.add(jMenuIUBuscar);
-        jMenuUsuario.add(jMenuIUModificar);
-        jMenuUsuario.add(jMenuIUEliminar);
+        jMenuUsuario.add(jMenuIUsuarios1);
+        jMenuUsuario.add(jMenuIUsuarios2);
+        //jMenuUsuario.add(jMenuIUsuarios3);
+        //jMenuUsuario.add(jMenuIUsuarios4);
         
         //Telecomunicaciones
         jMenuTelecomunicaciones.addActionListener((ActionEvent e) -> {
             cambiarPanel("Telecomunicaciones");
         });
         
-        jMenuTelecomunicaciones.add(jMenuITGuardar);
-        jMenuTelecomunicaciones.add(jMenuITBuscar);
-        jMenuTelecomunicaciones.add(jMenuITModificar);
-        jMenuTelecomunicaciones.add(jMenuITEliminar);
+        jMenuTelecomunicaciones.add(jMenuIT1);
+        jMenuTelecomunicaciones.add(jMenuIT2);
+        //jMenuTelecomunicaciones.add(jMenuITModificar);
+        //jMenuTelecomunicaciones.add(jMenuITEliminar);
         
         //Pagos
         jMenuPagos.addActionListener((ActionEvent e) -> {
             cambiarPanel("Pagos");
         });
         
-        jMenuPagos.add(jMenuIPGuardar);
-        jMenuPagos.add(jMenuIPBuscar);
-        jMenuPagos.add(jMenuIPModificar);
-        jMenuPagos.add(jMenuIPEliminar);
+        jMenuPagos.add(jMenuIP1);
+        jMenuPagos.add(jMenuIP2);
+        //jMenuPagos.add(jMenuIPModificar);
+        //jMenuPagos.add(jMenuIPEliminar);
         
         //Inmuebles
         jMenuInmuebles.addActionListener((ActionEvent e) -> {
             cambiarPanel("Inmuebles");
         });
         
-        jMenuInmuebles.add(jMenuIIGuardar); 
-        jMenuInmuebles.add(jMenuIIBuscar); 
-        jMenuInmuebles.add(jMenuIIModificar); 
-        jMenuInmuebles.add(jMenuIIEliminar); 
+        jMenuInmuebles.add(jMenuII1); 
+        jMenuInmuebles.add(jMenuII2); 
+        //jMenuInmuebles.add(jMenuIIModificar); 
+        //jMenuInmuebles.add(jMenuIIEliminar); 
         
         //Espacios Comunes
         jMenuEspaciosComunes.addActionListener((ActionEvent e) -> {
             cambiarPanel("Espacios Comunes");
         });
         
-        jMenuEspaciosComunes.add(jMenuIECGuardar); 
-        jMenuEspaciosComunes.add(jMenuIECBuscar); 
-        jMenuEspaciosComunes.add(jMenuIECModificar); 
-        jMenuEspaciosComunes.add(jMenuIECEliminar); 
+        jMenuEspaciosComunes.add(jMenuIEC1); 
+        jMenuEspaciosComunes.add(jMenuIEC2); 
+        //jMenuEspaciosComunes.add(jMenuIECModificar); 
+        //jMenuEspaciosComunes.add(jMenuIECEliminar); 
         
         //Check-In
         jMenuCheckIn.addActionListener((ActionEvent e) -> {
             cambiarPanel("Check In"); 
         });
         
-        jMenuCheckIn.add(jMenuICIGuardar); 
-        jMenuCheckIn.add(jMenuICIBuscar); 
-        jMenuCheckIn.add(jMenuICIModificar); 
-        jMenuCheckIn.add(jMenuICIEliminar); 
+        jMenuCheckIn.add(jMenuICI1); 
+        jMenuCheckIn.add(jMenuICI2); 
+        //jMenuCheckIn.add(jMenuICIModificar); 
+        //jMenuCheckIn.add(jMenuICIEliminar); 
        
         //Modulos en el Menu Bar
         mbMenuBar.add(jMenuUsuario);
@@ -222,20 +253,48 @@ public class FrmMenuBar extends javax.swing.JFrame {
         mbMenuBar.add(jMenuEspaciosComunes);
         mbMenuBar.add(jMenuCheckIn);
         
-        mbMenuBar.setPreferredSize(new java.awt.Dimension(this.getWidth(), 50)); // Ancho igual al frame y altura 50
+        mbMenuBar.setPreferredSize(new java.awt.Dimension(this.getWidth(), 50));
+        mbMenuBar.setLayout(new GridLayout(1, 7)); // Alinear elementos a la izquierda
+       
+        // Ancho igual al frame y altura 50
         // Crear una nueva fuente
         /*java.awt.Font font = new java.awt.Font("Arial", java.awt.Font.BOLD, 16); // Tamaño de fuente 14 y estilo negrita
 
         // Establecer la fuente para cada JMenu
         jMenuUsuario.setFont(font);
         java.awt.Font font1 = new java.awt.Font("Arial", java.awt.Font.ROMAN_BASELINE, 16); // Tamaño de fuente 14 y estilo negrita
-        jMenuIUGuardar.setFont(font1);
-        jMenuIUBuscar.setFont(font1);
-        jMenuIUModificar.setFont(font1);
-        jMenuIUEliminar.setFont(font1);*/
+        jMenuIUsuarios1.setFont(font1);
+        jMenuIUsuarios2.setFont(font1);
+        jMenuIUsuarios3.setFont(font1);
+        jMenuIUsuarios4.setFont(font1);*/
+        
+        //////////////////////////
+        btnSalir.setFocusable(false);
+        btnSalir.setBackground(Color.RED);
+        btnSalir.setForeground(Color.WHITE);
+        btnSalir.setBorderPainted(false);
+        //mbMenuBar.add(btnSalir);
+        
+        panelBotones.setBackground(new Color(47, 79, 79));
+        //panelBotones.setLayout(new GridLayout(1, 2));
+        panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.X_AXIS));
 
+        panelBotones.add(Box.createHorizontalGlue());  // Agrega espacio flexible antes de los bo
+        panelBotones.add(btnSalir);
+        panelBotones.add(Box.createHorizontalGlue());  // Agrega espacio flexible después de los botones
+
+
+        mbMenuBar.add(panelBotones);
+        
+        btnSalir.addActionListener((ActionEvent e) ->{
+            FrmUsuarioLogin login = new FrmUsuarioLogin();
+            login.setVisible(true);
+            
+            this.dispose();
+        });
     }
 
+    
     private void cambiarPanel(String Panel) {
         cardLayout.show(PanelPrincipal, Panel);
     }
@@ -263,21 +322,21 @@ public class FrmMenuBar extends javax.swing.JFrame {
         PanelEliminar = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         PanelTelecomunicaciones = new javax.swing.JPanel();
-        PanelGuardarT = new javax.swing.JPanel();
+        PanelT1 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
-        PanelBuscarT = new javax.swing.JPanel();
-        PanelModificarT = new javax.swing.JPanel();
-        PanelEliminarT = new javax.swing.JPanel();
+        PanelT2 = new javax.swing.JPanel();
         PanelPagos = new javax.swing.JPanel();
-        PanelGuardarP = new javax.swing.JPanel();
-        PanelBuscarP = new javax.swing.JPanel();
-        PanelModificarP = new javax.swing.JPanel();
-        PanelEliminarP = new javax.swing.JPanel();
+        PanelP1 = new javax.swing.JPanel();
+        PanelP2 = new javax.swing.JPanel();
         PanelInmuebles = new javax.swing.JPanel();
-        PanelGuardarI = new javax.swing.JPanel();
-        PanelBuscarI = new javax.swing.JPanel();
-        PanelModificarI = new javax.swing.JPanel();
-        PanelEliminarI = new javax.swing.JPanel();
+        PanelI1 = new javax.swing.JPanel();
+        PanelI2 = new javax.swing.JPanel();
+        PanelEspaciosComunes = new javax.swing.JPanel();
+        PanelEC1 = new javax.swing.JPanel();
+        PanelEC2 = new javax.swing.JPanel();
+        PanelCheckIn = new javax.swing.JPanel();
+        PanelCheckIn1 = new javax.swing.JPanel();
+        PanelCheckIn2 = new javax.swing.JPanel();
         mbMenuBar = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -286,11 +345,9 @@ public class FrmMenuBar extends javax.swing.JFrame {
         PanelPrincipal.setLayout(new java.awt.CardLayout());
 
         PanelUsuarios.setBackground(new java.awt.Color(80, 200, 120));
-        PanelUsuarios.setLayout(null);
         PanelPrincipal.add(PanelUsuarios, "card2");
 
         PanelGuardar.setBackground(new java.awt.Color(89, 116, 112));
-        PanelGuardar.setLayout(null);
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Source Code Pro Light", 0, 48)); // NOI18N
@@ -298,48 +355,39 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jLabel1.setText("Guardar ");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PanelGuardar.add(jLabel1);
-        jLabel1.setBounds(440, 270, 390, 80);
 
         PanelPrincipal.add(PanelGuardar, "card3");
 
         PanerBuscar.setBackground(new java.awt.Color(85, 107, 47));
-        PanerBuscar.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Source Code Pro Light", 0, 48)); // NOI18N
         jLabel2.setText("Buscar");
         PanerBuscar.add(jLabel2);
-        jLabel2.setBounds(520, 240, 320, 190);
 
         PanelPrincipal.add(PanerBuscar, "card2");
 
         PanelModificar.setBackground(new java.awt.Color(96, 128, 117));
-        PanelModificar.setLayout(null);
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Source Code Pro ExtraLight", 0, 48)); // NOI18N
         jLabel3.setText("Modificar");
         PanelModificar.add(jLabel3);
-        jLabel3.setBounds(480, 240, 310, 150);
 
         PanelPrincipal.add(PanelModificar, "card5");
 
         PanelEliminar.setBackground(new java.awt.Color(24, 60, 34));
-        PanelEliminar.setLayout(null);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Source Code Pro ExtraLight", 0, 48)); // NOI18N
         jLabel4.setText("Eliminar");
         PanelEliminar.add(jLabel4);
-        jLabel4.setBounds(530, 260, 390, 160);
 
         PanelPrincipal.add(PanelEliminar, "card6");
 
         PanelTelecomunicaciones.setBackground(new java.awt.Color(0, 153, 153));
-        PanelTelecomunicaciones.setLayout(null);
         PanelPrincipal.add(PanelTelecomunicaciones, "card7");
 
-        PanelGuardarT.setBackground(new java.awt.Color(51, 255, 51));
-        PanelGuardarT.setLayout(null);
+        PanelT1.setBackground(new java.awt.Color(51, 255, 51));
 
         btnGuardar.setText("jButton1");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -347,38 +395,28 @@ public class FrmMenuBar extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        PanelGuardarT.add(btnGuardar);
-        btnGuardar.setBounds(540, 120, 79, 27);
+        PanelT1.add(btnGuardar);
 
-        PanelPrincipal.add(PanelGuardarT, "card8");
-
-        PanelBuscarT.setLayout(null);
-        PanelPrincipal.add(PanelBuscarT, "card9");
-
-        PanelModificarT.setLayout(null);
-        PanelPrincipal.add(PanelModificarT, "card10");
-
-        PanelEliminarT.setLayout(null);
-        PanelPrincipal.add(PanelEliminarT, "card11");
-
-        PanelPagos.setLayout(null);
+        PanelPrincipal.add(PanelT1, "card8");
+        PanelPrincipal.add(PanelT2, "card9");
         PanelPrincipal.add(PanelPagos, "card12");
+        PanelPrincipal.add(PanelP1, "card13");
 
-        PanelGuardarP.setLayout(null);
-        PanelPrincipal.add(PanelGuardarP, "card13");
+        PanelP2.setBackground(new java.awt.Color(204, 255, 204));
+        PanelPrincipal.add(PanelP2, "card14");
 
-        PanelBuscarP.setBackground(new java.awt.Color(204, 255, 204));
-        PanelBuscarP.setLayout(null);
-        PanelPrincipal.add(PanelBuscarP, "card14");
-
-        PanelModificarP.setLayout(null);
-        PanelPrincipal.add(PanelModificarP, "card15");
-        PanelPrincipal.add(PanelEliminarP, "card16");
+        PanelInmuebles.setBackground(new java.awt.Color(0, 153, 153));
         PanelPrincipal.add(PanelInmuebles, "card17");
-        PanelPrincipal.add(PanelGuardarI, "card18");
-        PanelPrincipal.add(PanelBuscarI, "card19");
-        PanelPrincipal.add(PanelModificarI, "card20");
-        PanelPrincipal.add(PanelEliminarI, "card21");
+
+        PanelI1.setBackground(new java.awt.Color(255, 153, 153));
+        PanelPrincipal.add(PanelI1, "panel1Inmuebles");
+        PanelPrincipal.add(PanelI2, "card19");
+        PanelPrincipal.add(PanelEspaciosComunes, "card22");
+        PanelPrincipal.add(PanelEC1, "card23");
+        PanelPrincipal.add(PanelEC2, "card24");
+        PanelPrincipal.add(PanelCheckIn, "card25");
+        PanelPrincipal.add(PanelCheckIn1, "card26");
+        PanelPrincipal.add(PanelCheckIn2, "card27");
 
         getContentPane().add(PanelPrincipal, java.awt.BorderLayout.CENTER);
         setJMenuBar(mbMenuBar);
@@ -394,29 +432,31 @@ public class FrmMenuBar extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new FrmMenuBar().setVisible(true));
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PanelBuscarI;
-    private javax.swing.JPanel PanelBuscarP;
-    private javax.swing.JPanel PanelBuscarT;
+    private javax.swing.JPanel PanelCheckIn;
+    private javax.swing.JPanel PanelCheckIn1;
+    private javax.swing.JPanel PanelCheckIn2;
+    private javax.swing.JPanel PanelEC1;
+    private javax.swing.JPanel PanelEC2;
     private javax.swing.JPanel PanelEliminar;
-    private javax.swing.JPanel PanelEliminarI;
-    private javax.swing.JPanel PanelEliminarP;
-    private javax.swing.JPanel PanelEliminarT;
+    private javax.swing.JPanel PanelEspaciosComunes;
     public javax.swing.JPanel PanelGuardar;
-    private javax.swing.JPanel PanelGuardarI;
-    private javax.swing.JPanel PanelGuardarP;
-    private javax.swing.JPanel PanelGuardarT;
+    private javax.swing.JPanel PanelI1;
+    private javax.swing.JPanel PanelI2;
     private javax.swing.JPanel PanelInmuebles;
     private javax.swing.JPanel PanelModificar;
-    private javax.swing.JPanel PanelModificarI;
-    private javax.swing.JPanel PanelModificarP;
-    private javax.swing.JPanel PanelModificarT;
+    private javax.swing.JPanel PanelP1;
+    private javax.swing.JPanel PanelP2;
     private javax.swing.JPanel PanelPagos;
     public javax.swing.JPanel PanelPrincipal;
+    private javax.swing.JPanel PanelT1;
+    private javax.swing.JPanel PanelT2;
     private javax.swing.JPanel PanelTelecomunicaciones;
     public javax.swing.JPanel PanelUsuarios;
     private javax.swing.JPanel PanerBuscar;
@@ -429,47 +469,58 @@ public class FrmMenuBar extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
  // Declaración de los menús
     public javax.swing.JMenu jMenuUsuario;
-    public javax.swing.JMenuItem jMenuIUGuardar;
-    public javax.swing.JMenuItem jMenuIUBuscar;
-    public javax.swing.JMenuItem jMenuIUModificar;
-    public javax.swing.JMenuItem jMenuIUEliminar;
+    public javax.swing.JMenuItem jMenuIUsuarios1;
+    public javax.swing.JMenuItem jMenuIUsuarios2;
+    public javax.swing.JMenuItem jMenuIUsuarios3;
+    public javax.swing.JMenuItem jMenuIUsuarios4;
     
     public javax.swing.JMenu jMenuTelecomunicaciones;
-    public javax.swing.JMenuItem jMenuITGuardar;
+    public javax.swing.JMenuItem jMenuIT1;
     public javax.swing.JMenuItem jMenuITEliminar;
     public javax.swing.JMenuItem jMenuITModificar;
-    public javax.swing.JMenuItem jMenuITBuscar;
+    public javax.swing.JMenuItem jMenuIT2;
     
     public javax.swing.JMenu jMenuPagos;
-    public javax.swing.JMenuItem jMenuIPGuardar;
+    public javax.swing.JMenuItem jMenuIP1;
     public javax.swing.JMenuItem jMenuIPEliminar;
     public javax.swing.JMenuItem jMenuIPModificar;
-    public javax.swing.JMenuItem jMenuIPBuscar;
+    public javax.swing.JMenuItem jMenuIP2;
     
     public javax.swing.JMenu jMenuInmuebles;
-    public javax.swing.JMenuItem jMenuIIGuardar;
-    public javax.swing.JMenuItem jMenuIIBuscar;
+    public javax.swing.JMenuItem jMenuII1;
+    public javax.swing.JMenuItem jMenuII2;
     public javax.swing.JMenuItem jMenuIIEliminar;
     public javax.swing.JMenuItem jMenuIIModificar;
 
    
     public javax.swing.JMenu jMenuEspaciosComunes;
-    public javax.swing.JMenuItem jMenuIECGuardar;
-    public javax.swing.JMenuItem jMenuIECBuscar;
+    public javax.swing.JMenuItem jMenuIEC1;
+    public javax.swing.JMenuItem jMenuIEC2;
     public javax.swing.JMenuItem jMenuIECEliminar;
     public javax.swing.JMenuItem jMenuIECModificar;
    
     public javax.swing.JMenu jMenuCheckIn;
-    public javax.swing.JMenuItem jMenuICIGuardar;
-    public javax.swing.JMenuItem jMenuICIBuscar;
+    public javax.swing.JMenuItem jMenuICI1;
+    public javax.swing.JMenuItem jMenuICI2;
     public javax.swing.JMenuItem jMenuICIEliminar;
     public javax.swing.JMenuItem jMenuICIModificar;
     
+    //public javax.swing.JMenu jMenuConfig;
+    //public javax.swing.JMenuItem jMenuISalir;
+    
     public String logo_Usuario= "/imagenes/clientes.png";
+    public String logo_Telecomunicaciones= "/imagenes/telecomunicaciones.png";
+    public String logo_Pagos= "/imagenes/metodo-de-pago.png";
+    public String logo_Inmuebles= "/imagenes/enlace.png";
+    public String logo_EspaciosComunes= "/imagenes/pesa.png";
+    public String logo_CheckIn= "/imagenes/portapapeles.png";
 
    
     public Color mColorFondoMenu= new Color(47, 79, 79);
-
-
+    
+    // Crear los botones con iconos
+        JButton btnSalir = new JButton("Salir");
     // End of variables declaration         
+        JPanel panelBotones = new JPanel();
+       
 }

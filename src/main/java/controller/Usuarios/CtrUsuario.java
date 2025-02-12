@@ -18,26 +18,19 @@ public class CtrUsuario implements ActionListener{
 
     public CtrUsuario(FrmMenuBar frmContenedorPrincipal) {
         this.frmConP = frmContenedorPrincipal;
-        this.frmConP.jMenuIUGuardar.addActionListener(this);
-        this.frmConP.jMenuIUBuscar.addActionListener(this);
-        this.frmConP.jMenuIUModificar.addActionListener(this);
-        this.frmConP.jMenuIUEliminar.addActionListener(this);
+        this.frmConP.jMenuIUsuarios1.addActionListener(this);
+        this.frmConP.jMenuIUsuarios2.addActionListener(this);
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         CardLayout cardLayout = (CardLayout) frmConP.PanelPrincipal.getLayout();
-        if (e.getSource() == frmConP.jMenuIUGuardar) {
+        if (e.getSource() == frmConP.jMenuIUsuarios1) {
             cardLayout.show(frmConP.PanelPrincipal, "card3");  // PanelGuardar
         }
-        if (e.getSource() == frmConP.jMenuIUBuscar) {
+        if (e.getSource() == frmConP.jMenuIUsuarios2) {
             cardLayout.show(frmConP.PanelPrincipal, "card2");  // PanelBuscar
-        }
-        if (e.getSource() == frmConP.jMenuIUModificar) {
-            cardLayout.show(frmConP.PanelPrincipal, "card5");  // PanelModificar
-        }
-        if (e.getSource() == frmConP.jMenuIUEliminar) {
-            cardLayout.show(frmConP.PanelPrincipal, "card6");  // PanelEliminar
         }
     }
 }

@@ -56,7 +56,7 @@ CREATE TABLE Inmueble (
     dimensiones VARCHAR(20) NOT NULL,
     disponibilidad INT NOT NULL,
     propietario_id INT,
-    fk_proprietario_inmueble FOREIGN KEY (propietario_id) REFERENCES Usuario(id)
+    FOREIGN KEY (propietario_id) REFERENCES Usuario(id)
 );
 
 -- Tabla SolicitudMantenimiento
@@ -180,11 +180,11 @@ CREATE TABLE Residente_Registro (
 );
 
 -- Tabla Mensaje
-CREATE TABLE Mensaje (
-    idMensaje INT PRIMARY KEY AUTO_INCREMENT,
-    contenido TEXT NOT NULL,
-    fechaEnvio DATETIME NOT NULL
-);
+-- CREATE TABLE Mensaje (
+--    idMensaje INT PRIMARY KEY AUTO_INCREMENT,
+--    contenido TEXT NOT NULL,
+--    fechaEnvio DATETIME NOT NULL
+-- );
 
 -- Relación Mensaje - Usuario
 CREATE TABLE Mensaje_Usuario (
@@ -192,9 +192,9 @@ CREATE TABLE Mensaje_Usuario (
     idUsuario_Remitente INT,
     idUsuario_Emisor INT,
     PRIMARY KEY (idMensaje, idUsuario_Remitente, idUsuario_Emisor),
-    FOREIGN KEY (idUsuario_Remitente) REFERENCES Usuario(idUsuario),
-    FOREIGN KEY (idMensaje) REFERENCES Mensaje(idMensaje),
-    FOREIGN KEY (idUsuario_Emisor) REFERENCES Usuario(idUsuario)
+    FOREIGN KEY (idMensaje) REFERENCES Mensaje(id) ON DELETE CASCADE,
+    FOREIGN KEY (idUsuario_Remitente) REFERENCES Usuario(id) ON DELETE CASCADE,
+    FOREIGN KEY (idUsuario_Emisor) REFERENCES Usuario(id) ON DELETE CASCADE
 );
 
 -- Tabla Anuncio General 
@@ -203,7 +203,7 @@ CREATE TABLE AnuncioGeneral (
     contenido TEXT NOT NULL,
     fechaCreacion DATETIME NOT NULL,
     idUsuario INT,
-    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(id)
 );
 
 -- Tabla Reporte de mensajes
@@ -213,7 +213,7 @@ CREATE TABLE ReporteMensaje (
     fechaFinal DATETIME NOT NULL,
     contenido TEXT,
     idUsuario INT,
-    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(id) ON DELETE CASCADE
 );
 
 -- Tabla Comunicado
@@ -229,7 +229,9 @@ CREATE TABLE Comunicado_Empleado (
     idUsuario_Remitente INT,
     idUsuario_Emisor INT,
     PRIMARY KEY (idComunicado, idUsuario_Remitente, idUsuario_Emisor),
-    FOREIGN KEY (idUsuario_Remitente) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (idUsuario_Remitente) REFERENCES Usuario(id),
     FOREIGN KEY (idComunicado) REFERENCES Comunicado(idComunicado),
-    FOREIGN KEY (idUsuario_Emisor) REFERENCES Usuario(idUsuario)
+    FOREIGN KEY (idUsuario_Emisor) REFERENCES Usuario(id)
 );
+
+-- SHOW TABLES;

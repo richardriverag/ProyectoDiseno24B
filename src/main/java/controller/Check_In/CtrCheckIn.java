@@ -4,8 +4,8 @@
  */
 package controller.Check_In;
 
-import model.Check_In.DatabaseConnection;
 import view.check_in.Check_In;
+import model.Conexion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -50,7 +50,7 @@ public class CtrCheckIn implements ActionListener {
             return;
         }
 
-        try (Connection conn = DatabaseConnection.getConnection()) {
+        try (Connection conn = Conexion.getInstance()) {
             String sqlVisitante = "INSERT INTO Visitante (nombre, identificacion, detallesContacto, motivoVisita) VALUES (?, ?, ?, ?)";
             PreparedStatement stmtVisitante = conn.prepareStatement(sqlVisitante, PreparedStatement.RETURN_GENERATED_KEYS);
             stmtVisitante.setString(1, nombre);
@@ -91,7 +91,7 @@ public class CtrCheckIn implements ActionListener {
                    + "IFNULL(veh.placa, 'N/A'), IFNULL(veh.modelo, 'N/A'), IFNULL(veh.color, 'N/A') "
                    + "FROM Visitante v LEFT JOIN Vehiculo veh ON v.id = veh.visitante_id";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = Conexion.getInstance();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 

@@ -4,8 +4,6 @@
  */
 package view;
 
-import view.*;
-
 /**
  *
  * @author Richard

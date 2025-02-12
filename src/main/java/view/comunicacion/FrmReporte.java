@@ -4,7 +4,6 @@
  */
 package view.comunicacion;
 
-import view.*;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
@@ -31,7 +30,7 @@ public class FrmReporte extends javax.swing.JFrame {
 
         initComponents();
         configurarBoton();
-        configurarDateChoosers();
+//        configurarDateChoosers();
         configurarTabla();
         personalizarMenu();
 
@@ -65,39 +64,39 @@ public class FrmReporte extends javax.swing.JFrame {
         });
     }
 
-    private void configurarDateChoosers() {
-
-        try {
-            // Aplicar FlatLaf solo para los JDateChooser
-            UIManager.setLookAndFeel(new FlatLightLaf());
-            SwingUtilities.updateComponentTreeUI(jDateChooserInicio);
-            SwingUtilities.updateComponentTreeUI(jDateChooserFinal);
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-        // Crear un ImageIcon con la imagen personalizada (con fondo transparente)
-        ImageIcon iconoCalendario = new ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/calendario2.png"));
-
-        // Cambiar el ícono del botón del calendario
-        jDateChooserInicio.getCalendarButton().setIcon(iconoCalendario);
-        jDateChooserFinal.getCalendarButton().setIcon(iconoCalendario);
-
-        // Eliminar el fondo del JDateChooser
-        jDateChooserInicio.setOpaque(false);
-        jDateChooserFinal.setOpaque(false);
-
-        // Eliminar el borde alrededor del JDateChooser
-        jDateChooserInicio.setBorder(null);
-        jDateChooserFinal.setBorder(null);
-
-        jDateChooserInicio.getCalendarButton().setContentAreaFilled(false);
-        jDateChooserInicio.getCalendarButton().setBorderPainted(false);
-        jDateChooserInicio.getCalendarButton().setFocusPainted(false);
-
-        jDateChooserFinal.getCalendarButton().setContentAreaFilled(false);
-        jDateChooserFinal.getCalendarButton().setBorderPainted(false);
-        jDateChooserFinal.getCalendarButton().setFocusPainted(false);
-    }
+//    private void configurarDateChoosers() {
+//
+//        try {
+//            // Aplicar FlatLaf solo para los JDateChooser
+//            UIManager.setLookAndFeel(new FlatLightLaf());
+//            SwingUtilities.updateComponentTreeUI(jDateChooserInicio);
+//            SwingUtilities.updateComponentTreeUI(jDateChooserFinal);
+//        } catch (UnsupportedLookAndFeelException e) {
+//            e.printStackTrace();
+//        }
+//        // Crear un ImageIcon con la imagen personalizada (con fondo transparente)
+//        ImageIcon iconoCalendario = new ImageIcon(getClass().getResource("/imagenes/imagenescomunicacion/calendario2.png"));
+//
+//        // Cambiar el ícono del botón del calendario
+//        jDateChooserInicio.getCalendarButton().setIcon(iconoCalendario);
+//        jDateChooserFinal.getCalendarButton().setIcon(iconoCalendario);
+//
+//        // Eliminar el fondo del JDateChooser
+//        jDateChooserInicio.setOpaque(false);
+//        jDateChooserFinal.setOpaque(false);
+//
+//        // Eliminar el borde alrededor del JDateChooser
+//        jDateChooserInicio.setBorder(null);
+//        jDateChooserFinal.setBorder(null);
+//
+//        jDateChooserInicio.getCalendarButton().setContentAreaFilled(false);
+//        jDateChooserInicio.getCalendarButton().setBorderPainted(false);
+//        jDateChooserInicio.getCalendarButton().setFocusPainted(false);
+//
+//        jDateChooserFinal.getCalendarButton().setContentAreaFilled(false);
+//        jDateChooserFinal.getCalendarButton().setBorderPainted(false);
+//        jDateChooserFinal.getCalendarButton().setFocusPainted(false);
+//    }
 
     private void configurarTabla() {
         // Personaliza el modelo de la tabla (opcional, según los datos que quieras mostrar)

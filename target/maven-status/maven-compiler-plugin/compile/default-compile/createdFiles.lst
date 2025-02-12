@@ -3,6 +3,7 @@ view\comunicacion\FrmMensaje.class
 controller\Usuarios\Ctr1Usuario.class
 model\comunicacionModel\DbAnuncioGeneral.class
 view\FrmUsuarioRecuperarPass$3.class
+model\Rol.class
 view\check_in\Check_In$7.class
 model\comunicacionModel\DbMensaje.class
 view\comunicacion\FrmMensajeAdmin$4.class
@@ -12,14 +13,17 @@ controller\Check_In\CtrCheckIn.class
 model\ReporteModel.class
 view\FrmUsuarioLogin$2.class
 model\SolicitudMantenimientoModel.class
+model\DbUsuario.class
 view\FrmMenuBar$1.class
 controller\Inmuebles\ctr2Inmuebles.class
+controller\CtrLogin.class
 controller\Telecomunicaciones\CtrTelecomunicaciones.class
 view\check_in\Check_In$2.class
 controller\CheckIn\ctr2CheckIn.class
 view\comunicacion\FrmMensaje$6.class
 view\FrmUsuarioLogin$1.class
 model\comunicacionModel\DbReporteMensaje.class
+model\Usuario.class
 controller\EspaciosComunes\CtrEspaciosC.class
 controller\Pagos\ctr2Pagos.class
 view\comunicacion\FrmMensajeAdmin$6.class
@@ -62,6 +66,7 @@ view\comunicacion\FrmReporte.class
 view\comunicacion\FrmMensajeAdmin.class
 controller\Telecomunicaciones\Ctr2Telecomunicaciones.class
 view\comunicacion\FrmMensaje$3.class
+view\FrmUsuarioLogin$4.class
 controller\EspaciosComunes\ctr1EspaciosComunes.class
 controller\Inmuebles\ctr1Inmuebles.class
 view\check_in\Check_In$1.class

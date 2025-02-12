@@ -6,6 +6,7 @@ package proyectodiseno24b;
 
 
 import controller.CtrMenuBar;
+import model.Conexion;
 import view.FrmMenuBar;
 import view.comunicacion.FrmReporte;
 import view.comunicacion.FrmMensaje;
@@ -23,8 +24,11 @@ public class ProyectoDiseno24B {
         FrmReporte frm = new FrmReporte();
         FrmMenuBar frmConP = new FrmMenuBar();
         
+        Conexion conn = new Conexion();
         CtrMenuBar menu = new CtrMenuBar(frmConP);
         menu.iniciar();
+        conn.getInstance();
+        
         
         //frm.setVisible(true);
         //frm1.setVisible(true);

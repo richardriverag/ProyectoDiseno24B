@@ -4,6 +4,9 @@
  */
 package view;
 
+import controller.CtrLogin;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Richard
@@ -16,7 +19,35 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
     public FrmUsuarioLogin() {
         initComponents();
     }
-
+    
+    private int intentos = 0;
+    private static final int MAX_INTENTOS = 3;
+    
+    public void loginUsuario(){
+            String user = txtNombreUser.getText().trim();
+            String pass = txtContrasena.getText().trim();
+            
+            //Instancear controlador
+            CtrLogin login = new CtrLogin();
+            if(user.isEmpty() || pass.isEmpty()){
+                intentos++;
+                JOptionPane.showMessageDialog(null, "Ingrese un usuario y contraseña. Intento "+intentos+" de"+MAX_INTENTOS);
+                
+            }else if(login.loginUsuario(user, pass)){
+                JOptionPane.showMessageDialog(null, "Bienvenido");
+                intentos = 0;
+            }else{
+                intentos++;
+                JOptionPane.showMessageDialog(null, "El usuario no existe. Intento " + intentos+ " de " + MAX_INTENTOS);
+            }
+            
+            if(intentos >= MAX_INTENTOS){
+                JOptionPane.showMessageDialog(null, "Demasiados intentos fallidos, el sistema se cerrará");
+                System.exit(0);
+            }            
+    }
+            
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +63,6 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtNombreUsuario1 = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
         txtContrasena = new javax.swing.JPasswordField();
@@ -40,6 +70,7 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         btnLogin1 = new javax.swing.JButton();
+        txtNombreUser = new java.awt.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -66,17 +97,10 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
         jLabel10.setText("usuario");
         panelLogin1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
-
-        txtNombreUsuario1.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
-        txtNombreUsuario1.setForeground(new java.awt.Color(204, 204, 204));
-        txtNombreUsuario1.setText("Ingrese su nombre de usuario");
-        txtNombreUsuario1.setBorder(null);
-        panelLogin1.add(txtNombreUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 280, 30));
         panelLogin1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 280, 10));
         panelLogin1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 520, 280, 10));
 
         txtContrasena.setForeground(new java.awt.Color(204, 204, 204));
-        txtContrasena.setText("jPasswordField1");
         txtContrasena.setBorder(null);
         panelLogin1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, 280, 30));
 
@@ -110,6 +134,14 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
         });
         panelLogin1.add(btnLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 160, 40));
 
+        txtNombreUser.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtNombreUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreUserActionPerformed(evt);
+            }
+        });
+        panelLogin1.add(txtNombreUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 280, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,8 +167,12 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRecuperarPassActionPerformed
 
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
-        // TODO add your handling code here:
+       loginUsuario();
     }//GEN-LAST:event_btnLogin1ActionPerformed
+
+    private void txtNombreUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreUserActionPerformed
+        
+    }//GEN-LAST:event_txtNombreUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +238,6 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel panelLogin1;
     private javax.swing.JPasswordField txtContrasena;
-    private javax.swing.JTextField txtNombreUsuario1;
+    private java.awt.TextField txtNombreUser;
     // End of variables declaration//GEN-END:variables
 }

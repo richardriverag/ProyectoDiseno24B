@@ -1,6 +1,16 @@
 controller\CtrMenuBar.class
 view\FrmUsuarioRecuperarPass$3.class
 controller\Pagos\CtrPagos.class
+view\comunicacion\FrmMensajeAdmin$1.class
+view\comunicacion\FrmMensaje.class
+view\comunicacion\FrmMensaje$1.class
+controller\CtrMenuBar.class
+view\FrmUsuarioRecuperarPass$3.class
+controller\Pagos\CtrPagos.class
+view\comunicacion\FrmMensaje$4.class
+view\comunicacion\FrmMensaje$UsuarioRenderer.class
+view\comunicacion\FrmMensajeAdmin$4.class
+view\comunicacion\FrmReporte$2.class
 model\ReporteModel.class
 view\FrmUsuarioLogin$2.class
 controller\Pagos\ctr1Pagos.class
@@ -11,6 +21,7 @@ view\FrmMenuBar$1.class
 <<<<<<< HEAD
 view\comunicacion\FrmMensajeAdmin$2.class
 =======
+view\comunicacion\FrmMensajeAdmin$2.class
 controller\Inmuebles\ctr2Inmuebles.class
 >>>>>>> Ferkhan/develop
 view\FrmUsuarioRecuperarPass$2.class
@@ -60,6 +71,7 @@ view\FrmMenuBar.class
 model\InmueblesModel.class
 view\FrmUsuarioRecuperarPass$1.class
 model\Conexion.class
+view\comunicacion\FrmMensaje$2.class
 controller\Inmuebles\CtrInmuebles.class
 controller\Telecomunicaciones\Ctr1Telecomunicaciones.class
 >>>>>>> Ferkhan/develop

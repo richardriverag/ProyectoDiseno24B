@@ -5,6 +5,7 @@
 package model.comunicacion;
 
 import java.util.Date;
+import model.comunicacion.UsuarioModel;
  
 
 

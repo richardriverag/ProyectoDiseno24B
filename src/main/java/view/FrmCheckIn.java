@@ -377,10 +377,10 @@ public class FrmCheckIn extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel checkin;
-    private javax.swing.JButton clean;
-    private javax.swing.JTextField color;
-    private javax.swing.JTextField contact;
-    private javax.swing.JTextField identification;
+    public javax.swing.JButton clean;
+    public javax.swing.JTextField color;
+    public javax.swing.JTextField contact;
+    public javax.swing.JTextField identification;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -388,15 +388,15 @@ public class FrmCheckIn extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logocheck;
     private javax.swing.JLabel logorecord;
-    private javax.swing.JTextField model;
-    private javax.swing.JTextField name;
-    private javax.swing.JButton notify;
-    private javax.swing.JTextField plate;
-    private javax.swing.JTextField reason;
+    public javax.swing.JTextField model;
+    public javax.swing.JTextField name;
+    public javax.swing.JButton notify;
+    public javax.swing.JTextField plate;
+    public javax.swing.JTextField reason;
     private javax.swing.JLabel record;
-    private javax.swing.JButton save;
-    private javax.swing.JTable table;
-    private javax.swing.JButton update;
+    public javax.swing.JButton save;
+    public javax.swing.JTable table;
+    public javax.swing.JButton update;
     private javax.swing.JLabel vehicle;
     private javax.swing.JLabel visitant;
     // End of variables declaration//GEN-END:variables

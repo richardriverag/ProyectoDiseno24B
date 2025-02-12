@@ -7,16 +7,16 @@ package controller.Telecomunicaciones;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.FrmMenuBar;
+import view.frmMenuBar;
 
 /**
  *
  * @author LENOVO.USER
  */
 public class CtrTelecomunicaciones implements ActionListener{
-    private FrmMenuBar frmConP;
+    private frmMenuBar frmConP;
 
-    public CtrTelecomunicaciones(FrmMenuBar frmContenedorPrincipal) {
+    public CtrTelecomunicaciones(frmMenuBar frmContenedorPrincipal) {
         this.frmConP = frmContenedorPrincipal;
         this.frmConP.jMenuIT1.addActionListener(this);
         this.frmConP.jMenuIT2.addActionListener(this);
@@ -25,7 +25,7 @@ public class CtrTelecomunicaciones implements ActionListener{
   
   /*
   En el controller telecomunicaciones se trabajan los Menu items que se necesiten, este con el objetivo de que cada grupo obtenga individualidad
-  En el caso de querer agregar más menu items se requiere agregarlo en la vista FrmMenuBar, importante que en los layout sea de tipo null ya 
+  En el caso de querer agregar más menu items se requiere agregarlo en la vista frmMenuBar, importante que en los layout sea de tipo null ya 
   que se trabaja cardLayout
   */
     @Override

@@ -46,5 +46,13 @@ public class RegistroEntrada {
     public void setUsuarioId(int usuarioId) {
         this.usuarioId = usuarioId;
     }
+
+    void setVisitante(Visitante visitante) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void setVehiculo(Vehiculo vehiculo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
 

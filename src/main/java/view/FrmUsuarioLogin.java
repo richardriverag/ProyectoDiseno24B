@@ -29,7 +29,7 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
             
             //Instancear controlador
             CtrLogin login = new CtrLogin();
-            frmMenuBar frmConP = new frmMenuBar();
+            
             
             
            
@@ -41,6 +41,7 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
                 
             }else if(login.loginUsuario(user, pass)){
                 JOptionPane.showMessageDialog(null, "Bienvenido");
+                frmMenuBar frmConP = new frmMenuBar();
                 intentos = 0;
                 frmConP.setVisible(true);
                 this.dispose();

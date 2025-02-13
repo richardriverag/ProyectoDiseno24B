@@ -22,13 +22,13 @@ import view.frmMenuBar;
 public class ProyectoDiseno24B {
 
     public static void main(String[] args) {
-        frmMenuBar frmContenedorPrincipal = new frmMenuBar();
+        /*frmMenuBar frmContenedorPrincipal = new frmMenuBar();
         CtrMenuBar menu = new CtrMenuBar(frmContenedorPrincipal);
-       menu.iniciar();
+       menu.iniciar();*/
         
-        //FrmUsuarioLogin frmLogin = new FrmUsuarioLogin();
-        //CtrLogin controlador = new CtrLogin(frmLogin); // 
-        //frmLogin.setVisible(true);
+        FrmUsuarioLogin frmLogin = new FrmUsuarioLogin();
+        CtrLogin controlador = new CtrLogin(frmLogin); // 
+        frmLogin.setVisible(true);
 
 
         //frmMenuBar frmMB = new frmMenuBar();

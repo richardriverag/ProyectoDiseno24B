@@ -95,11 +95,11 @@ public class frmMenuBar extends javax.swing.JFrame {
         PanelI1.revalidate();
 
         // Pagos
-        jMenuIPGuardar.setLayout(new java.awt.BorderLayout());
-        jMenuIPGuardar.add(frmFinanzas.getContentPane(), java.awt.BorderLayout.CENTER);
-        jMenuIPGuardar.setVisible(false);
-        jMenuIPGuardar.repaint();
-        jMenuIPGuardar.revalidate();
+        PanelPagos.setLayout(new java.awt.BorderLayout());
+        PanelPagos.add(frmFinanzas.getContentPane(), java.awt.BorderLayout.CENTER);
+        PanelPagos.setVisible(false);
+        PanelPagos.repaint();
+        PanelPagos.revalidate();
 
         // Espacios Comunes
         /*
@@ -202,10 +202,10 @@ public class frmMenuBar extends javax.swing.JFrame {
         jMenuPagos.setForeground(Color.WHITE);
         jMenuPagos.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50));
 
-        jMenuIPGuardar.setText("Pagos");
-        jMenuIPBuscar.setText("MenuItem2");
-        jMenuIPModificar.setText("MenuItem3");
-        jMenuIPEliminar.setText("MenuItem4");
+        jMenuIPGuardar.setText("Generar un nuevo pago");
+        jMenuIPBuscar.setText("Buscar un nuevo pago");
+        jMenuIPModificar.setText("Modificar un pago");
+        jMenuIPEliminar.setText("Eliminar un pago");
         
         //MenuInmuebles
         jMenuInmuebles.setText("Inmuebles");
@@ -286,8 +286,8 @@ public class frmMenuBar extends javax.swing.JFrame {
 
         jMenuPagos.add(jMenuIPGuardar);
         jMenuPagos.add(jMenuIPBuscar);
-        // jMenuPagos.add(jMenuIPModificar);
-        // jMenuPagos.add(jMenuIPEliminar);
+        jMenuPagos.add(jMenuIPModificar);
+        jMenuPagos.add(jMenuIPEliminar);
 
         // Inmuebles
         jMenuInmuebles.addActionListener((ActionEvent e) -> {

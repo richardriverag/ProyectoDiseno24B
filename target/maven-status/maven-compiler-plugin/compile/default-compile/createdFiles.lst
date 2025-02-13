@@ -99,3 +99,4 @@ model\comunicacion\UsuarioModel.class
 model\Conexion.class
 view\comunicacion\FrmMensaje$2.class
 controller\Telecomunicaciones\Ctr1Telecomunicaciones.class
+view\frmMenuBar$9.class

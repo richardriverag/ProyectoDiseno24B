@@ -61,10 +61,10 @@ public class CtrMensaje implements ActionListener {
     }
 
     public void limpiarAnuncio() {
-        frm.txtAnuncioGeneral.setText(null);
+//        frm.txtAnuncioGeneral.setText(null);
     }
 
     public void limpiarComunicado() {
-        frm.txtComunicadoEmpleados.setText(null);
+//        frm.txtComunicadoEmpleados.setText(null);
     }
 }

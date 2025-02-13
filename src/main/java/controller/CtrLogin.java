@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
-import model.DbUsuario;
-import model.Usuario;
+import model.Usuarios.DbUsuario;
+import model.Usuarios.Usuario;
 import view.FrmUsuarioLogin;
 import view.FrmUsuarioRecuperarPass;
 

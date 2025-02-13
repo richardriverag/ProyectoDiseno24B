@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import model.Usuarios.DbUsuario;
+import model.Usuarios.Rol;
 import model.Usuarios.Usuario;
 import view.frmMenuBar;
 
@@ -53,7 +54,17 @@ public class Ctr1Usuario implements ActionListener {
             }
             u.setFechaContrato(frmConP.jDateChooser1.getDate());
             String rolSeleccionado = (String) frmConP.comboRolUsuario.getSelectedItem();
-            u.setRol(rolSeleccionado);
+            int idRol = 0;
+            
+            switch (rolSeleccionado) {
+                case "Residente" -> idRol = 1;
+                case "Administrador" -> idRol = 2;
+                case "Limpieza" -> idRol = 3;
+                case "Mantenimiento" -> idRol = 4;
+                case "Guardia" -> idRol = 5;
+                default -> throw new IllegalArgumentException("Rol desconocido: " + rolSeleccionado);
+            }
+            u.setRol(new Rol(idRol, rolSeleccionado));
 
             if (rolSeleccionado.equals("Residente")) {
                 u.setSalario(0);

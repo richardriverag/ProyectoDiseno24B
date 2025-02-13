@@ -17,7 +17,7 @@ public class Usuario {
     private String correo;
     private String telefono;
     private String contrasenia;
-    private String rol;
+    private Rol rol;
     private double salario;
     private Date fechaContrato;
 
@@ -71,11 +71,11 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-    public String getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 

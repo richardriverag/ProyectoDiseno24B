@@ -11,30 +11,84 @@ import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import model.Usuarios.Usuario;
+
 /**
  *
  * @author User
  */
 public class PagoDb extends Conexion{
+
+    
+
     public static boolean insertar(Pago p){
+        Usuario usuario = Usuario.getInstance();
        PreparedStatement ps;
        Connection con = getInstance();
-       String sql = "INSERT INTO `transaccion` (`cedula_usuario`, `monto`, `fecha`, `tipo`, `descripcion`, `estado`) "
-               + "VALUES (?, ?, ?, ?, ?, '0');";
-       try{
-            ps = con.prepareStatement(sql);
-            ps.setString(1, p.getCedula());
-            ps.setString(2, p.getMonto());
-            ps.setString(3, p.getFecha());
-            ps.setString(4, p.getTipo());
-            ps.setString(5,p.getDesc());
-            ps.execute();
-            ps.close();
-            return true;
-        }catch(SQLException e){
-            System.err.println(e);
-            return false;
+       System.out.println("Entro en insertar es de tipo: " + (p.getTipo()));
+       
+    int metodo = 0;
+    if (p.getTipo().equals("pago")){
+        if (p.getMetodo().equals("Efectivo")){
+         metodo = 3;
+        }else if (p.getMetodo().equals("Tarjeta de credito")){
+         metodo = 1;
+        }else if (p.getMetodo().equals("Transferencia bancaria")){
+         metodo = 2;
         }
+    }
+       
+    int idusuario = 0;
+    String sql2 = "select id from usuario where cedula = '" + p.getCedula() + "'";
+    try {
+        ps = con.prepareStatement(sql2);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            idusuario = rs.getInt("id");
+        }
+        ps.close();
+    } catch (SQLException e) {
+        System.err.println(e);
+        return false;
+    }
+       if (p.getTipo() == "pago" ){
+        
+
+               
+            String sql = "INSERT INTO `pago` (`usuario_id`, `monto`, `fecha`, `metodo_pago_id`)"
+                + "VALUES (?, ?, ?, ?);";
+              try{
+                 ps = con.prepareStatement(sql);
+                 ps.setInt(1, idusuario);
+                 ps.setString(2, p.getMonto());
+                 ps.setString(3, p.getFecha());
+                 ps.setInt(4, metodo);
+                 ps.execute();
+                 ps.close();
+                 return true;
+                }catch(SQLException e){
+                 System.err.println(e);
+                 return false;
+                }
+       }else {
+            String sql = "INSERT INTO `multa` (`usuario_id`, `monto`,`descripcion`, `fecha`) "
+                    + "VALUES (?, ?, ?, ?);";
+            try{
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, idusuario);
+                ps.setString(2, p.getMonto());
+                ps.setString(3, p.getDesc());
+                ps.setString(4, p.getFecha());
+                ps.execute();
+                ps.close();
+                return true;
+            }catch(SQLException e){
+                System.err.println(e);
+                return false;
+            }
+       }
+       
+       
        
     }
     public static boolean leerP (String id,Pago p){
@@ -84,21 +138,40 @@ public class PagoDb extends Conexion{
             return false;
         }
     }
-    public static boolean eliminar(String id){
+    public static boolean eliminar(String id, String tipo){
         System.out.println("Entro en actualizar");
         PreparedStatement ps;
         Connection con = getInstance();
-        String sql = "DELETE FROM transaccion where id="+id;
-        try{
-           ps = con.prepareStatement(sql); 
-           ps.execute();
-           ps.close();
-           return true;
-        }catch(SQLException e){
-             System.err.println(e);
-             return false;
+
+        
+
+        if (tipo.equals("pago")){
+            String sql = "DELETE FROM pago where id="+id;
+            try{
+               ps = con.prepareStatement(sql); 
+               ps.execute();
+               ps.close();
+               return true;
+            }catch(SQLException e){
+                 System.err.println(e);
+                 return false;
+            }
+        } else if (tipo.equals("multa")){
+            String sql = "DELETE FROM multa where id="+id;
+            try{
+               ps = con.prepareStatement(sql); 
+               ps.execute();
+               ps.close();
+               return true;
+            }catch(SQLException e){
+                 System.err.println(e);
+                 return false;
+            }
         }
+                return false; 
     }
+
+
     public static void mostrar(JTable tabla,String cedula){
         System.out.println("Entro en el metodo para mostrar");
        PreparedStatement ps;

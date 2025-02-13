@@ -64,6 +64,8 @@ public class CtrPagos implements ActionListener{
             p.setDesc(frmConP.txtDescripcionPG.getText());
             String tipo = (String) frmConP.comboTipoPG.getSelectedItem();
             p.setTipo(tipo);
+            String metodo = (String) frmConP.comboMetodoPago.getSelectedItem();
+            p.setMetodo(metodo);
             if(pagodb.insertar(p)){
                 JOptionPane.showMessageDialog(frmConP, "Se creo el pago");
             }else{
@@ -106,7 +108,8 @@ public class CtrPagos implements ActionListener{
             }
         }
         if(e.getSource()==frmConP.buttonBuscarPE){
-            if(pagodb.eliminar(frmConP.txtIdPE.getText())){
+            String tipoComboString = (String) frmConP.comboEliminarPago.getSelectedItem();
+            if(pagodb.eliminar(frmConP.txtIdPE.getText(), tipoComboString)){
                 JOptionPane.showMessageDialog(frmConP, "Se elimino el pago");
             }else{
                 JOptionPane.showMessageDialog(frmConP, "No de pudo eliminar el pago");

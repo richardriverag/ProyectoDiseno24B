@@ -20,6 +20,7 @@ controller\Telecomunicaciones\CtrTelecomunicaciones.class
 model\ModelRecuperacion.class
 view\frmMenuBar$4.class
 controller\CheckIn\ctr2CheckIn.class
+controller\comunicacion\CtrReporte.class
 view\comunicacion\FrmMensaje$6.class
 view\FrmUsuarioLogin$1.class
 model\comunicacion\DbAnuncioGeneral.class
@@ -47,6 +48,7 @@ controller\Inmuebles\CtrInmuebles.class
 view\frmMenuBar$6.class
 controller\CtrMenuBar.class
 view\comunicacion\FrmMensaje$1.class
+controller\comunicacion\CtrMensajeAdmin.class
 controller\Pagos\CtrPagos.class
 view\Reservas\FrmCancelarReserva.class
 view\comunicacion\FrmMensaje$4.class
@@ -64,6 +66,7 @@ view\FrmUsuarioRecuperarPass$2.class
 view\FrmCheckIn$4.class
 view\Reservas\FrmReserva.class
 controller\EspaciosComunes\ctr2EspaciosComunes.class
+model\Pago.class
 model\AlertaModel.class
 proyectodiseno24b\ProyectoDiseno24B.class
 view\inmuebles\FrmPantalla.class
@@ -76,6 +79,7 @@ view\comunicacion\FrmMensaje$7.class
 view\comunicacion\FrmReporte$1.class
 model\comunicacion\ReporteMensaje.class
 view\frmMenuBar$1.class
+model\PagoDb.class
 model\EventoModel.class
 view\comunicacion\FrmReporte.class
 view\comunicacion\FrmMensajeAdmin.class

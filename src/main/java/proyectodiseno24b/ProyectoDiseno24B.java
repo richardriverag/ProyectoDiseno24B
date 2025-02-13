@@ -22,8 +22,10 @@ import view.frmMenuBar;
 public class ProyectoDiseno24B {
 
     public static void main(String[] args) {
+        
+        
         FrmUsuarioLogin frmLogin = new FrmUsuarioLogin();
-        CtrLogin controlador = new CtrLogin(frmLogin); // Importante: pasar el formulario al controlador
+        CtrLogin controlador = new CtrLogin(frmLogin); // 
         frmLogin.setVisible(true);
 
 

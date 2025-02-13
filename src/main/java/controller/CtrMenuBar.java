@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Usuarios.Usuario;
 import view.frmMenuBar;
 
 
@@ -25,9 +26,14 @@ public class CtrMenuBar  implements ActionListener{
        
     }
     public void iniciar() {
+        Usuario usuario = Usuario.getInstance();
         frmConP.setTitle("Administrador");
         frmConP.setLocation(100,100);
         frmConP.setVisible(true);
+        if (usuario.getRol().getId() != 2) {
+            System.out.println("Ingreso de admin");
+            frmConP.jMenuIUsuarios1.setEnabled(false);
+        }
     }
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -7,6 +7,8 @@ package controller.Usuarios;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 import model.Usuarios.DbUsuario;
 import model.Usuarios.RolModel;
@@ -51,7 +53,7 @@ public class Ctr1Usuario implements ActionListener {
             u.setCelular(frmConP.txtTelefonoUsuario.getText());
             if (String.valueOf(frmConP.txtPassUsuario.getPassword())
                     .equals(String.valueOf(frmConP.txtPassConfirmarUsuario.getPassword()))) {
-                u.setContrasenia(String.valueOf(frmConP.txtPassUsuario.getPassword()));
+                u.setContrasenia(hashearContrasena(String.valueOf(frmConP.txtPassUsuario.getPassword())));
             } else {
                 JOptionPane.showMessageDialog(null, "Contraseña no coincide");
                 return;
@@ -130,7 +132,7 @@ public class Ctr1Usuario implements ActionListener {
             u.setCelular(frmConP.txtTelefonoUsuario.getText());
             if (String.valueOf(frmConP.txtPassUsuario.getPassword())
                     .equals(String.valueOf(frmConP.txtPassConfirmarUsuario.getPassword()))) {
-                u.setContrasenia(String.valueOf(frmConP.txtPassUsuario.getPassword()));
+                u.setContrasenia(hashearContrasena(String.valueOf(frmConP.txtPassUsuario.getPassword())));
             } else {
                 JOptionPane.showMessageDialog(null, "Contraseña no coincide");
                 return;
@@ -176,5 +178,21 @@ public class Ctr1Usuario implements ActionListener {
         frmConP.txtSueldo.setText("");
         frmConP.jDateChooser1.setDate(null);
         frmConP.comboRolUsuario.setSelectedItem("Residente");
+    }
+    
+    private String hashearContrasena(String contrasena) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(contrasena.getBytes());
+            StringBuilder hexString = new StringBuilder();
+
+            for (byte b : hash) {
+                hexString.append(String.format("%02x", b));
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -28,6 +28,8 @@ public class ProyectoDiseno24B {
         /*frmMenuBar frmContenedorPrincipal = new frmMenuBar();
         CtrMenuBar menu = new CtrMenuBar(frmContenedorPrincipal);
        menu.iniciar();*/
+        DbUsuario dbu = new DbUsuario();
+        dbu.verUsuarios();
         FrmUsuarioLogin frmLogin = new FrmUsuarioLogin(); 
         frmLogin.setVisible(true);
 

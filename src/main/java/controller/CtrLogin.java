@@ -42,13 +42,6 @@ public class CtrLogin implements ActionListener{
     }
    @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==frmLogin.btnRecuperarPass){
-            System.out.println("Boton presionado");
-            frmLogin.dispose();
-            frmPass.setVisible(true);
-        }
-        if(e.getSource() == frmLogin.btnLogin1){
-            System.out.println("Hola");
-        }
+
     }
 }

@@ -17,6 +17,7 @@ model\SolicitudMantenimientoModel.class
 model\DbUsuario.class
 controller\Inmuebles\ctr2Inmuebles.class
 view\frmMenuBar$7.class
+view\FrmUsuarioRecuperarPass$6.class
 controller\CtrLogin.class
 controller\Telecomunicaciones\CtrTelecomunicaciones.class
 model\ModelRecuperacion.class
@@ -24,6 +25,7 @@ view\frmMenuBar$4.class
 controller\CheckIn\ctr2CheckIn.class
 view\comunicacion\FrmMensaje$6.class
 view\FrmUsuarioLogin$1.class
+view\FrmUsuarioRecuperarPass$5.class
 model\comunicacion\DbAnuncioGeneral.class
 view\FrmCheckIn$7.class
 model\Usuario.class
@@ -93,6 +95,7 @@ view\Reservas\FrmReserva$3.class
 model\Usuarios\Usuario.class
 model\Usuarios\TwoFactorAuth.class
 view\frmMenuBar$2.class
+view\FrmUsuarioRecuperarPass$7.class
 view\FrmUsuarioRecuperarPass$1.class
 view\comunicacion\FrmMensajeAdmin$3.class
 view\Reservas\FrmReserva$2.class

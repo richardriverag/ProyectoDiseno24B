@@ -24,7 +24,7 @@ public class DbUsuario {
         ResultSet rs = null;
         
         try{
-            String sql = "SELECT * FROM usuario WHERE nombre = ? AND contrasenia = ?";
+            String sql = "SELECT * FROM usuario WHERE cedula = ? AND contrasenia = ?";
             
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, user);
@@ -37,7 +37,7 @@ public class DbUsuario {
                 //Si exitste creamos un nuevo user
                 usuario =  new Usuario(
                         rs.getInt("id")
-                        ,rs.getString("nombre"),
+                        ,rs.getString("cedula"),
                         rs.getString("contrasenia"));
             }
             

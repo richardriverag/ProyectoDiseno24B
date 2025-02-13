@@ -34,13 +34,13 @@ public class CtrUsuarioRecuperarPass implements ActionListener{
     }
     
     public ResultSet RecuperacionCorreo(){
-        Conexion conn = new Conexion();
         ModelRecuperacion recu = new ModelRecuperacion();
         return recu.RecuperacionCorreo(cedula);
     }
+    
     public boolean actualizarContrasena(String nuevaContrasena) {
         Connection con = Conexion.getInstance(); // Asegúrate de tener tu clase de conexión
-        String sql = "UPDATE usuario SET contrasenia = ? WHERE cedula = ?";
+        String sql = "UPDATE Usuario SET contrasenia = ? WHERE cedula = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, hashearContrasena(nuevaContrasena)); // Guardar con hash SHA-256
@@ -74,7 +74,7 @@ public class CtrUsuarioRecuperarPass implements ActionListener{
     public String obtenerContrasena(String cedula) {
      Connection conn = Conexion.getInstance();
     String contrasena = null;
-    String sql = "SELECT contrasenia FROM usuario WHERE cedula = ?";
+    String sql = "SELECT contrasenia FROM Usuario WHERE cedula = ?";
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
         ps.setString(1, cedula);
         ResultSet rs = ps.executeQuery();

@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import model.Usuarios.RolModel;
 import model.Usuarios.Usuario;
 
 /**
@@ -21,13 +22,13 @@ public class DbUsuarioL {
     private Connection conn = new Conexion().getInstance();
   
     
-    public Usuario loginUsuario(String user, String password){
-        Usuario usuario = null;
-    PreparedStatement stmt = null;
-    ResultSet rs = null;
+    public boolean loginUsuario(String user, String password){
+        Usuario usuario = Usuario.getInstance();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
 
     try {
-        String sql = "SELECT * FROM usuario WHERE TRIM(email) = ?";
+        String sql = "SELECT * FROM Usuario u JOIN Roles r ON u.rol_id = r.id WHERE TRIM(email) = ?";
         stmt = conn.prepareStatement(sql);
         stmt.setString(1, user);
         rs = stmt.executeQuery();
@@ -36,20 +37,29 @@ public class DbUsuarioL {
         if (rs.next()) {
             String hashAlmacenado = rs.getString("contrasenia"); // Obtener el hash almacenado
             String hashIngresado = hashearContrasena(password); // Hashear la contraseña ingresada
+            System.out.println(hashIngresado);
+            if (hashAlmacenado.equalsIgnoreCase(hashIngresado)) { // Comparar los hashes
+                usuario.setCedula(rs.getString("cedula"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setContrasenia(rs.getString("contrasenia"));
+                usuario.setCelular(rs.getString("celular"));
+                usuario.setSalario(rs.getDouble("salario"));
 
-            if (hashAlmacenado.equals(hashIngresado)) { // Comparar los hashes
-                usuario = new Usuario(
-                        rs.getInt("id"),
-                        rs.getString("email"),
-                        hashAlmacenado // Guardar el hash, aunque realmente no lo necesitarías aquí
-                );
+                java.sql.Date fechaContratoSQL = rs.getDate("fecha_contrato");
+                if (fechaContratoSQL != null) {
+                    usuario.setFechaContrato(new java.util.Date(fechaContratoSQL.getTime()));
+                }
+                RolModel rol = new RolModel(rs.getInt("rol_id"), rs.getString("r.nombre"));
+                usuario.setRol(rol);
             }
         }
-
+        System.out.println(usuario.getRol().getNombre());
+        return true;
     } catch (Exception e) {
         System.out.println(e);
     }
-    return usuario;
+    return false;
 }
     private String hashearContrasena(String contrasena) {
         try {

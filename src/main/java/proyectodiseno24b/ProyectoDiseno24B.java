@@ -8,6 +8,9 @@ package proyectodiseno24b;
 import controller.CtrLogin;
 import controller.CtrMenuBar;
 import model.Conexion;
+import model.Usuarios.DbUsuario;
+import model.Usuarios.RolModel;
+import model.Usuarios.UsuarioDAC;
 import view.FrmUsuarioLogin;
 import view.frmMenuBar;
 import view.comunicacion.FrmReporte;
@@ -25,9 +28,7 @@ public class ProyectoDiseno24B {
         /*frmMenuBar frmContenedorPrincipal = new frmMenuBar();
         CtrMenuBar menu = new CtrMenuBar(frmContenedorPrincipal);
        menu.iniciar();*/
-        
-        FrmUsuarioLogin frmLogin = new FrmUsuarioLogin();
-        CtrLogin controlador = new CtrLogin(frmLogin); // 
+        FrmUsuarioLogin frmLogin = new FrmUsuarioLogin(); 
         frmLogin.setVisible(true);
 
 

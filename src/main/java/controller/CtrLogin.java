@@ -36,10 +36,7 @@ public class CtrLogin implements ActionListener{
     
     
     public boolean loginUsuario(String user, String password){
-        
-        Usuario usuario = dbUsuario.loginUsuario(user, password);
-        
-        return usuario != null;    
+        return dbUsuario.loginUsuario(user, password);
     }
    @Override
     public void actionPerformed(ActionEvent e) {

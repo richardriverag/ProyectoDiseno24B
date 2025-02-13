@@ -17,13 +17,13 @@ import java.sql.SQLException;
  */
 
 public class ModelRecuperacion {
-   private Connection conn = new Conexion().getInstance();
+   private Connection conn = Conexion.getInstance();
 
     public ResultSet RecuperacionCorreo(String cedula){       
         PreparedStatement ps;
 
         try{
-            String query= "SELECT email, contrasenia FROM usuario WHERE cedula = ?";
+            String query= "SELECT email, contrasenia FROM Usuario WHERE cedula = ?";
             ps = conn.prepareStatement(query);
             ps.setString(1, cedula);
             ResultSet rs = ps.executeQuery();

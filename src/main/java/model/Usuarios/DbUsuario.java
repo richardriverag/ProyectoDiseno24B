@@ -35,9 +35,9 @@ public class DbUsuario extends Conexion {
             ps = con.prepareStatement(sql);
             ps.setString(1, u.getCedula());
             ps.setString(2, u.getNombre());
-            ps.setString(3, u.getCorreo());
+            ps.setString(3, u.getEmail());
             ps.setString(4, u.getContrasenia());
-            ps.setString(5, u.getTelefono());
+            ps.setString(5, u.getCelular());
             Rol rol = u.getRol();            
             ps.setInt(6, rol.getId());
             ps.setDouble(7, u.getSalario());
@@ -97,13 +97,13 @@ public class DbUsuario extends Conexion {
     }  
     
     public Usuario loginUsuario(String user, String password){
-        Connection conn = new Conexion().getInstance();
+        Connection conn = Conexion.getInstance();
         Usuario usuario = Usuario.getInstance();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        PreparedStatement stmt;
+        ResultSet rs;
         
         try{
-            String sql = "SELECT * FROM usuario WHERE nombre = ? AND contrasenia = ?";
+            String sql = "SELECT * FROM usuario WHERE email = ? AND contrasenia = ?";
             
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, user);
@@ -117,6 +117,9 @@ public class DbUsuario extends Conexion {
                 usuario.setId(rs.getInt("id"));
                 usuario.setNombre(rs.getString("nombre"));
                 usuario.setContrasenia(rs.getString("contrasenia"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setCelular(rs.getString("celular"));
+                usuario.setSalario(Double.parseDouble(rs.getString("salario")));
                 usuario.setRol(new Rol(Integer.parseInt(rs.getString("idRol"))));
             }
             

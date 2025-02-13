@@ -44,8 +44,8 @@ public class Ctr1Usuario implements ActionListener {
         if (e.getSource() == frmConP.btnCrearUsuario) {
             u.setCedula(frmConP.txtCedulaUsuario.getText().trim());
             u.setNombre(frmConP.txtNombreUsuario.getText());
-            u.setCorreo(frmConP.txtCorreoUsuario.getText());
-            u.setTelefono(frmConP.txtTelefonoUsuario.getText());
+            u.setEmail(frmConP.txtCorreoUsuario.getText());
+            u.setCelular(frmConP.txtTelefonoUsuario.getText());
             if (String.valueOf(frmConP.txtPassUsuario.getPassword())
                     .equals(String.valueOf(frmConP.txtPassConfirmarUsuario.getPassword()))) {
                 u.setCedula(String.valueOf(frmConP.txtPassUsuario.getPassword()));

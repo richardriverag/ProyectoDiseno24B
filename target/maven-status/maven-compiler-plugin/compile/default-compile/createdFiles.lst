@@ -90,6 +90,7 @@ view\FrmCheckIn$13.class
 model\Check_In\DbVehiculo.class
 view\comunicacion\FrmMensaje$7.class
 view\comunicacion\FrmReporte$1.class
+model\DbUsuarioL.class
 model\comunicacion\ReporteMensaje.class
 view\frmMenuBar$1.class
 model\PagoDb.class

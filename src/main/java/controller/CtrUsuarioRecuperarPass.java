@@ -6,6 +6,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,14 +39,13 @@ public class CtrUsuarioRecuperarPass implements ActionListener{
         return recu.RecuperacionCorreo(cedula);
     }
     public boolean actualizarContrasena(String nuevaContrasena) {
-        Connection con = Conexion.getInstance(); 
+        Connection con = Conexion.getInstance(); // Asegúrate de tener tu clase de conexión
         String sql = "UPDATE usuario SET contrasenia = ? WHERE cedula = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
-            // Almacenamos la contraseña directamente sin encriptarla
-            ps.setString(1, nuevaContrasena); // Guarda la contraseña directamente
-            ps.setString(2, cedula); // Usa la cédula del usuario para encontrar el registro
-
+            ps.setString(1, hashearContrasena(nuevaContrasena)); // Guardar con hash SHA-256
+            ps.setString(2, cedula);
+            
             int filasAfectadas = ps.executeUpdate();
             return filasAfectadas > 0; // Retorna true si se actualizó la contraseña
         } catch (SQLException e) {
@@ -52,7 +53,24 @@ public class CtrUsuarioRecuperarPass implements ActionListener{
             return false;
         }
     }
+
+    private String hashearContrasena(String contrasena) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(contrasena.getBytes());
+            StringBuilder hexString = new StringBuilder();
+
+            for (byte b : hash) {
+                hexString.append(String.format("%02x", b));
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     
+    //Verifica que la contraseña este encriptada
     public String obtenerContrasena(String cedula) {
      Connection conn = Conexion.getInstance();
     String contrasena = null;

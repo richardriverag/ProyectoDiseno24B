@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
+import model.DbUsuarioL;
 import model.Usuarios.DbUsuario;
 import model.Usuarios.Usuario;
 import view.FrmUsuarioLogin;
@@ -19,7 +20,7 @@ import view.FrmUsuarioRecuperarPass;
  * @author LENOVO.USER
  */
 public class CtrLogin implements ActionListener{
-    private DbUsuario dbUsuario = new DbUsuario();
+    private DbUsuarioL dbUsuario = new DbUsuarioL();
     private FrmUsuarioLogin frmLogin;
     private FrmUsuarioRecuperarPass frmPass;
 

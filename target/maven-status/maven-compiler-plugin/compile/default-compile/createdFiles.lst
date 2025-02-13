@@ -14,6 +14,7 @@ view\FrmUsuarioLogin$2.class
 model\Usuarios\DbUsuario.class
 model\SolicitudMantenimientoModel.class
 controller\Inmuebles\ctr2Inmuebles.class
+view\frmMenuBar$7.class
 controller\Telecomunicaciones\CtrTelecomunicaciones.class
 view\check_in\Check_In$2.class
 view\frmMenuBar$4.class
@@ -37,6 +38,7 @@ view\comunicacion\FrmReporte$3.class
 model\comunicacionModel\ReporteMensaje.class
 model\Check_In\DatabaseConnection.class
 controller\Inmuebles\CtrInmuebles.class
+view\frmMenuBar$6.class
 controller\CtrMenuBar.class
 view\comunicacion\FrmMensaje$1.class
 controller\Pagos\CtrPagos.class
@@ -67,6 +69,7 @@ view\comunicacion\FrmMensajeAdmin.class
 controller\Telecomunicaciones\Ctr2Telecomunicaciones.class
 view\comunicacion\FrmMensaje$3.class
 controller\EspaciosComunes\ctr1EspaciosComunes.class
+view\frmMenuBar$8.class
 view\frmMenuBar.class
 controller\Inmuebles\ctr1Inmuebles.class
 view\check_in\Check_In$1.class

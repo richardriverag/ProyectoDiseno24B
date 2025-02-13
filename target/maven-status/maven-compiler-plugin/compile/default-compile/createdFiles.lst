@@ -96,9 +96,11 @@ view\Reservas\FrmReserva$3.class
 model\Usuarios\Usuario.class
 model\Usuarios\TwoFactorAuth.class
 view\frmMenuBar$2.class
+view\frmMenuBar$10.class
 view\FrmUsuarioRecuperarPass$1.class
 view\comunicacion\FrmMensajeAdmin$3.class
 view\Reservas\FrmReserva$2.class
+model\Usuarios\UsuarioDAC.class
 model\comunicacion\UsuarioModel.class
 model\Conexion.class
 view\comunicacion\FrmMensaje$2.class

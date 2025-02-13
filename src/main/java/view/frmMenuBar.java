@@ -26,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Usuarios.Usuario;
 import view.comunicacion.FrmMensaje;
 import view.comunicacion.FrmMensajeAdmin;
 import view.inmuebles.FrmPantalla;
@@ -149,6 +150,21 @@ public class frmMenuBar extends javax.swing.JFrame {
         jMenuIPBuscar = new javax.swing.JMenuItem();
         jMenuIPModificar = new javax.swing.JMenuItem();
         jMenuIPEliminar = new javax.swing.JMenuItem();
+        jMenuIPsoloVer = new javax.swing.JMenuItem();
+        jMenuIPpagar = new javax.swing.JMenuItem();
+        
+               // Se asume que comboTipoPG es el combo de la izquierda (pago/multa)
+        comboTipoPG.addItemListener(e -> {
+            if ("pago".equals(comboTipoPG.getSelectedItem())) {
+            comboMetodoPago.setEnabled(true); // Activa el combo de métodos de pago
+            txtDescripcionPG.setEnabled(false); // Activa el campo de descripción
+            } else {
+            comboMetodoPago.setEnabled(false); // Desactiva el combo de métodos de pago
+            txtDescripcionPG.setEnabled(true); // Desactiva el campo de descripción
+            }
+        });
+
+        
 
         jMenuII1 = new javax.swing.JMenuItem();
         jMenuII2 = new javax.swing.JMenuItem();
@@ -206,6 +222,8 @@ public class frmMenuBar extends javax.swing.JFrame {
         jMenuIPBuscar.setText("Buscar un nuevo pago");
         jMenuIPModificar.setText("Modificar un pago");
         jMenuIPEliminar.setText("Eliminar un pago");
+        jMenuIPsoloVer.setText("Solo ver");
+        jMenuIPpagar.setText("Pagar");
         
         //MenuInmuebles
         jMenuInmuebles.setText("Inmuebles");
@@ -261,7 +279,7 @@ public class frmMenuBar extends javax.swing.JFrame {
         
         //Usuarios
         jMenuUsuario.addActionListener((ActionEvent e) -> {
-            cambiarPanel("Usuarios");
+            //cambiarPanel("Usuarios");
         });
         
         jMenuUsuario.add(jMenuIUsuarios1);
@@ -281,13 +299,30 @@ public class frmMenuBar extends javax.swing.JFrame {
         
         //Pagos
         jMenuPagos.addActionListener((ActionEvent e) -> {
-            cambiarPanel("Pagos");
+            //cambiarPanel("Pagos");
         });
 
-        jMenuPagos.add(jMenuIPGuardar);
-        jMenuPagos.add(jMenuIPBuscar);
-        jMenuPagos.add(jMenuIPModificar);
-        jMenuPagos.add(jMenuIPEliminar);
+        Usuario user = Usuario.getInstance();
+        //system.out.println(user.getId());
+        if (user.getRol() != null)
+            System.out.println("el rol es:" +  user.getRol().getId());
+        
+        //administrador
+        if (user.getRol().getId() == 1) {
+            jMenuPagos.add(jMenuIPGuardar);
+            jMenuPagos.add(jMenuIPBuscar);
+            jMenuPagos.add(jMenuIPModificar);
+            jMenuPagos.add(jMenuIPEliminar);
+        //Usuario
+        } else if (user.getRol().getId() == 2) {
+            jMenuPagos.add(jMenuIPsoloVer);
+            jMenuPagos.add(jMenuIPpagar);
+            
+        }else if (user.getRol().getId() == 3) {
+            jMenuPagos.add(jMenuIPsoloVer);
+            jMenuPagos.add(jMenuIPpagar);
+        }
+        
 
         // Inmuebles
         jMenuInmuebles.addActionListener((ActionEvent e) -> {
@@ -469,6 +504,7 @@ public class frmMenuBar extends javax.swing.JFrame {
         txtDescripcionPG = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         buttonCrearPG = new javax.swing.JToggleButton();
+        comboMetodoPago = new javax.swing.JComboBox<>();
         PanelBuscarP = new javax.swing.JPanel();
         txtBuscarP = new javax.swing.JTextField();
         buttonBuscarP = new javax.swing.JToggleButton();
@@ -493,6 +529,11 @@ public class frmMenuBar extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         txtIdPE = new javax.swing.JTextField();
         buttonBuscarPE = new javax.swing.JToggleButton();
+        comboEliminarPago = new javax.swing.JComboBox<>();
+        PagosSoloVer = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaSoloVer = new javax.swing.JTable();
+        PagosBotonSoloVer = new javax.swing.JButton();
         mbMenuBar = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -821,6 +862,10 @@ public class frmMenuBar extends javax.swing.JFrame {
         PanelGuardarP.add(buttonCrearPG);
         buttonCrearPG.setBounds(440, 410, 200, 23);
 
+        comboMetodoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta de credito", "Transferencia bancaria", "Efectivo" }));
+        PanelGuardarP.add(comboMetodoPago);
+        comboMetodoPago.setBounds(470, 210, 152, 22);
+
         PanelPrincipal.add(PanelGuardarP, "card13");
 
         PanelBuscarP.setLayout(null);
@@ -926,7 +971,55 @@ public class frmMenuBar extends javax.swing.JFrame {
         PanelEliminarP.add(buttonBuscarPE);
         buttonBuscarPE.setBounds(490, 110, 160, 23);
 
+        comboEliminarPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pago", "multa" }));
+        PanelEliminarP.add(comboEliminarPago);
+        comboEliminarPago.setBounds(100, 110, 72, 22);
+
         PanelPrincipal.add(PanelEliminarP, "card16");
+
+        tablaSoloVer.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaSoloVer);
+
+        PagosBotonSoloVer.setText("Buscar");
+
+        javax.swing.GroupLayout PagosSoloVerLayout = new javax.swing.GroupLayout(PagosSoloVer);
+        PagosSoloVer.setLayout(PagosSoloVerLayout);
+        PagosSoloVerLayout.setHorizontalGroup(
+            PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PagosSoloVerLayout.createSequentialGroup()
+                .addGap(479, 479, 479)
+                .addComponent(PagosBotonSoloVer)
+                .addContainerGap(729, Short.MAX_VALUE))
+            .addGroup(PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PagosSoloVerLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1040, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        PagosSoloVerLayout.setVerticalGroup(
+            PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PagosSoloVerLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(PagosBotonSoloVer)
+                .addContainerGap(633, Short.MAX_VALUE))
+            .addGroup(PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PagosSoloVerLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        PanelPrincipal.add(PagosSoloVer, "card27");
 
         getContentPane().add(PanelPrincipal, java.awt.BorderLayout.CENTER);
         setJMenuBar(mbMenuBar);
@@ -985,6 +1078,8 @@ public class frmMenuBar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton PagosBotonSoloVer;
+    private javax.swing.JPanel PagosSoloVer;
     private javax.swing.JPanel PanelBuscarP;
     private javax.swing.JPanel PanelCheckIn;
     private javax.swing.JPanel PanelCheckIn1;
@@ -1019,6 +1114,8 @@ public class frmMenuBar extends javax.swing.JFrame {
     public javax.swing.JToggleButton buttonBuscarPM;
     public javax.swing.JToggleButton buttonCrearPG;
     public javax.swing.JToggleButton buttonModifiarP;
+    public javax.swing.JComboBox<String> comboEliminarPago;
+    public javax.swing.JComboBox<String> comboMetodoPago;
     public javax.swing.JComboBox<String> comboRolUsuario;
     public javax.swing.JComboBox<String> comboTipoPG;
     public javax.swing.JComboBox<String> comboTipoPM;
@@ -1051,8 +1148,10 @@ public class frmMenuBar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenuBar mbMenuBar;
     public javax.swing.JTable tablaP;
+    public javax.swing.JTable tablaSoloVer;
     public javax.swing.JTextField txtBuscarP;
     public javax.swing.JTextField txtCedulaPG;
     public javax.swing.JTextField txtCedulaPM;
@@ -1073,6 +1172,7 @@ public class frmMenuBar extends javax.swing.JFrame {
     public javax.swing.JTextField txtTelefonoUsuario;
     // End of variables declaration//GEN-END:variables
  // Declaración de los menús
+    
     public javax.swing.JMenu jMenuUsuario;
     public javax.swing.JMenuItem jMenuIUsuarios1;
     public javax.swing.JMenuItem jMenuIUsuarios2;
@@ -1090,6 +1190,8 @@ public class frmMenuBar extends javax.swing.JFrame {
     public javax.swing.JMenuItem jMenuIPEliminar;
     public javax.swing.JMenuItem jMenuIPModificar;
     public javax.swing.JMenuItem jMenuIPBuscar;
+    public javax.swing.JMenuItem jMenuIPsoloVer;
+    public javax.swing.JMenuItem jMenuIPpagar;
 
     public javax.swing.JMenu jMenuInmuebles;
     public javax.swing.JMenuItem jMenuII1;

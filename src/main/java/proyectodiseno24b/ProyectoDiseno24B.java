@@ -8,7 +8,6 @@ package proyectodiseno24b;
 import controller.CtrLogin;
 import controller.CtrMenuBar;
 import model.Conexion;
-import model.Usuarios.DbUsuario;
 import view.FrmUsuarioLogin;
 import view.frmMenuBar;
 import view.comunicacion.FrmReporte;
@@ -23,27 +22,23 @@ import view.frmMenuBar;
 public class ProyectoDiseno24B {
 
     public static void main(String[] args) {
-
-        DbUsuario db = new DbUsuario();
-        db.verUsuarios();
-        db.verRoles();
-
-
-
+        /*frmMenuBar frmContenedorPrincipal = new frmMenuBar();
+        CtrMenuBar menu = new CtrMenuBar(frmContenedorPrincipal);
+       menu.iniciar();*/
         
-//        FrmUsuarioLogin frmLogin = new FrmUsuarioLogin();
-//        CtrLogin controlador = new CtrLogin(frmLogin); // 
-//        frmLogin.setVisible(true);
+        FrmUsuarioLogin frmLogin = new FrmUsuarioLogin();
+        CtrLogin controlador = new CtrLogin(frmLogin); // 
+        frmLogin.setVisible(true);
 
 
-//        frmMenuBar frmMB = new frmMenuBar();
-//        frmMB.setVisible(true);
+        //frmMenuBar frmMB = new frmMenuBar();
+        //frmMB.setVisible(true);
 //        FrmMensaje frm1 = new FrmMensaje();
 //        FrmMensajeAdmin frma = new FrmMensajeAdmin();
 //        FrmReporte frm = new FrmReporte();
-        frmMenuBar frmConP = new frmMenuBar();
-        CtrMenuBar menu = new CtrMenuBar(frmConP);
-        menu.iniciar();
+//        frmMenuBar frmConP = new frmMenuBar();
+//        CtrMenuBar menu = new CtrMenuBar(frmConP);
+//        menu.iniciar();
         
         
         //frm.setVisible(true);

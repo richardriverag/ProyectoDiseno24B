@@ -8,17 +8,17 @@ package model.Usuarios;
  *
  * @author LENOVO.USER
  */
-public class Rol {
+public class RolModel {
     
     private int id;
     private String nombre;
 
-    public Rol(int id, String nombre) {
+    public RolModel(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
     
-    public Rol(int id) {
+    public RolModel(int id) {
         this.id = id;
     }
     

@@ -13,7 +13,7 @@ public class UsuarioDAC {
     private String email;
     private String celular;
     private String contrasenia;
-    private Rol rol;
+    private RolModel rol;
     private double salario;
     private Date fechaContrato;
     
@@ -68,11 +68,11 @@ public class UsuarioDAC {
         this.contrasenia = contrasenia;
     }
 
-    public Rol getRol() {
+    public RolModel getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(RolModel rol) {
         this.rol = rol;
     }
 

@@ -30,7 +30,10 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
             
             //Instancear controlador
             CtrLogin login = new CtrLogin();
-            frmMenuBar frmConP = new frmMenuBar();   
+            
+            
+            
+           
             if(user.isEmpty() || pass.isEmpty()){
                 intentos++;
                 JOptionPane.showMessageDialog(null, "Ingrese un usuario y/o contraseña. Intento "+intentos+" de "+MAX_INTENTOS);
@@ -39,6 +42,7 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
                 
             }else if(login.loginUsuario(user, pass)){
                 JOptionPane.showMessageDialog(null, "Bienvenido");
+                frmMenuBar frmConP = new frmMenuBar();
                 intentos = 0;
                 frmConP.setVisible(true);
                 this.dispose();      
@@ -96,8 +100,8 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
         panelLogin1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
-        jLabel10.setText("Cédula");
-        panelLogin1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
+        jLabel10.setText("CORREO ELECTRÓNICO");
+        panelLogin1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 373, -1, 30));
         panelLogin1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 280, 10));
         panelLogin1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 520, 280, 10));
 

@@ -111,11 +111,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Perpetua Titling MT" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="C&#xe9;dula"/>
+            <Property name="text" type="java.lang.String" value="CORREO ELECTR&#xd3;NICO"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="90" y="380" width="-1" height="-1"/>
+              <AbsoluteConstraints x="90" y="373" width="-1" height="30"/>
             </Constraint>
           </Constraints>
         </Component>

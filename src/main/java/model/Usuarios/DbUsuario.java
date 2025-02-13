@@ -37,7 +37,7 @@ public class DbUsuario extends Conexion {
             ps.setString(3, u.getEmail());
             ps.setString(4, u.getContrasenia());
             ps.setString(5, u.getCelular());
-            Rol rol = u.getRol();
+            RolModel rol = u.getRol();
             ps.setInt(6, rol.getId());
             ps.setDouble(7, u.getSalario());
             if (u.getFechaContrato() != null) {
@@ -121,7 +121,7 @@ public class DbUsuario extends Conexion {
                 usuario.setEmail(rs.getString("email"));
                 usuario.setCelular(rs.getString("celular"));
                 usuario.setSalario(Double.parseDouble(rs.getString("salario")));
-                usuario.setRol(new Rol(rs.getInt("rol_id")));
+                usuario.setRol(new RolModel(rs.getInt("rol_id")));
                 java.sql.Date fechaSQL = rs.getDate("fecha_contrato");
                 usuario.setFechaContrato((fechaSQL != null) ? new Date(fechaSQL.getTime()) : null);
             }
@@ -156,7 +156,7 @@ public class DbUsuario extends Conexion {
                 if (fechaContratoSQL != null) {
                     usuario.setFechaContrato(new java.util.Date(fechaContratoSQL.getTime()));
                 }
-                Rol rol = new Rol(rs.getInt("rol_id"), rs.getString("r.nombre"));
+                RolModel rol = new RolModel(rs.getInt("rol_id"), rs.getString("r.nombre"));
                 usuario.setRol(rol);
                 return usuario;
             }
@@ -259,6 +259,43 @@ public class DbUsuario extends Conexion {
         }
         return false;
     }
-    
-    
+
+    public boolean modificar(UsuarioDAC u) {
+        Connection con = Conexion.getInstance();
+        String sql = "UPDATE Usuario SET nombre = ?, email = ?, contrasenia = ?, celular = ?, rol_id = ?, salario = ?, fecha_contrato = ? WHERE cedula = ?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, u.getNombre());
+            ps.setString(2, u.getEmail());
+            ps.setString(3, u.getContrasenia());
+            ps.setString(4, u.getCelular());
+            ps.setInt(5, u.getRol().getId());
+            ps.setDouble(6, u.getSalario());
+
+            if (u.getFechaContrato() != null) {
+                ps.setDate(7, new java.sql.Date(u.getFechaContrato().getTime()));
+            } else {
+                ps.setNull(7, java.sql.Types.DATE);
+            }
+
+            ps.setString(8, u.getCedula()); 
+
+            int filasAfectadas = ps.executeUpdate();
+            return filasAfectadas > 0; 
+        } catch (SQLException e) {
+            System.err.println("Error al modificar usuario: " + e.getMessage());
+            return false;
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar PreparedStatement: " + e.getMessage());
+            }
+        }
+    }
+
 }

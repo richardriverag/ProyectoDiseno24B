@@ -58,6 +58,14 @@ public class Pago {
         this.estado = estado;
     }
 
+    public String getMetodo() {
+        return metodo;
+    }
+
+    public void setMetodo(String metodo) {
+        this.metodo = metodo;
+    }
+
     public Pago() {
     }
     private String cedula;
@@ -66,5 +74,6 @@ public class Pago {
     private String tipo;
     private String desc;
     private String estado;
+    private String metodo;
     
 }

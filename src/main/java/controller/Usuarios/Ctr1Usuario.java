@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import model.Usuarios.DbUsuario;
-import model.Usuarios.Rol;
+import model.Usuarios.RolModel;
 import model.Usuarios.Usuario;
 import model.Usuarios.UsuarioDAC;
 import view.frmMenuBar;
@@ -37,6 +37,8 @@ public class Ctr1Usuario implements ActionListener {
 
         frmConP.btnCrearUsuario.addActionListener(this);
         frmConP.btnEliminarUsuario.addActionListener(this);
+        frmConP.btnBuscarUsuario.addActionListener(this);
+        frmConP.btnModificarUsuario.addActionListener(this);
 
     }
 
@@ -65,9 +67,9 @@ public class Ctr1Usuario implements ActionListener {
                 case "Guardia" -> idRol = 5;
                 default -> throw new IllegalArgumentException("Rol desconocido: " + rolSeleccionado);
             }
-            u.setRol(new Rol(idRol, rolSeleccionado));
+            u.setRol(new RolModel(idRol, rolSeleccionado));
 
-            if (rolSeleccionado.equals("Residente")) {
+            if (rolSeleccionado.equals("Residente") || rolSeleccionado.equals("Administrador")) {
                 u.setSalario(0);
                 u.setFechaContrato(null);
             }else{
@@ -103,14 +105,10 @@ public class Ctr1Usuario implements ActionListener {
 
         }
         
-        System.out.println("antes de buscar");
-
         if (e.getSource() == frmConP.btnBuscarUsuario) {
-            System.out.println("dentro de buscar");
             UsuarioDAC usuario = dbu.buscar(frmConP.txtCedulaUsuario.getText().trim());
             if (usuario != null) {
                 System.out.println(usuario.getNombre());
-                frmConP.txtCedulaUsuario.setText(usuario.getCedula());
                 frmConP.txtPassUsuario.setText(usuario.getContrasenia());
                 frmConP.txtPassConfirmarUsuario.setText(usuario.getContrasenia());
                 frmConP.txtNombreUsuario.setText(usuario.getNombre());
@@ -121,14 +119,62 @@ public class Ctr1Usuario implements ActionListener {
                 frmConP.comboRolUsuario.setSelectedItem(usuario.getRol().getNombre());
             } else {
                 JOptionPane.showMessageDialog(null, "El usuario no se encuentra registrado");
-            }
-            
+            }            
         }
-        System.out.println("feura de buscar");
+        
+        
+        if (e.getSource() == frmConP.btnModificarUsuario) {
+            u.setCedula(frmConP.txtCedulaUsuario.getText().trim());
+            u.setNombre(frmConP.txtNombreUsuario.getText());
+            u.setEmail(frmConP.txtCorreoUsuario.getText());
+            u.setCelular(frmConP.txtTelefonoUsuario.getText());
+            if (String.valueOf(frmConP.txtPassUsuario.getPassword())
+                    .equals(String.valueOf(frmConP.txtPassConfirmarUsuario.getPassword()))) {
+                u.setContrasenia(String.valueOf(frmConP.txtPassUsuario.getPassword()));
+            } else {
+                JOptionPane.showMessageDialog(null, "Contraseña no coincide");
+                return;
+            }
+            String rolSeleccionado = (String) frmConP.comboRolUsuario.getSelectedItem();
+            int idRol = 0;
+            
+            switch (rolSeleccionado) {
+                case "Residente" -> idRol = 1;
+                case "Administrador" -> idRol = 2;
+                case "Limpieza" -> idRol = 3;
+                case "Mantenimiento" -> idRol = 4;
+                case "Guardia" -> idRol = 5;
+                default -> throw new IllegalArgumentException("Rol desconocido: " + rolSeleccionado);
+            }
+            u.setRol(new RolModel(idRol, rolSeleccionado));
+
+            if (rolSeleccionado.equals("Residente")) {
+                u.setSalario(0);
+                u.setFechaContrato(null);
+            }else{
+                u.setSalario(Double.parseDouble(frmConP.txtSueldo.getText()));
+                u.setFechaContrato(frmConP.jDateChooser1.getDate());
+            }
+
+            if (dbu.modificar(u)) {
+                JOptionPane.showMessageDialog(null, "Datos de usuario modificados con éxito");
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puedo modificar los datos del usuario ");
+            }
+        }
 
     }
     
     public void limpiar() {
-        
+        frmConP.txtCedulaUsuario.setText("");
+        frmConP.txtPassUsuario.setText("");
+        frmConP.txtPassConfirmarUsuario.setText("");
+        frmConP.txtNombreUsuario.setText("");
+        frmConP.txtCorreoUsuario.setText("");
+        frmConP.txtTelefonoUsuario.setText("");
+        frmConP.txtSueldo.setText("");
+        frmConP.jDateChooser1.setDate(null);
+        frmConP.comboRolUsuario.setSelectedItem("Residente");
     }
 }

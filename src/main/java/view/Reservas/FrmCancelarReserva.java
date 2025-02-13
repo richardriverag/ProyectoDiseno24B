@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import model.Conexion;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 /**
  *
  * @author jerem
@@ -40,114 +41,112 @@ public class FrmCancelarReserva extends javax.swing.JFrame {
         this.setResizable(false);
         JDateChooser dateChooser = new JDateChooser();
         dateChooser.getDateEditor().setEnabled(false); // Bloquea la escritura manual
-        JDateChooser jDateChooser1 = new JDateChooser(); 
-    
+        JDateChooser jDateChooser1 = new JDateChooser();
+
         // Cargar datos en la tabla
         //cargarReservasEnTabla();
     }
-    
-        // Método para cargar las reservas en la jTable1
-        private void cargarReservasEnTabla(String fechaSeleccionada) {
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Limpiar la tabla antes de insertar datos
 
-    String sql;
-    boolean filtrarPorFecha = fechaSeleccionada != null && !fechaSeleccionada.isEmpty();
+    // Método para cargar las reservas en la jTable1
+    private void cargarReservasEnTabla(String fechaSeleccionada) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Limpiar la tabla antes de insertar datos
 
-    if (filtrarPorFecha) {
-        sql = "SELECT espacio_id, fecha, CONCAT(hora_inicio, ' - ', hora_fin) AS horario " +
-              "FROM ReservaEspacio WHERE fecha = ?";
-    } else {
-        sql = "SELECT espacio_id, fecha, CONCAT(hora_inicio, ' - ', hora_fin) AS horario FROM ReservaEspacio";
-    }
-
-    try (Connection conn = Conexion.getInstance();
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        String sql;
+        boolean filtrarPorFecha = fechaSeleccionada != null && !fechaSeleccionada.isEmpty();
 
         if (filtrarPorFecha) {
-            pstmt.setString(1, fechaSeleccionada); // Asigna la fecha ingresada por el usuario
+            sql = "SELECT espacio_id, fecha, CONCAT(hora_inicio, ' - ', hora_fin) AS horario "
+                    + "FROM ReservaEspacio WHERE fecha = ?";
+        } else {
+            sql = "SELECT espacio_id, fecha, CONCAT(hora_inicio, ' - ', hora_fin) AS horario FROM ReservaEspacio";
         }
 
-        try (ResultSet rs = pstmt.executeQuery()) {
-            boolean hayRegistros = false;
-            
-            while (rs.next()) {
-                int espacioId = rs.getInt("espacio_id");
-                String fecha = rs.getString("fecha");
-                String horario = rs.getString("horario");
-                String nombreEspacio = obtenerNombreEspacio(espacioId);
+        try (Connection conn = Conexion.getInstance(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                model.addRow(new Object[]{fecha, horario, nombreEspacio});
-                hayRegistros = true;
+            if (filtrarPorFecha) {
+                pstmt.setString(1, fechaSeleccionada); // Asigna la fecha ingresada por el usuario
             }
 
-            // Si no hay registros para la fecha ingresada, cargar todas las reservas
-            if (!hayRegistros && filtrarPorFecha) {
-                cargarReservasEnTabla(null); // Cargar todas las reservas
-            }
+            try (ResultSet rs = pstmt.executeQuery()) {
+                boolean hayRegistros = false;
 
-        }
-    } catch (SQLException e) {
-        System.err.println("Error al cargar las reservas en la tabla: " + e.getMessage());
-    }
-    
-        }
-        
-        
-private Object[] obtenerReservaSeleccionada() {
-    int filaSeleccionada = jTable1.getSelectedRow();
-    if (filaSeleccionada != -1) { // Si hay una fila seleccionada
-        return new Object[]{
-            jTable1.getValueAt(filaSeleccionada, 0), // Fecha
-            jTable1.getValueAt(filaSeleccionada, 1), // Horario
-            jTable1.getValueAt(filaSeleccionada, 2)  // Espacio
-        };
-    } else {
-        return null;
-    }
-}
+                while (rs.next()) {
+                    int espacioId = rs.getInt("espacio_id");
+                    String fecha = rs.getString("fecha");
+                    String horario = rs.getString("horario");
+                    String nombreEspacio = obtenerNombreEspacio(espacioId);
 
-private void eliminarReservaSeleccionada() {
-    int filaSeleccionada = jTable1.getSelectedRow();
-    
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione una reserva para eliminar.", "Aviso", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-
-    int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que quiere eliminar esta reserva?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-    
-    if (confirmacion == JOptionPane.YES_OPTION) {
-        try (Connection conn = Conexion.getInstance()) { 
-            // Verificación de conexión
-            if (conn != null) {
-                System.out.println("Conexión exitosa a la base de datos");
-            } else {
-                System.out.println("Conexión fallida");
-                return; // Si no hay conexión, no continuar
-            }
-
-            // Modificamos la consulta para que solo elimine por la fecha
-            String sql = "DELETE FROM reservas WHERE fecha = ?";
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                // Asignamos el valor de la fecha de la fila seleccionada
-                stmt.setObject(1, jTable1.getValueAt(filaSeleccionada, 0)); // Fecha
-                
-                int filasAfectadas = stmt.executeUpdate();
-                if (filasAfectadas > 0) {
-                    JOptionPane.showMessageDialog(this, "Reserva eliminada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    // Refrescar la tabla después de eliminar la reserva
-                    // actualizarTabla(); // Método para refrescar los datos de la tabla
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se encontró la reserva en la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    model.addRow(new Object[]{fecha, horario, nombreEspacio});
+                    hayRegistros = true;
                 }
+
+                // Si no hay registros para la fecha ingresada, cargar todas las reservas
+                if (!hayRegistros && filtrarPorFecha) {
+                    cargarReservasEnTabla(null); // Cargar todas las reservas
+                }
+
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error al eliminar la reserva: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            System.err.println("Error al cargar las reservas en la tabla: " + e.getMessage());
+        }
+
+    }
+
+    private Object[] obtenerReservaSeleccionada() {
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada != -1) { // Si hay una fila seleccionada
+            return new Object[]{
+                jTable1.getValueAt(filaSeleccionada, 0), // Fecha
+                jTable1.getValueAt(filaSeleccionada, 1), // Horario
+                jTable1.getValueAt(filaSeleccionada, 2) // Espacio
+            };
+        } else {
+            return null;
         }
     }
-    
-}
+
+    private void eliminarReservaSeleccionada() {
+        int filaSeleccionada = jTable1.getSelectedRow();
+
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una reserva para eliminar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que quiere eliminar esta reserva?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            try (Connection conn = Conexion.getInstance()) {
+                // Verificación de conexión
+                if (conn != null) {
+                    System.out.println("Conexión exitosa a la base de datos");
+                } else {
+                    System.out.println("Conexión fallida");
+                    return; // Si no hay conexión, no continuar
+                }
+
+                // Modificamos la consulta para que solo elimine por la fecha
+                String sql = "DELETE FROM reservas WHERE fecha = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    // Asignamos el valor de la fecha de la fila seleccionada
+                    stmt.setObject(1, jTable1.getValueAt(filaSeleccionada, 0)); // Fecha
+
+                    int filasAfectadas = stmt.executeUpdate();
+                    if (filasAfectadas > 0) {
+                        JOptionPane.showMessageDialog(this, "Reserva eliminada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        // Refrescar la tabla después de eliminar la reserva
+                        // actualizarTabla(); // Método para refrescar los datos de la tabla
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se encontró la reserva en la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Error al eliminar la reserva: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -309,7 +308,7 @@ private void eliminarReservaSeleccionada() {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-eliminarReservaSeleccionada();
+        eliminarReservaSeleccionada();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -362,13 +361,19 @@ eliminarReservaSeleccionada();
 
     private String obtenerNombreEspacio(int espacioId) {
         switch (espacioId) {
-        case 1: return "Piscina";
-        case 2: return "Barbacoa";
-        case 3: return "Gimnasio";
-        case 4: return "Canchas";
-        case 5: return "Salón";
-        default: return "Desconocido";
-    }
+            case 1:
+                return "Piscina";
+            case 2:
+                return "Barbacoa";
+            case 3:
+                return "Gimnasio";
+            case 4:
+                return "Canchas";
+            case 5:
+                return "Salón";
+            default:
+                return "Desconocido";
+        }
     }
 
 }

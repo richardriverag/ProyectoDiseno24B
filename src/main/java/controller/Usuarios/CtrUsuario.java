@@ -17,7 +17,7 @@ import view.frmMenuBar;
  */
 public class CtrUsuario implements ActionListener{
     private frmMenuBar frmConP;
-    private Usuario u = new Usuario();
+    private Usuario u = Usuario.getInstance();
     private DbUsuario dbu = new DbUsuario();
     
     public CtrUsuario(frmMenuBar frmContenedorPrincipal) {

@@ -11,6 +11,7 @@ import java.util.Date;
  * @author User
  */
 public class Usuario {
+    private static Usuario instancia;
     private int id;
     private String cedula;
     private String nombre;
@@ -21,6 +22,15 @@ public class Usuario {
     private double salario;
     private Date fechaContrato;
 
+    private Usuario() {} 
+    
+    public static Usuario getInstance() {
+        if (instancia == null) {
+            instancia = new Usuario();
+        }
+        return instancia;
+    }
+    
     public String getTelefono() {
         return telefono;
     }

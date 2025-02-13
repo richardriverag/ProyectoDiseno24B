@@ -5,6 +5,28 @@ import java.sql.*;
 
 public class DbUsuario extends Conexion {
 
+    public boolean eliminar (Usuario u){
+        PreparedStatement ps; 
+        Connection con= Conexion.getInstance();
+        String sql= "DELETE FROM usuario WHERE cedula =  ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, u.getCedula());
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+    
+    
     public boolean guardar(Usuario u) {
         Connection con = Conexion.getInstance();
         String sql = "INSERT INTO usuario (cedula,nombre,email,contrasenia,celular,rol_id, salario,fecha_contratacion) VALUES (?,?,?,?,?,?,?,?)";
@@ -44,7 +66,7 @@ public class DbUsuario extends Conexion {
             ps.execute();
             return true;
         } catch (SQLException e) {
-            System.err.println("Error en la inserción: " + e.getMessage());
+            System.err.println("Error en la inserciï¿½n: " + e.getMessage());
             return false;
         } finally {
             try {
@@ -85,7 +107,7 @@ public class DbUsuario extends Conexion {
             stmt.setString(2, correo);
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
-            System.err.println("Error al actualizar contraseña: " + e.getMessage());
+            System.err.println("Error al actualizar contraseï¿½a: " + e.getMessage());
         }
         return false;
     }

@@ -34,6 +34,7 @@ public class Ctr1Usuario implements ActionListener {
         System.out.println("Menu Item1 usuarios funcionando");
 
         frmConP.btnCrearUsuario.addActionListener(this);
+        frmConP.btnEliminarUsuario.addActionListener(this);
 
     }
 
@@ -48,27 +49,46 @@ public class Ctr1Usuario implements ActionListener {
                     .equals(String.valueOf(frmConP.txtPassConfirmarUsuario.getPassword()))) {
 
                 u.setCedula(String.valueOf(frmConP.txtPassUsuario.getPassword()));
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Contraseña no coincide");
             }
             u.setFechaContratacion(frmConP.jDateChooser1.getDate());
             String rolSeleccionado = (String) frmConP.comboRolUsuario.getSelectedItem();
             u.setRol(rolSeleccionado);
-            
-            if(rolSeleccionado.equals("Residente")){
+
+            if (rolSeleccionado.equals("Residente")) {
                 u.setSalario(0);
                 u.setFechaContratacion(null);
-            }else{
+            } else {
                 u.setSalario(Double.parseDouble(frmConP.txtSueldo.getText()));
                 u.setFechaContratacion(frmConP.jDateChooser1.getDate());
             }
-            
-            if(dbu.guardar(u)){
-               JOptionPane.showMessageDialog(null, "Usuario Guardado");
+
+            if (dbu.guardar(u)) {
+                JOptionPane.showMessageDialog(null, "Usuario Guardado");
                 //limpiar();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar ");
                 //limpiar();
+            }
+
+        }
+
+        if (e.getSource() == frmConP.btnEliminarUsuario) {
+            u.setCedula(frmConP.txtCedulaUsuario.getText().trim());
+            int confirmacion = JOptionPane.showConfirmDialog(null,
+                    "¿Está seguro de que desea eliminar al usuario con cédula " + u.getCedula() + "?",
+                    "Confirmación de eliminación",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                if (dbu.eliminar(u)) {
+                    JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hubo un problema al eliminar el usuario.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Eliminación cancelada.");
             }
 
         }

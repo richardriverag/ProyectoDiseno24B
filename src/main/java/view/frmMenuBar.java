@@ -102,10 +102,10 @@ public class frmMenuBar extends javax.swing.JFrame {
         jMenuUsuario.setForeground(Color.WHITE);
         jMenuUsuario.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50)); 
         //MenuItems     
-        jMenuIUsuarios1.setText("Crear cuenta");
-        jMenuIUsuarios2.setText("MenuItem2");
+        jMenuIUsuarios1.setText("Gestionar Cuentas");
+        /*jMenuIUsuarios2.setText("MenuItem2");
         jMenuIUsuarios3.setText("MenuItem3");
-        jMenuIUsuarios4.setText("MenuItem4");
+        jMenuIUsuarios4.setText("MenuItem4");*/
         
         //MenuTelecomunicaciones
         jMenuTelecomunicaciones.setText("Telecomunicaciones");

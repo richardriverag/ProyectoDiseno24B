@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import model.Usuarios.DbUsuario;
 import model.Usuarios.Rol;
 import model.Usuarios.Usuario;
+import model.Usuarios.UsuarioDAC;
 import view.frmMenuBar;
 
 /**
@@ -20,10 +21,10 @@ import view.frmMenuBar;
 public class Ctr1Usuario implements ActionListener {
 
     private frmMenuBar frmConP;
-    private Usuario u = Usuario.getInstance();
+    private UsuarioDAC u = new UsuarioDAC();
     private DbUsuario dbu = new DbUsuario();
 
-    public Ctr1Usuario(frmMenuBar frmConP, Usuario u, DbUsuario dbu) {
+    public Ctr1Usuario(frmMenuBar frmConP, UsuarioDAC u, DbUsuario dbu) {
         this.frmConP = frmConP;
         this.u = u;
         this.dbu = dbu;
@@ -48,11 +49,11 @@ public class Ctr1Usuario implements ActionListener {
             u.setCelular(frmConP.txtTelefonoUsuario.getText());
             if (String.valueOf(frmConP.txtPassUsuario.getPassword())
                     .equals(String.valueOf(frmConP.txtPassConfirmarUsuario.getPassword()))) {
-                u.setCedula(String.valueOf(frmConP.txtPassUsuario.getPassword()));
+                u.setContrasenia(String.valueOf(frmConP.txtPassUsuario.getPassword()));
             } else {
                 JOptionPane.showMessageDialog(null, "Contraseña no coincide");
+                return;
             }
-            u.setFechaContrato(frmConP.jDateChooser1.getDate());
             String rolSeleccionado = (String) frmConP.comboRolUsuario.getSelectedItem();
             int idRol = 0;
             
@@ -76,10 +77,9 @@ public class Ctr1Usuario implements ActionListener {
 
             if (dbu.guardar(u)) {
                 JOptionPane.showMessageDialog(null, "Usuario Guardado");
-                //limpiar();
+                limpiar();
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar ");
-                //limpiar();
             }
 
         }
@@ -102,5 +102,33 @@ public class Ctr1Usuario implements ActionListener {
             }
 
         }
+        
+        System.out.println("antes de buscar");
+
+        if (e.getSource() == frmConP.btnBuscarUsuario) {
+            System.out.println("dentro de buscar");
+            UsuarioDAC usuario = dbu.buscar(frmConP.txtCedulaUsuario.getText().trim());
+            if (usuario != null) {
+                System.out.println(usuario.getNombre());
+                frmConP.txtCedulaUsuario.setText(usuario.getCedula());
+                frmConP.txtPassUsuario.setText(usuario.getContrasenia());
+                frmConP.txtPassConfirmarUsuario.setText(usuario.getContrasenia());
+                frmConP.txtNombreUsuario.setText(usuario.getNombre());
+                frmConP.txtCorreoUsuario.setText(usuario.getEmail());
+                frmConP.txtTelefonoUsuario.setText(usuario.getCelular());
+                frmConP.txtSueldo.setText(String.format("%f",usuario.getSalario()));
+                frmConP.jDateChooser1.setDate(usuario.getFechaContrato());
+                frmConP.comboRolUsuario.setSelectedItem(usuario.getRol().getNombre());
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario no se encuentra registrado");
+            }
+            
+        }
+        System.out.println("feura de buscar");
+
+    }
+    
+    public void limpiar() {
+        
     }
 }

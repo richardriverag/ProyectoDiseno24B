@@ -432,9 +432,9 @@ public class frmMenuBar extends javax.swing.JFrame {
         txtPassUsuario = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnBuscarUsuario = new javax.swing.JButton();
         btnModificarUsuario = new javax.swing.JButton();
         btnEliminarUsuario = new javax.swing.JButton();
+        btnBuscarUsuario = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         PanerBuscar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -519,6 +519,11 @@ public class frmMenuBar extends javax.swing.JFrame {
         jLabel13.setText("Fecha contratación");
 
         comboRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Residente", "Administrador", "Guardia", "Limpieza", "Mantenimiento" }));
+        comboRolUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboRolUsuarioActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel5.setText("Rol");
@@ -575,13 +580,6 @@ public class frmMenuBar extends javax.swing.JFrame {
         jLabel1.setText("Gestionar Cuentas");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btnBuscarUsuario.setText("Buscar");
-        btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarUsuarioActionPerformed(evt);
-            }
-        });
-
         btnModificarUsuario.setText("Modificar");
         btnModificarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -593,6 +591,13 @@ public class frmMenuBar extends javax.swing.JFrame {
         btnEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarUsuarioActionPerformed(evt);
+            }
+        });
+
+        btnBuscarUsuario.setText("Buscar");
+        btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarUsuarioActionPerformed(evt);
             }
         });
 
@@ -660,7 +665,7 @@ public class frmMenuBar extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -701,9 +706,9 @@ public class frmMenuBar extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrearUsuario)
-                    .addComponent(btnBuscarUsuario)
                     .addComponent(btnModificarUsuario)
-                    .addComponent(btnEliminarUsuario))
+                    .addComponent(btnEliminarUsuario)
+                    .addComponent(btnBuscarUsuario))
                 .addGap(29, 29, 29))
         );
 
@@ -953,10 +958,6 @@ public class frmMenuBar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearUsuarioActionPerformed
 
-    private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
-
     private void btnModificarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarUsuarioActionPerformed
@@ -964,6 +965,14 @@ public class frmMenuBar extends javax.swing.JFrame {
     private void btnEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarUsuarioActionPerformed
+
+    private void comboRolUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRolUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboRolUsuarioActionPerformed
+
+    private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
 
 
     /**

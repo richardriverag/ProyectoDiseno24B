@@ -15,6 +15,11 @@ import view.FrmUsuarioLogin;
 public class CtrUsuarioRecuperarPass implements ActionListener{
 
     private FrmUsuarioLogin frmUserLogin;
+    public String cedula;
+
+  
+  
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

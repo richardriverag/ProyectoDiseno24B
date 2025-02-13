@@ -22,6 +22,7 @@ import view.frmMenuBar;
 public class ProyectoDiseno24B {
 
     public static void main(String[] args) {
+
         
         
         FrmUsuarioLogin frmLogin = new FrmUsuarioLogin();

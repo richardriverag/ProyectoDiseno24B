@@ -71,7 +71,6 @@ public class FrmUsuarioRecuperarPass extends javax.swing.JFrame {
             props.put("mail.smtp.auth", "true"); // Habilitar autenticación
             props.put("mail.smtp.starttls.enable", "true"); // Habilitar TLS
             props.put("mail.smtp.port", "587"); // Puerto SMTP (587 es común para TLS)
-            System.out.println("Hola");
             
             //props.put("mail.debug", "true");
             //System.out.println(".....");

@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.Usuarios;
 
 import model.Conexion;
 import java.sql.*;
 
-/**
- *
- * @author User
- */
 public class DbUsuario extends Conexion {
 
     public boolean guardar(Usuario u) {
@@ -52,12 +44,12 @@ public class DbUsuario extends Conexion {
             ps.execute();
             return true;
         } catch (SQLException e) {
-            System.err.println("Error en la inserciÃ³n: " + e.getMessage());
+            System.err.println("Error en la inserción: " + e.getMessage());
             return false;
         } finally {
             try {
                 if (ps != null) {
-                    ps.close(); // Cierra solo el `PreparedStatement`
+                    ps.close();
                 }
             } catch (SQLException e) {
                 System.err.println("Error al cerrar PreparedStatement: " + e.getMessage());
@@ -65,4 +57,40 @@ public class DbUsuario extends Conexion {
         }
     }
 
+    public boolean existeUsuarioPorCorreo(String correo) {
+        String sql = "SELECT COUNT(*) FROM usuario WHERE email = ?";
+
+        try (Connection con = Conexion.getInstance();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setString(1, correo);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al verificar usuario por correo: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean actualizarContrasena(String correo, String nuevaPass) {
+        String sql = "UPDATE usuario SET contrasenia = ? WHERE email = ?";
+
+        try (Connection con = Conexion.getInstance();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setString(1, nuevaPass);
+            stmt.setString(2, correo);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar contraseña: " + e.getMessage());
+        }
+        return false;
+    }
+    
+    public boolean verificarCodigo2FA(String correo, String codigo) {
+        return TwoFactorAuth.validarCodigo(correo, codigo);
+    }
 }

@@ -530,6 +530,10 @@ public class frmMenuBar extends javax.swing.JFrame {
         txtIdPE = new javax.swing.JTextField();
         buttonBuscarPE = new javax.swing.JToggleButton();
         comboEliminarPago = new javax.swing.JComboBox<>();
+        PagosSoloVer = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaSoloVer = new javax.swing.JTable();
+        PagosBotonSoloVer = new javax.swing.JButton();
         mbMenuBar = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -973,6 +977,50 @@ public class frmMenuBar extends javax.swing.JFrame {
 
         PanelPrincipal.add(PanelEliminarP, "card16");
 
+        tablaSoloVer.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaSoloVer);
+
+        PagosBotonSoloVer.setText("Buscar");
+
+        javax.swing.GroupLayout PagosSoloVerLayout = new javax.swing.GroupLayout(PagosSoloVer);
+        PagosSoloVer.setLayout(PagosSoloVerLayout);
+        PagosSoloVerLayout.setHorizontalGroup(
+            PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PagosSoloVerLayout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addComponent(PagosBotonSoloVer)
+                .addContainerGap(1092, Short.MAX_VALUE))
+            .addGroup(PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PagosSoloVerLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1040, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        PagosSoloVerLayout.setVerticalGroup(
+            PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PagosSoloVerLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(PagosBotonSoloVer)
+                .addContainerGap(617, Short.MAX_VALUE))
+            .addGroup(PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PagosSoloVerLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        PanelPrincipal.add(PagosSoloVer, "card27");
+
         getContentPane().add(PanelPrincipal, java.awt.BorderLayout.CENTER);
         setJMenuBar(mbMenuBar);
 
@@ -1030,6 +1078,8 @@ public class frmMenuBar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton PagosBotonSoloVer;
+    private javax.swing.JPanel PagosSoloVer;
     private javax.swing.JPanel PanelBuscarP;
     private javax.swing.JPanel PanelCheckIn;
     private javax.swing.JPanel PanelCheckIn1;
@@ -1098,8 +1148,10 @@ public class frmMenuBar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenuBar mbMenuBar;
     public javax.swing.JTable tablaP;
+    public javax.swing.JTable tablaSoloVer;
     public javax.swing.JTextField txtBuscarP;
     public javax.swing.JTextField txtCedulaPG;
     public javax.swing.JTextField txtCedulaPM;

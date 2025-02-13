@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import model.Pago;
 import model.PagoDb;
+import model.Usuarios.Usuario;
 import view.frmMenuBar;
 
 /**
@@ -28,11 +29,14 @@ public class CtrPagos implements ActionListener{
         this.frmConP.jMenuIPBuscar.addActionListener(this);
         this.frmConP.jMenuIPModificar.addActionListener(this);
         this.frmConP.jMenuIPEliminar.addActionListener(this);
+        this.frmConP.jMenuIPsoloVer.addActionListener(this);
         this.frmConP.buttonBuscarP.addActionListener(this);
         this.frmConP.buttonCrearPG.addActionListener(this);
         this.frmConP.buttonBuscarPM.addActionListener(this);
         this.frmConP.buttonModifiarP.addActionListener(this);
         this.frmConP.buttonBuscarPE.addActionListener(this);
+        this.frmConP.PagosBotonSoloVer.addActionListener(this);
+        
     }
     
     @Override
@@ -55,6 +59,9 @@ public class CtrPagos implements ActionListener{
         if (e.getSource() == frmConP.buttonBuscarP){
             System.out.println("Entro en el boton buttonBuscarP");
             pagodb.mostrar(frmConP.tablaP,frmConP.txtBuscarP.getText());
+        }
+        if (e.getSource()==frmConP.jMenuIPsoloVer){
+            cardLayout.show(frmConP.PanelPrincipal, "card27");
         }
         if (e.getSource() == frmConP.buttonCrearPG){
             Pago p = new Pago();
@@ -115,5 +122,12 @@ public class CtrPagos implements ActionListener{
                 JOptionPane.showMessageDialog(frmConP, "No de pudo eliminar el pago");
             }
         }
-    }
+        
+        if (e.getSource() == frmConP.PagosBotonSoloVer){
+            Usuario u = Usuario.getInstance();
+            pagodb.mostrar(frmConP.tablaSoloVer,u.getCedula());
+            
+        
+}
+}
 }

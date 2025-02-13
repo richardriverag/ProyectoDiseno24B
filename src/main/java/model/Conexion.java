@@ -31,8 +31,13 @@ public class Conexion {
 //        }
 //        return myConn;
 //    }
+    //REMOTA
+    /*private static String url = "jdbc:mysql://localhost:3306/sistemaunificado";
+    private static String user = "root";
+    private static String password = "admin";*/
     
-   private static String url = "jdbc:mysql://localhost:3306/sistemaunificado";
+    //LOCAL
+    private static String url = "jdbc:mysql://localhost:3306/sistemaunificado";
     private static String user = "root";
     private static String password = "admin";
     
@@ -42,7 +47,8 @@ public class Conexion {
         if (myConn == null) {
             try {
                 myConn = DriverManager.getConnection(url, user, password);
-                System.out.println("Exito en la conexión a la base de datos!");} catch (SQLException e) {
+                System.out.println("Exito en la conexión a la base de datos!");} 
+            catch (SQLException e) {
                 System.out.println("Existio un error al conectar a la base de datos" + e.getMessage());
             }
         }

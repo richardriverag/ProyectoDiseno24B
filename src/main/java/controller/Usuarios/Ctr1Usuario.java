@@ -20,7 +20,7 @@ import view.frmMenuBar;
 public class Ctr1Usuario implements ActionListener {
 
     private frmMenuBar frmConP;
-    private Usuario u = new Usuario();
+    private Usuario u = Usuario.getInstance();
     private DbUsuario dbu = new DbUsuario();
 
     public Ctr1Usuario(frmMenuBar frmConP, Usuario u, DbUsuario dbu) {

@@ -98,7 +98,7 @@ public class DbUsuario extends Conexion {
     
     public Usuario loginUsuario(String user, String password){
         Connection conn = new Conexion().getInstance();
-        Usuario usuario = new Usuario();
+        Usuario usuario = Usuario.getInstance();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         

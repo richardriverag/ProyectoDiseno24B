@@ -164,3 +164,11 @@ CREATE TABLE Reporte (
     FOREIGN KEY (comunicado_id) REFERENCES Comunicado(id), 
     FOREIGN KEY (enviado_por) REFERENCES Usuario(id)      
 );
+
+CREATE TABLE AnuncioGeneral (
+    idAnuncio INT PRIMARY KEY AUTO_INCREMENT,
+    contenido TEXT NOT NULL,
+    fechaCreacion DATETIME NOT NULL,
+    idAdministrador INT,
+    FOREIGN KEY (idAdministrador) REFERENCES Administrador(idAdministrador)
+);

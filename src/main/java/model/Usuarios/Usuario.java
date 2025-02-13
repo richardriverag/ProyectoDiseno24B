@@ -15,8 +15,8 @@ public class Usuario {
     private int id;
     private String cedula;
     private String nombre;
-    private String correo;
-    private String telefono;
+    private String email;
+    private String celular;
     private String contrasenia;
     private Rol rol;
     private double salario;
@@ -31,12 +31,12 @@ public class Usuario {
         return instancia;
     }
     
-    public String getTelefono() {
-        return telefono;
+    public String getCelular() {
+        return celular;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 
     
@@ -65,12 +65,12 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getContrasenia() {

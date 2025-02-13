@@ -41,7 +41,6 @@ view\comunicacion\FrmMensajeAdmin$6.class
 controller\CheckIn\CtrCheckIn.class
 view\Reservas\FrmCancelarReserva$1.class
 view\frmMenuBar$5.class
-model\Usuarios\Rol.class
 view\comunicacion\FrmMensajeAdmin$7.class
 view\FrmUsuarioLogin.class
 view\FrmUsuarioRecuperarPass$4.class
@@ -114,6 +113,7 @@ view\Reservas\FrmReserva$3.class
 model\Usuarios\Usuario.class
 model\Usuarios\TwoFactorAuth.class
 view\frmMenuBar$2.class
+model\Usuarios\RolModel.class
 view\frmMenuBar$10.class
 view\FrmUsuarioRecuperarPass$7.class
 view\FrmUsuarioRecuperarPass$1.class

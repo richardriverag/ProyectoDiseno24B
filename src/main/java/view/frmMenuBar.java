@@ -26,6 +26,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import view.comunicacion.FrmMensaje;
+import view.comunicacion.FrmMensajeAdmin;
+import view.inmuebles.FrmPantalla;
 
 /**
  *

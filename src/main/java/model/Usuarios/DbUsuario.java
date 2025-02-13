@@ -15,7 +15,7 @@ public class DbUsuario extends Conexion {
 
     public boolean guardar(Usuario u) {
         Connection con = Conexion.getInstance();
-        String sql = "INSERT INTO usuario (cedula,nombre,email,contrasenia,celular,rol_id, salario,fecha_contratacion) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO usuario (cedula,nombre,email,contrasenia,celular,rol_id, salario,fecha_contrato) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -48,7 +48,8 @@ public class DbUsuario extends Conexion {
             }
             ps.setInt(6, idRol);
             ps.setDouble(7, u.getSalario());
-            ps.setDate(8, (Date) u.getFechaContratacion());
+            ps.setDate(8, new java.sql.Date(u.getFechaContrato().getTime()));
+
             ps.execute();
             return true;
         } catch (SQLException e) {

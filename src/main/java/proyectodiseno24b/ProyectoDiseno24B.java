@@ -5,8 +5,10 @@
 package proyectodiseno24b;
 
 
+import controller.CtrLogin;
 import controller.CtrMenuBar;
 import model.Conexion;
+import view.FrmUsuarioLogin;
 import view.frmMenuBar;
 import view.comunicacion.FrmReporte;
 import view.comunicacion.FrmMensaje;
@@ -20,8 +22,13 @@ import view.frmMenuBar;
 public class ProyectoDiseno24B {
 
     public static void main(String[] args) {
-        frmMenuBar frmMB = new frmMenuBar();
-        frmMB.setVisible(true);
+        FrmUsuarioLogin frmLogin = new FrmUsuarioLogin();
+        CtrLogin controlador = new CtrLogin(frmLogin); // Importante: pasar el formulario al controlador
+        frmLogin.setVisible(true);
+
+
+        //frmMenuBar frmMB = new frmMenuBar();
+        //frmMB.setVisible(true);
         /*FrmMensaje frm1 = new FrmMensaje();
         FrmMensajeAdmin frma = new FrmMensajeAdmin();
         FrmReporte frm = new FrmReporte();

@@ -47,20 +47,20 @@ public class Ctr1Usuario implements ActionListener {
             if (String.valueOf(frmConP.txtPassUsuario.getPassword())
                     .equals(String.valueOf(frmConP.txtPassConfirmarUsuario.getPassword()))) {
 
-                u.setCedula(String.valueOf(frmConP.txtPassUsuario.getPassword()));
+                u.setContrasenia(String.valueOf(frmConP.txtPassUsuario.getPassword()));
             }else{
                 JOptionPane.showMessageDialog(null, "Contraseña no coincide");
             }
-            u.setFechaContratacion(frmConP.jDateChooser1.getDate());
+            u.setFechaContrato(frmConP.jDateChooser1.getDate());
             String rolSeleccionado = (String) frmConP.comboRolUsuario.getSelectedItem();
             u.setRol(rolSeleccionado);
             
             if(rolSeleccionado.equals("Residente")){
                 u.setSalario(0);
-                u.setFechaContratacion(null);
+                u.setFechaContrato(null);
             }else{
                 u.setSalario(Double.parseDouble(frmConP.txtSueldo.getText()));
-                u.setFechaContratacion(frmConP.jDateChooser1.getDate());
+                u.setFechaContrato(frmConP.jDateChooser1.getDate());
             }
             
             if(dbu.guardar(u)){

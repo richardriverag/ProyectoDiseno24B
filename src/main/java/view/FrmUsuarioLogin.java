@@ -237,8 +237,8 @@ public class FrmUsuarioLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin1;
-    private javax.swing.JButton btnRecuperarPass;
+    public javax.swing.JButton btnLogin1;
+    public javax.swing.JButton btnRecuperarPass;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

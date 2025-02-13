@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.Usuarios.DbUsuario;
 import model.Usuarios.Usuario;
+import model.Usuarios.UsuarioDAC;
 import view.frmMenuBar;
 
 /**
@@ -17,7 +18,7 @@ import view.frmMenuBar;
  */
 public class CtrUsuario implements ActionListener{
     private frmMenuBar frmConP;
-    private Usuario u = new Usuario();
+    private UsuarioDAC u = new UsuarioDAC();
     private DbUsuario dbu = new DbUsuario();
     
     public CtrUsuario(frmMenuBar frmContenedorPrincipal) {
@@ -31,7 +32,7 @@ public class CtrUsuario implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == frmConP.jMenuIUsuarios1){
-             Ctr1Usuario ctr1 = new Ctr1Usuario(frmConP,u, dbu);
+             Ctr1Usuario ctr1 = new Ctr1Usuario(frmConP, u, dbu);
             ctr1.iniciar();
         }   
         

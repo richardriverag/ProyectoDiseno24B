@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.Usuarios;
 
 import java.util.Date;
@@ -10,8 +6,7 @@ import java.util.Date;
  *
  * @author User
  */
-public class Usuario {
-    private static Usuario instancia;
+public class UsuarioDAC {
     private int id;
     private String cedula;
     private String nombre;
@@ -21,21 +16,7 @@ public class Usuario {
     private Rol rol;
     private double salario;
     private Date fechaContrato;
-
-    private Usuario() {} 
     
-    public static Usuario getInstance() {
-        if (instancia == null) {
-            instancia = new Usuario();
-        }
-        return instancia;
-    }
-
-    public Usuario(int id, String cedula, String contrasenia) {
-        this.id = id;
-        this.cedula = cedula;
-        this.contrasenia = contrasenia;
-    }
     
     public String getCelular() {
         return celular;
@@ -114,3 +95,4 @@ public class Usuario {
     
     
 }
+

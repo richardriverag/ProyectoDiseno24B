@@ -4,6 +4,9 @@
  */
 package view;
 
+
+import java.awt.Color;
+import javax.swing.JTextField;
 /**
  *
  * @author Pato
@@ -76,7 +79,12 @@ public class FrmCheckIn extends javax.swing.JFrame {
         vehicle.setText("VEHÍCULO");
 
         name.setForeground(new java.awt.Color(153, 153, 153));
-        name.setText("Nombre, Ej. Camila Sánchez");
+        name.setText("Nombre, Ej. Camila");
+        name.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                nameMousePressed(evt);
+            }
+        });
         name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameActionPerformed(evt);
@@ -85,6 +93,11 @@ public class FrmCheckIn extends javax.swing.JFrame {
 
         identification.setForeground(new java.awt.Color(153, 153, 153));
         identification.setText("Identificación, Ej. 1751021070");
+        identification.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                identificationMousePressed(evt);
+            }
+        });
         identification.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 identificationActionPerformed(evt);
@@ -93,6 +106,11 @@ public class FrmCheckIn extends javax.swing.JFrame {
 
         contact.setForeground(new java.awt.Color(153, 153, 153));
         contact.setText("Contacto, Ej. 0982345766");
+        contact.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                contactMousePressed(evt);
+            }
+        });
         contact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contactActionPerformed(evt);
@@ -100,7 +118,12 @@ public class FrmCheckIn extends javax.swing.JFrame {
         });
 
         reason.setForeground(new java.awt.Color(153, 153, 153));
-        reason.setText("Motivo, Ej. Visita a familiar");
+        reason.setText("Motivo, Ej. Visitar");
+        reason.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                reasonMousePressed(evt);
+            }
+        });
         reason.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reasonActionPerformed(evt);
@@ -109,12 +132,27 @@ public class FrmCheckIn extends javax.swing.JFrame {
 
         plate.setForeground(new java.awt.Color(153, 153, 153));
         plate.setText("Placa, Ej. PKD-5784");
+        plate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                plateMousePressed(evt);
+            }
+        });
 
         model.setForeground(new java.awt.Color(153, 153, 153));
         model.setText("Modelo, Ej. Toyota");
+        model.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                modelMousePressed(evt);
+            }
+        });
 
         color.setForeground(new java.awt.Color(153, 153, 153));
         color.setText("Color, Ej. Plomo");
+        color.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                colorMousePressed(evt);
+            }
+        });
 
         clean.setBackground(new java.awt.Color(0, 102, 153));
         clean.setFont(new java.awt.Font("Roboto Medium", 1, 12)); // NOI18N
@@ -334,11 +372,118 @@ public class FrmCheckIn extends javax.swing.JFrame {
     private void reasonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reasonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_reasonActionPerformed
-
+/**
     private void cleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cleanActionPerformed
 
+    private void nameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameMousePressed
+
+    private void identificationMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_identificationMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_identificationMousePressed
+
+    private void contactMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contactMousePressed
+
+    private void reasonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reasonMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reasonMousePressed
+
+    private void plateMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plateMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_plateMousePressed
+
+    private void modelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modelMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modelMousePressed
+
+    private void colorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_colorMousePressed
+*/
+   
+
+private void resetFieldsExcept(JTextField selectedField) {
+    JTextField[] fields = {name, identification, contact, reason, plate, model, color};
+    String[] placeholders = {
+        "Nombre, Ej. Camila",
+        "Identificación, Ej. 1751021070",
+        "Contacto, Ej. 0982345766",
+        "Motivo, Ej. Visitar",
+        "Placa, Ej. PKD-5784",
+        "Modelo, Ej. Toyota",
+        "Color, Ej. Plomo"
+    };
+
+    for (int i = 0; i < fields.length; i++) {
+        if (fields[i] == selectedField) {
+            if (fields[i].getText().equals(placeholders[i])) {
+                fields[i].setText(""); // Borra el placeholder al seleccionar
+            }
+            fields[i].setForeground(Color.black);
+        } else {
+            if (fields[i].getText().trim().isEmpty()) { 
+                fields[i].setText(placeholders[i]); // Restaura solo si está vacío
+                fields[i].setForeground(Color.gray);
+            }
+        }
+    }
+}
+
+// Botón "Clean" que limpia todos los campos y los deja con su texto por defecto
+private void cleanActionPerformed(java.awt.event.ActionEvent evt) {                                     
+    JTextField[] fields = {name, identification, contact, reason, plate, model, color};
+    String[] placeholders = {
+        "Nombre, Ej. Camila Sánchez",
+        "Identificación, Ej. 1751021070",
+        "Contacto, Ej. 0982345766",
+        "Motivo, Ej. Visita a familiar",
+        "Placa, Ej. PKD-5784",
+        "Modelo, Ej. Toyota",
+        "Color, Ej. Plomo"
+    };
+
+    for (int i = 0; i < fields.length; i++) {
+        fields[i].setText(placeholders[i]); // Restaura los placeholders
+        fields[i].setForeground(Color.gray);
+    }
+}    
+
+private void nameMousePressed(java.awt.event.MouseEvent evt) {                                  
+    resetFieldsExcept(name);
+}                                 
+
+private void identificationMousePressed(java.awt.event.MouseEvent evt) {                                            
+    resetFieldsExcept(identification);
+}                                           
+
+private void contactMousePressed(java.awt.event.MouseEvent evt) {                                     
+    resetFieldsExcept(contact);
+}                                    
+
+private void reasonMousePressed(java.awt.event.MouseEvent evt) {                                    
+    resetFieldsExcept(reason);
+}    
+
+private void plateMousePressed(java.awt.event.MouseEvent evt) {                                   
+    resetFieldsExcept(plate);
+}  
+
+private void modelMousePressed(java.awt.event.MouseEvent evt) {                                   
+    resetFieldsExcept(model);
+} 
+
+private void colorMousePressed(java.awt.event.MouseEvent evt) {                                   
+    resetFieldsExcept(color);
+}  
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */

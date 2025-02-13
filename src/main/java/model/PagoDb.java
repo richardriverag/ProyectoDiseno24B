@@ -142,6 +142,8 @@ public class PagoDb extends Conexion{
             "JOIN Pago p ON u.id = p.usuario_id " +
             "JOIN Cuota c ON p.id = c.pago_id " +
             "WHERE u.cedula = '" + cedula + "'";
+
+            
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("id");
         model.addColumn("cedula");

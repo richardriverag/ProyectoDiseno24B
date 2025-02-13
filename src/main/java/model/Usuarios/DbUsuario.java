@@ -1,21 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.Usuarios;
 
 import model.Conexion;
 import java.sql.*;
 
-/**
- *
- * @author User
- */
 public class DbUsuario extends Conexion {
 
+    public boolean eliminar (Usuario u){
+        PreparedStatement ps; 
+        Connection con= Conexion.getInstance();
+        String sql= "DELETE FROM usuario WHERE cedula =  ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, u.getCedula());
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+    
+    
     public boolean guardar(Usuario u) {
         Connection con = Conexion.getInstance();
-        String sql = "INSERT INTO usuario (cedula,nombre,email,contrasenia,celular,rol_id, salario,fecha_contratacion) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO usuario (cedula,nombre,email,contrasenia,celular,rol_id, salario,fecha_contrato) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -24,40 +38,20 @@ public class DbUsuario extends Conexion {
             ps.setString(3, u.getCorreo());
             ps.setString(4, u.getContrasenia());
             ps.setString(5, u.getTelefono());
-            String rol = u.getRol();
-            int idRol;
-
-            switch (rol) {
-                case "Residente":
-                    idRol = 1;
-                    break;
-                case "Administrador":
-                    idRol = 2;
-                    break;
-                case "Limpieza":
-                    idRol = 3;
-                    break;
-                case "Mantenimiento":
-                    idRol = 4;
-                    break;
-                case "Guardia":
-                    idRol = 5;
-                    break;
-                default:
-                    throw new IllegalArgumentException("Rol desconocido: " + rol);
-            }
-            ps.setInt(6, idRol);
+            Rol rol = u.getRol();            
+            ps.setInt(6, rol.getId());
             ps.setDouble(7, u.getSalario());
-            ps.setDate(8, (Date) u.getFechaContratacion());
+            ps.setDate(8, new java.sql.Date(u.getFechaContrato().getTime()));
+
             ps.execute();
             return true;
         } catch (SQLException e) {
-            System.err.println("Error en la inserción: " + e.getMessage());
+            System.err.println("Error en la insercion: " + e.getMessage());
             return false;
         } finally {
             try {
                 if (ps != null) {
-                    ps.close(); // Cierra solo el `PreparedStatement`
+                    ps.close();
                 }
             } catch (SQLException e) {
                 System.err.println("Error al cerrar PreparedStatement: " + e.getMessage());
@@ -65,4 +59,71 @@ public class DbUsuario extends Conexion {
         }
     }
 
+    public boolean existeUsuarioPorCorreo(String correo) {
+        String sql = "SELECT COUNT(*) FROM usuario WHERE email = ?";
+
+        try (Connection con = Conexion.getInstance();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setString(1, correo);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al verificar usuario por correo: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean actualizarContrasena(String correo, String nuevaPass) {
+        String sql = "UPDATE usuario SET contrasenia = ? WHERE email = ?";
+
+        try (Connection con = Conexion.getInstance();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setString(1, nuevaPass);
+            stmt.setString(2, correo);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar contrase�a: " + e.getMessage());
+        }
+        return false;
+    }
+    
+    public boolean verificarCodigo2FA(String correo, String codigo) {
+        return TwoFactorAuth.validarCodigo(correo, codigo);
+    }  
+    
+    public Usuario loginUsuario(String user, String password){
+        Connection conn = new Conexion().getInstance();
+        Usuario usuario = new Usuario();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try{
+            String sql = "SELECT * FROM usuario WHERE nombre = ? AND contrasenia = ?";
+            
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, user);
+            stmt.setString(2,password);
+            
+            rs = stmt.executeQuery();
+            
+            //verficar si existe el usuario en base de datos
+            if(rs.next()){
+                //Si existe creamos un nuevo user
+                usuario.setId(rs.getInt("id"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setContrasenia(rs.getString("contrasenia"));
+                usuario.setRol(new Rol(Integer.parseInt(rs.getString("idRol"))));
+            }
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }  
+        return usuario;
+    }
 }
+

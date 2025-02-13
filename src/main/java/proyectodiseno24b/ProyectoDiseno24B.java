@@ -33,22 +33,16 @@ public class ProyectoDiseno24B {
 
         //frmMenuBar frmMB = new frmMenuBar();
         //frmMB.setVisible(true);
-        /*FrmMensaje frm1 = new FrmMensaje();
-        FrmMensajeAdmin frma = new FrmMensajeAdmin();
-        FrmReporte frm = new FrmReporte();
-        FrmMenuBar frmConP = new FrmMenuBar();
-        
-        Conexion conn = new Conexion();
-        CtrMenuBar menu = new CtrMenuBar(frmConP);
-        menu.iniciar();
-        conn.getInstance();
+//        FrmMensaje frm1 = new FrmMensaje();
+//        FrmMensajeAdmin frma = new FrmMensajeAdmin();
+//        FrmReporte frm = new FrmReporte();
+//        frmMenuBar frmConP = new frmMenuBar();
+//        CtrMenuBar menu = new CtrMenuBar(frmConP);
+//        menu.iniciar();
         
         
         //frm.setVisible(true);
         //frm1.setVisible(true);
         //frma.setVisible(true);
-        frm.setVisible(true);
-        frm1.setVisible(true);
-        frma.setVisible(true);*/
     }
 }

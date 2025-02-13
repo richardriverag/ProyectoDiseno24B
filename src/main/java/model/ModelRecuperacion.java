@@ -23,7 +23,7 @@ public class ModelRecuperacion {
         PreparedStatement ps;
 
         try{
-            String query= "Select email FROM usuario WHERE cedula = ?";
+            String query= "SELECT email, contrasenia FROM usuario WHERE cedula = ?";
             ps = conn.prepareStatement(query);
             ps.setString(1, cedula);
             ResultSet rs = ps.executeQuery();

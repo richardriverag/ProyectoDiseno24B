@@ -59,6 +59,10 @@ public class ReservaModel {
         return imagenesEspacios;
     }
     
+    public void setImagenesEspacios(HashMap<String, String> imagenesEspacios) {
+        this.imagenesEspacios = imagenesEspacios;
+    }
+    
     public String getImagenEspacio(String espacio){
          return imagenesEspacios.getOrDefault(espacio, "src/images/default.jpg");
 

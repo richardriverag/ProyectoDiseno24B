@@ -30,6 +30,12 @@ public class Usuario {
         }
         return instancia;
     }
+
+    public Usuario(int id, String cedula, String contrasenia) {
+        this.id = id;
+        this.cedula = cedula;
+        this.contrasenia = contrasenia;
+    }
     
     public String getCelular() {
         return celular;

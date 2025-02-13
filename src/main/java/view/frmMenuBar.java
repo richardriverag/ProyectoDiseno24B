@@ -304,8 +304,8 @@ public class frmMenuBar extends javax.swing.JFrame {
 
         Usuario user = Usuario.getInstance();
         //system.out.println(user.getId());
-        System.out.println("el rol es:" +  user.getRol().getId());
-        
+        if (user.getRol() != null)
+            System.out.println("el rol es:" +  user.getRol().getId());
         
         //administrador
         if (user.getRol().getId() == 1) {

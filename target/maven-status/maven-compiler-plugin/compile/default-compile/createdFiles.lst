@@ -7,6 +7,7 @@ view\FrmCheckIn$5.class
 view\FrmUsuarioRecuperarPass$3.class
 view\inmuebles\FrmPantalla$1.class
 model\comunicacion\AnuncioGeneral.class
+model\DbReserva.class
 model\Check_In\DbRegistroEntrada.class
 view\FrmCheckIn$15.class
 view\comunicacion\FrmMensajeAdmin$4.class
@@ -19,6 +20,7 @@ model\Usuarios\DbUsuario.class
 model\SolicitudMantenimientoModel.class
 controller\Inmuebles\ctr2Inmuebles.class
 view\frmMenuBar$7.class
+view\FrmUsuarioRecuperarPass$6.class
 controller\CtrLogin.class
 controller\Telecomunicaciones\CtrTelecomunicaciones.class
 model\ModelRecuperacion.class
@@ -27,6 +29,8 @@ controller\CheckIn\ctr2CheckIn.class
 controller\comunicacion\CtrReporte.class
 view\comunicacion\FrmMensaje$6.class
 view\FrmUsuarioLogin$1.class
+model\ReservaModel.class
+view\FrmUsuarioRecuperarPass$5.class
 model\comunicacion\DbAnuncioGeneral.class
 view\FrmCheckIn$7.class
 view\FrmCheckIn$10.class
@@ -59,6 +63,7 @@ controller\Pagos\CtrPagos.class
 view\Reservas\FrmCancelarReserva.class
 view\comunicacion\FrmMensaje$4.class
 view\comunicacion\FrmMensaje$UsuarioRenderer.class
+controller\Reservas\CtrReserva$1.class
 view\frmMenuBar$3.class
 view\FrmCheckIn$9.class
 model\comunicacion\DbMensaje.class
@@ -72,6 +77,7 @@ view\FrmUsuarioRecuperarPass.class
 view\comunicacion\FrmMensajeAdmin$2.class
 view\FrmUsuarioRecuperarPass$2.class
 view\FrmCheckIn$4.class
+model\EspacioComunModel.class
 view\Reservas\FrmReserva.class
 controller\EspaciosComunes\ctr2EspaciosComunes.class
 model\Pago.class
@@ -81,7 +87,6 @@ view\inmuebles\FrmPantalla.class
 controller\CheckIn\ctr1CheckIn.class
 model\Check_In\Visitante.class
 view\FrmFinanzas.class
-view\Reservas\FrmReserva$4.class
 view\comunicacion\FrmMensajeAdmin$5.class
 view\FrmUsuarioLogin$3.class
 view\FrmCheckIn$13.class
@@ -101,6 +106,7 @@ view\FrmCheckIn$14.class
 model\comunicacion\Mensaje.class
 controller\EspaciosComunes\ctr1EspaciosComunes.class
 view\frmMenuBar$8.class
+controller\Reservas\CtrReserva.class
 view\frmMenuBar.class
 controller\Inmuebles\ctr1Inmuebles.class
 view\FrmCheckIn$6.class
@@ -109,9 +115,11 @@ model\Usuarios\Usuario.class
 model\Usuarios\TwoFactorAuth.class
 view\frmMenuBar$2.class
 view\frmMenuBar$10.class
+view\FrmUsuarioRecuperarPass$7.class
 view\FrmUsuarioRecuperarPass$1.class
 view\comunicacion\FrmMensajeAdmin$3.class
 view\Reservas\FrmReserva$2.class
+controller\Reservas\CtrReserva$2.class
 model\Usuarios\UsuarioDAC.class
 model\Check_In\RegistroEntrada.class
 model\comunicacion\UsuarioModel.class

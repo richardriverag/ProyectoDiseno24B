@@ -15,11 +15,15 @@ import java.sql.SQLException;
 
 public class Conexion {
 
-    private static String url = "jdbc:mysql://bsifaecly7cl2qm8ent0-mysql.services.clever-cloud.com:3306/bsifaecly7cl2qm8ent0";
+    /*private static String url = "jdbc:mysql://bsifaecly7cl2qm8ent0-mysql.services.clever-cloud.com:3306/bsifaecly7cl2qm8ent0";
     private static String user = "u3cuki32eefgdj5y";
     private static String password = "gbXtPlxPG15rpOmYbqgU";
+    private static Connection myConn = null;*/
+    
+    private static String url = "jdbc:mysql://localhost:3306/sistemaunificado";
+    private static String user = "root";
+    private static String password = "admin2024";
     private static Connection myConn = null;
-
     public static Connection getInstance() {
         if (myConn == null) {
             try {

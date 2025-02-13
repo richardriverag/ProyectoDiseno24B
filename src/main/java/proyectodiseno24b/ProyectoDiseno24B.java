@@ -4,8 +4,13 @@
 
 package proyectodiseno24b;
 
-
-import view.FrmMenuBar;
+import controller.CtrMenuBar;
+import model.Conexion;
+import view.frmMenuBar;
+import view.comunicacion.FrmReporte;
+import view.comunicacion.FrmMensaje;
+import view.comunicacion.FrmMensajeAdmin;
+import view.frmMenuBar;
 
 /**
  *
@@ -14,13 +19,26 @@ import view.FrmMenuBar;
 public class ProyectoDiseno24B {
 
     public static void main(String[] args) {
-        //FrmMensaje frm1 = new FrmMensaje();
-        //FrmMensajeAdmin frma = new FrmMensajeAdmin();
-        //FrmReporte frm = new FrmReporte();
-        FrmMenuBar menu = new FrmMenuBar();
-        menu.setVisible(true);
-        //frm.setVisible(true);
-        //frm1.setVisible(true);
-        //frma.setVisible(true);
+        frmMenuBar frmMB = new frmMenuBar();
+        frmMB.setVisible(true);
+        /*
+         * FrmMensaje frm1 = new FrmMensaje();
+         * FrmMensajeAdmin frma = new FrmMensajeAdmin();
+         * FrmReporte frm = new FrmReporte();
+         * FrmMenuBar frmConP = new FrmMenuBar();
+         * 
+         * Conexion conn = new Conexion();
+         * CtrMenuBar menu = new CtrMenuBar(frmConP);
+         * menu.iniciar();
+         * conn.getInstance();
+         * 
+         * 
+         * //frm.setVisible(true);
+         * //frm1.setVisible(true);
+         * //frma.setVisible(true);
+         * frm.setVisible(true);
+         * frm1.setVisible(true);
+         * frma.setVisible(true);
+         */
     }
 }

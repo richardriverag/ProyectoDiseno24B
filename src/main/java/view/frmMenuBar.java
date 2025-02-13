@@ -37,11 +37,11 @@ import view.inmuebles.FrmPantalla;
  *
  * @author RIBZ
  */
-public class FrmMenuBar extends javax.swing.JFrame {
+public class frmMenuBar extends javax.swing.JFrame {
 
-    private CardLayout cardLayout;  // Declaración a nivel de clase
+    private CardLayout cardLayout; // Declaración a nivel de clase
 
-    public FrmMenuBar() {
+    public frmMenuBar() {
         initComponents();
         this.setSize(1280, 720);
         this.setLocationRelativeTo(null);
@@ -56,22 +56,22 @@ public class FrmMenuBar extends javax.swing.JFrame {
         new CtrCheckIn(this);
 
         // Instancia de los frames
-        //Telecomunicaciones
+        // Telecomunicaciones
         FrmMensaje frmMensaje = new FrmMensaje();
         FrmMensajeAdmin frmMensajeAdmin = new FrmMensajeAdmin();
-        //FrmReporte frmReporte = new FrmReporte();
-        //Inmmuebles
+        // FrmReporte frmReporte = new FrmReporte();
+        // Inmmuebles
         FrmPantalla frmPantallaIn = new FrmPantalla();
-        //Pagos
+        // Pagos
         FrmFinanzas frmFinanzas = new FrmFinanzas();
-        //Espacios Comunes
-        //FrmCancelarReserva frmReservaCancelada = new FrmCancelarReserva();
-        //FrmReserva frmReserva = new FrmReserva();
+        // Espacios Comunes
+        // FrmCancelarReserva frmReservaCancelada = new FrmCancelarReserva();
+        // FrmReserva frmReserva = new FrmReserva();
         // Check-in
         FrmCheckIn frmCheckIn = new FrmCheckIn();
 
         // Configuración de los frames
-        //Telecomunicaciones
+        // Telecomunicaciones
         PanelT1.setLayout(new java.awt.BorderLayout());
         PanelT1.add(frmMensaje.getContentPane(), java.awt.BorderLayout.CENTER);
         PanelT1.setVisible(false);
@@ -84,39 +84,40 @@ public class FrmMenuBar extends javax.swing.JFrame {
         PanelT2.repaint();
         PanelT2.revalidate();
         /*
-        PanelT3.setLayout(new java.awt.BorderLayout());
-        PanelT3.add(frmReporte.getContentPane(), java.awt.BorderLayout.CENTER);
-        PanelT3.setVisible(false);
-        PanelT3.repaint();
-        PanelT3.revalidate();
+         * PanelT3.setLayout(new java.awt.BorderLayout());
+         * PanelT3.add(frmReporte.getContentPane(), java.awt.BorderLayout.CENTER);
+         * PanelT3.setVisible(false);
+         * PanelT3.repaint();
+         * PanelT3.revalidate();
          */
-        //Inmmuebles
+        // Inmmuebles
         PanelI1.setLayout(new java.awt.BorderLayout());
         PanelI1.add(frmPantallaIn.getContentPane(), java.awt.BorderLayout.CENTER);
         PanelI1.setVisible(false);
         PanelI1.repaint();
         PanelI1.revalidate();
 
-        //Pagos
+        // Pagos
         PanelP1.setLayout(new java.awt.BorderLayout());
         PanelP1.add(frmFinanzas.getContentPane(), java.awt.BorderLayout.CENTER);
         PanelP1.setVisible(false);
         PanelP1.repaint();
         PanelP1.revalidate();
 
-        //Espacios Comunes
+        // Espacios Comunes
         /*
-        PanelEC1.setLayout(new java.awt.BorderLayout());
-        PanelEC1.add(frmReserva.getContentPane(), java.awt.BorderLayout.CENTER);
-        PanelEC1.setVisible(false);
-        PanelEC1.repaint();
-        PanelEC1.revalidate();
-        
-        PanelEC2.setLayout(new java.awt.BorderLayout());
-        PanelEC2.add(frmReservaCancelada.getContentPane(), java.awt.BorderLayout.CENTER);
-        PanelEC2.setVisible(false);
-        PanelEC2.repaint();
-        PanelEC2.revalidate();
+         * PanelEC1.setLayout(new java.awt.BorderLayout());
+         * PanelEC1.add(frmReserva.getContentPane(), java.awt.BorderLayout.CENTER);
+         * PanelEC1.setVisible(false);
+         * PanelEC1.repaint();
+         * PanelEC1.revalidate();
+         * 
+         * PanelEC2.setLayout(new java.awt.BorderLayout());
+         * PanelEC2.add(frmReservaCancelada.getContentPane(),
+         * java.awt.BorderLayout.CENTER);
+         * PanelEC2.setVisible(false);
+         * PanelEC2.repaint();
+         * PanelEC2.revalidate();
          */
         // Check-in
         PanelCheckIn1.setLayout(new java.awt.BorderLayout());
@@ -134,7 +135,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuInmuebles = new javax.swing.JMenu();
         jMenuEspaciosComunes = new javax.swing.JMenu();
         jMenuCheckIn = new javax.swing.JMenu();
-        //jMenuConfig = new javax.swing.JMenu();
+        // jMenuConfig = new javax.swing.JMenu();
 
         jMenuIUsuarios1 = new javax.swing.JMenuItem();
         jMenuIUsuarios2 = new javax.swing.JMenuItem();
@@ -143,7 +144,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
 
         jMenuIT1 = new javax.swing.JMenuItem();
         jMenuIT2 = new javax.swing.JMenuItem();
-        //jMenuIT3 = new javax.swing.JMenuItem();
+        // jMenuIT3 = new javax.swing.JMenuItem();
         jMenuITModificar = new javax.swing.JMenuItem();
         jMenuITEliminar = new javax.swing.JMenuItem();
 
@@ -167,21 +168,21 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuICIModificar = new javax.swing.JMenuItem();
         jMenuICIEliminar = new javax.swing.JMenuItem();
 
-        //jMenuISalir = new javax.swing.JMenuItem();
-        //jMenuIModoV = new javax.swing.JMenuItem();
+        // jMenuISalir = new javax.swing.JMenuItem();
+        // jMenuIModoV = new javax.swing.JMenuItem();
         jMenuUsuario.setText("Usuario");
         jMenuUsuario.setIcon(obtenerImagen(logo_Usuario));
         jMenuUsuario.setOpaque(true);
         jMenuUsuario.setBackground(mColorFondoMenu);
         jMenuUsuario.setForeground(Color.WHITE);
         jMenuUsuario.setMaximumSize(new java.awt.Dimension(Short.MAX_VALUE, 50));
-        //MenuItems     
-        jMenuIUsuarios1.setText("MenuItem1");
+        // MenuItems
+        jMenuIUsuarios1.setText("Crear cuenta");
         jMenuIUsuarios2.setText("MenuItem2");
         jMenuIUsuarios3.setText("MenuItem3");
         jMenuIUsuarios4.setText("MenuItem4");
 
-        //MenuTelecomunicaciones
+        // MenuTelecomunicaciones
         jMenuTelecomunicaciones.setText("Telecomunicaciones");
         jMenuTelecomunicaciones.setIcon(obtenerImagen(logo_Telecomunicaciones));
         jMenuTelecomunicaciones.setOpaque(true);
@@ -191,11 +192,11 @@ public class FrmMenuBar extends javax.swing.JFrame {
 
         jMenuIT1.setText("Mensaje");
         jMenuIT2.setText("Mensaje Admin");
-        //jMenuIT3.setText("Reporte");
+        // jMenuIT3.setText("Reporte");
         jMenuITModificar.setText("MenuItem3");
         jMenuITEliminar.setText("MenuItem4");
 
-        //MenuPagos
+        // MenuPagos
         jMenuPagos.setText("Pagos");
         jMenuPagos.setIcon(obtenerImagen(logo_Pagos));
         jMenuPagos.setOpaque(true);
@@ -208,7 +209,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuIPModificar.setText("MenuItem3");
         jMenuIPEliminar.setText("MenuItem4");
 
-        //MenuInmuebles
+        // MenuInmuebles
         jMenuInmuebles.setText("Inmuebles");
         jMenuInmuebles.setIcon(obtenerImagen(logo_Inmuebles));
         jMenuInmuebles.setOpaque(true);
@@ -220,7 +221,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuIIModificar.setText("MenuItem3");
         jMenuIIEliminar.setText("MenuItem4");
 
-        //MenuEspaciosComunes
+        // MenuEspaciosComunes
         jMenuEspaciosComunes.setText("Espacios Comunes");
         jMenuEspaciosComunes.setIcon(obtenerImagen(logo_EspaciosComunes));
         jMenuEspaciosComunes.setOpaque(true);
@@ -233,7 +234,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuIECModificar.setText("MenuItem3");
         jMenuIECEliminar.setText("MenuItem4");
 
-        //MenuCheckIn
+        // MenuCheckIn
         jMenuCheckIn = new javax.swing.JMenu();
         jMenuCheckIn.setText("Check-In");
         jMenuCheckIn.setIcon(obtenerImagen(logo_CheckIn));
@@ -246,69 +247,69 @@ public class FrmMenuBar extends javax.swing.JFrame {
         jMenuICIModificar.setText("MenuItem3");
         jMenuICIEliminar.setText("MenuItem4");
 
-        //jMenuISalir.setText("Cerrar Sesión");
-        //jMenuIModoV.setText("modo");
-        //Botones
-        //Usuarios
+        // jMenuISalir.setText("Cerrar Sesión");
+        // jMenuIModoV.setText("modo");
+        // Botones
+        // Usuarios
         jMenuUsuario.addActionListener((ActionEvent e) -> {
             cambiarPanel("Usuarios");
         });
 
         jMenuUsuario.add(jMenuIUsuarios1);
         jMenuUsuario.add(jMenuIUsuarios2);
-        //jMenuUsuario.add(jMenuIUsuarios3);
-        //jMenuUsuario.add(jMenuIUsuarios4);
+        // jMenuUsuario.add(jMenuIUsuarios3);
+        // jMenuUsuario.add(jMenuIUsuarios4);
 
-        //Telecomunicaciones
+        // Telecomunicaciones
         jMenuTelecomunicaciones.addActionListener((ActionEvent e) -> {
             cambiarPanelFrm("Telecomunicaciones");
         });
 
         jMenuTelecomunicaciones.add(jMenuIT1);
         jMenuTelecomunicaciones.add(jMenuIT2);
-        //jMenuTelecomunicaciones.add(jMenuIT3);
-        //jMenuTelecomunicaciones.add(jMenuITModificar);
-        //jMenuTelecomunicaciones.add(jMenuITEliminar);
+        // jMenuTelecomunicaciones.add(jMenuIT3);
+        // jMenuTelecomunicaciones.add(jMenuITModificar);
+        // jMenuTelecomunicaciones.add(jMenuITEliminar);
 
-        //Pagos
+        // Pagos
         jMenuPagos.addActionListener((ActionEvent e) -> {
             cambiarPanel("Pagos");
         });
 
         jMenuPagos.add(jMenuIP1);
         jMenuPagos.add(jMenuIP2);
-        //jMenuPagos.add(jMenuIPModificar);
-        //jMenuPagos.add(jMenuIPEliminar);
+        // jMenuPagos.add(jMenuIPModificar);
+        // jMenuPagos.add(jMenuIPEliminar);
 
-        //Inmuebles
+        // Inmuebles
         jMenuInmuebles.addActionListener((ActionEvent e) -> {
             cambiarPanelFrm("Inmuebles");
         });
 
         jMenuInmuebles.add(jMenuII1);
         jMenuInmuebles.add(jMenuII2);
-        //jMenuInmuebles.add(jMenuIIModificar); 
-        //jMenuInmuebles.add(jMenuIIEliminar); 
+        // jMenuInmuebles.add(jMenuIIModificar);
+        // jMenuInmuebles.add(jMenuIIEliminar);
 
-        //Espacios Comunes
+        // Espacios Comunes
         jMenuEspaciosComunes.addActionListener((ActionEvent e) -> {
             cambiarPanelFrm("Espacios Comunes");
         });
 
         jMenuEspaciosComunes.add(jMenuIEC1);
         jMenuEspaciosComunes.add(jMenuIEC2);
-        //jMenuEspaciosComunes.add(jMenuIECModificar); 
-        //jMenuEspaciosComunes.add(jMenuIECEliminar); 
+        // jMenuEspaciosComunes.add(jMenuIECModificar);
+        // jMenuEspaciosComunes.add(jMenuIECEliminar);
 
-        //Check-In
+        // Check-In
         jMenuCheckIn.addActionListener((ActionEvent e) -> {
             cambiarPanelFrm("Check In");
         });
         jMenuCheckIn.add(jMenuICI1);
 
-        //jMenuCheckIn.add(jMenuICIModificar); 
-        //jMenuCheckIn.add(jMenuICIEliminar); 
-        //Modulos en el Menu Bar
+        // jMenuCheckIn.add(jMenuICIModificar);
+        // jMenuCheckIn.add(jMenuICIEliminar);
+        // Modulos en el Menu Bar
         mbMenuBar.add(jMenuUsuario);
         mbMenuBar.add(jMenuTelecomunicaciones);
         mbMenuBar.add(jMenuPagos);
@@ -321,29 +322,33 @@ public class FrmMenuBar extends javax.swing.JFrame {
 
         // Ancho igual al frame y altura 50
         // Crear una nueva fuente
-        /*java.awt.Font font = new java.awt.Font("Arial", java.awt.Font.BOLD, 16); // Tamaño de fuente 14 y estilo negrita
-
-        // Establecer la fuente para cada JMenu
-        jMenuUsuario.setFont(font);
-        java.awt.Font font1 = new java.awt.Font("Arial", java.awt.Font.ROMAN_BASELINE, 16); // Tamaño de fuente 14 y estilo negrita
-        jMenuIUsuarios1.setFont(font1);
-        jMenuIUsuarios2.setFont(font1);
-        jMenuIUsuarios3.setFont(font1);
-        jMenuIUsuarios4.setFont(font1);*/
+        /*
+         * java.awt.Font font = new java.awt.Font("Arial", java.awt.Font.BOLD, 16); //
+         * Tamaño de fuente 14 y estilo negrita
+         * 
+         * // Establecer la fuente para cada JMenu
+         * jMenuUsuario.setFont(font);
+         * java.awt.Font font1 = new java.awt.Font("Arial",
+         * java.awt.Font.ROMAN_BASELINE, 16); // Tamaño de fuente 14 y estilo negrita
+         * jMenuIUsuarios1.setFont(font1);
+         * jMenuIUsuarios2.setFont(font1);
+         * jMenuIUsuarios3.setFont(font1);
+         * jMenuIUsuarios4.setFont(font1);
+         */
         //////////////////////////
         btnSalir.setFocusable(false);
         btnSalir.setBackground(Color.RED);
         btnSalir.setForeground(Color.WHITE);
         btnSalir.setBorderPainted(false);
-        //mbMenuBar.add(btnSalir);
+        // mbMenuBar.add(btnSalir);
 
         panelBotones.setBackground(new Color(47, 79, 79));
-        //panelBotones.setLayout(new GridLayout(1, 2));
+        // panelBotones.setLayout(new GridLayout(1, 2));
         panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.X_AXIS));
 
-        panelBotones.add(Box.createHorizontalGlue());  // Agrega espacio flexible antes de los bo
+        panelBotones.add(Box.createHorizontalGlue()); // Agrega espacio flexible antes de los bo
         panelBotones.add(btnSalir);
-        panelBotones.add(Box.createHorizontalGlue());  // Agrega espacio flexible después de los botones
+        panelBotones.add(Box.createHorizontalGlue()); // Agrega espacio flexible después de los botones
 
         mbMenuBar.add(panelBotones);
 
@@ -364,7 +369,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
         if (panel.equals("Telecomunicaciones")) {
             PanelT1.setVisible(true);
             PanelT2.setVisible(true);
-            //PanelT3.setVisible(true);
+            // PanelT3.setVisible(true);
         }
         if (panel.equals("Inmuebles")) {
             PanelI1.setVisible(true);
@@ -392,13 +397,33 @@ public class FrmMenuBar extends javax.swing.JFrame {
      * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         PanelPrincipal = new javax.swing.JPanel();
         PanelUsuarios = new javax.swing.JPanel();
         PanelGuardar = new javax.swing.JPanel();
+        txtCedulaUsuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        txtNombreUsuario = new javax.swing.JTextField();
+        txtCorreoUsuario = new javax.swing.JTextField();
+        txtPassUsuario = new javax.swing.JPasswordField();
+        txtPassConfirmarUsuario = new javax.swing.JPasswordField();
+        txtTelefonoUsuario = new javax.swing.JTextField();
+        comboRolUsuario = new javax.swing.JComboBox<>();
+        txtSueldo = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        btnCrearUsuario = new javax.swing.JButton();
         PanerBuscar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         PanelModificar = new javax.swing.JPanel();
@@ -428,14 +453,248 @@ public class FrmMenuBar extends javax.swing.JFrame {
         PanelUsuarios.setBackground(new java.awt.Color(80, 200, 120));
         PanelPrincipal.add(PanelUsuarios, "card2");
 
-        PanelGuardar.setBackground(new java.awt.Color(89, 116, 112));
+        PanelGuardar.setBackground(new java.awt.Color(255, 248, 237));
+
+        txtCedulaUsuario.setText(" ");
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel1.setFont(new java.awt.Font("Source Code Pro Light", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Source Code Pro Light", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Guardar ");
+        jLabel1.setText("Crear cuenta");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        PanelGuardar.add(jLabel1);
+
+        txtNombreUsuario.setText(" ");
+        txtNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreUsuarioActionPerformed(evt);
+            }
+        });
+
+        txtCorreoUsuario.setText(" ");
+        txtCorreoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoUsuarioActionPerformed(evt);
+            }
+        });
+
+        txtTelefonoUsuario.setText(" ");
+
+        comboRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(
+                new String[] { "Residente", "Administrador", "Guardia", "Limpieza", "Mantenimiento" }));
+
+        txtSueldo.setText(" ");
+        txtSueldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSueldoActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel5.setText("Rol");
+
+        jLabel6.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel6.setText("Número de cédula");
+
+        jLabel7.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel7.setText("Confirmar contraseña");
+
+        jLabel8.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel8.setText("Nombre");
+
+        jLabel9.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel9.setText("Contraseña");
+
+        jLabel10.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel10.setText("Teléfono");
+
+        jLabel11.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel11.setText("Correo electrónico");
+
+        jLabel13.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
+        jLabel13.setText("Fecha contratación");
+
+        jLabel14.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
+        jLabel14.setText("Sueldo");
+
+        btnCrearUsuario.setText("Crear");
+        btnCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearUsuarioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelGuardarLayout = new javax.swing.GroupLayout(PanelGuardar);
+        PanelGuardar.setLayout(PanelGuardarLayout);
+        PanelGuardarLayout.setHorizontalGroup(
+                PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                .addGap(402, 402, 402)
+                                .addGroup(PanelGuardarLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                .addGroup(PanelGuardarLayout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(PanelGuardarLayout
+                                                                .createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                                        false)
+                                                                .addComponent(txtCedulaUsuario)
+                                                                .addComponent(jLabel6,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        Short.MAX_VALUE))
+                                                        .addComponent(jLabel8)
+                                                        .addComponent(txtNombreUsuario,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 163,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(59, 59, 59)
+                                                .addGroup(PanelGuardarLayout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel9)
+                                                        .addComponent(txtPassUsuario,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 159,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(txtPassConfirmarUsuario,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 160,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                .addGroup(PanelGuardarLayout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                                .addGroup(PanelGuardarLayout.createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                                        false)
+                                                                        .addComponent(txtCorreoUsuario)
+                                                                        .addComponent(jLabel11))
+                                                                .addGap(58, 58, 58)
+                                                                .addGroup(PanelGuardarLayout.createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jLabel10,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)
+                                                                        .addGroup(PanelGuardarLayout
+                                                                                .createSequentialGroup()
+                                                                                .addComponent(txtTelefonoUsuario,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                        161,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addGap(195, 195, 195))))
+                                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                                .addGroup(PanelGuardarLayout.createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(txtSueldo,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                157,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jLabel14))
+                                                                .addGap(59, 59, 59)
+                                                                .addGroup(PanelGuardarLayout.createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jLabel13)
+                                                                        .addComponent(jDateChooser1,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                177,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGap(134, 134, 134))))
+                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                .addGroup(PanelGuardarLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                .addGap(436, 436, 436)
+                                                .addComponent(jLabel1))
+                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                .addGap(530, 530, 530)
+                                                .addComponent(jLabel5)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(comboRolUsuario, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelGuardarLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCrearUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 110,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(503, 503, 503)));
+        PanelGuardarLayout.setVerticalGroup(
+                PanelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jLabel1)
+                                .addGap(35, 35, 35)
+                                .addGroup(PanelGuardarLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtCedulaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                .addComponent(jLabel9)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtPassUsuario, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PanelGuardarLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                .addComponent(jLabel7)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtPassConfirmarUsuario,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                .addComponent(jLabel8)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PanelGuardarLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                .addComponent(jLabel11)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtCorreoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(PanelGuardarLayout.createSequentialGroup()
+                                                .addGap(1, 1, 1)
+                                                .addComponent(jLabel10)
+                                                .addGap(5, 5, 5)
+                                                .addComponent(txtTelefonoUsuario,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28,
+                                        Short.MAX_VALUE)
+                                .addGroup(PanelGuardarLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(comboRolUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PanelGuardarLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel13)
+                                        .addComponent(jLabel14))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PanelGuardarLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtSueldo, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36)
+                                .addComponent(btnCrearUsuario)
+                                .addGap(75, 75, 75)));
 
         PanelPrincipal.add(PanelGuardar, "card3");
 
@@ -531,12 +790,28 @@ public class FrmMenuBar extends javax.swing.JFrame {
     public javax.swing.JPanel PanelUsuarios;
     private javax.swing.JPanel PanerBuscar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar mbMenuBar;
+    public javax.swing.JTextField txtCedulaUsuario;
+    public javax.swing.JTextField txtCorreoUsuario;
+    public javax.swing.JTextField txtNombreUsuario;
+    public javax.swing.JPasswordField txtPassConfirmarUsuario;
+    public javax.swing.JPasswordField txtPassUsuario;
+    public javax.swing.JTextField txtSueldo;
+    public javax.swing.JTextField txtTelefonoUsuario;
     // End of variables declaration//GEN-END:variables
- // Declaración de los menús
+    // Declaración de los menús
     public javax.swing.JMenu jMenuUsuario;
     public javax.swing.JMenuItem jMenuIUsuarios1;
     public javax.swing.JMenuItem jMenuIUsuarios2;
@@ -573,8 +848,8 @@ public class FrmMenuBar extends javax.swing.JFrame {
     public javax.swing.JMenuItem jMenuICIEliminar;
     public javax.swing.JMenuItem jMenuICIModificar;
 
-    //public javax.swing.JMenu jMenuConfig;
-    //public javax.swing.JMenuItem jMenuISalir;
+    // public javax.swing.JMenu jMenuConfig;
+    // public javax.swing.JMenuItem jMenuISalir;
     public String logo_Usuario = "/imagenes/clientes.png";
     public String logo_Telecomunicaciones = "/imagenes/telecomunicaciones.png";
     public String logo_Pagos = "/imagenes/metodo-de-pago.png";
@@ -586,7 +861,7 @@ public class FrmMenuBar extends javax.swing.JFrame {
 
     // Crear los botones con iconos
     JButton btnSalir = new JButton("Salir");
-    // End of variables declaration         
+    // End of variables declaration
     JPanel panelBotones = new JPanel();
 
 }

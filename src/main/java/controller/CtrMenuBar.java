@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import view.FrmMenuBar;
+import view.frmMenuBar;
 
 
 /**
@@ -17,10 +17,10 @@ import view.FrmMenuBar;
  * @author RIBZ
  */
 public class CtrMenuBar  implements ActionListener{
-    private FrmMenuBar frmConP;
+    private frmMenuBar frmConP;
     
     
-    public CtrMenuBar(FrmMenuBar frmContenedorPrincipal){
+    public CtrMenuBar(frmMenuBar frmContenedorPrincipal){
         this.frmConP = frmContenedorPrincipal;
        
     }

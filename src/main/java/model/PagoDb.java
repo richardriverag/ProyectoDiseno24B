@@ -81,6 +81,22 @@ public class PagoDb extends Conexion{
                 ps.setString(4, p.getFecha());
                 ps.execute();
                 ps.close();
+                /*String sql3 = "INSERT INTO `cuota` (`cedula`, `monto`, `fecha_emision`, `tipo`,`descripcion`, `estado`) "
+                    + "VALUES (?, ?, ?, ?,?,?);";
+                try{
+                    ps = con.prepareStatement(sql3);
+                    ps.setString(1, usuario.getCedula());
+                    ps.setString(2, p.getMonto());
+                    ps.setString(3, p.getFecha());
+                    ps.setString(4, p.getMetodo());
+                    ps.setString(5, p.getDesc());
+                    ps.setString(6, "Pendiente");
+                    ps.execute();
+                    ps.close();
+                }catch(SQLException e){
+                    System.err.println(e);
+                    return false;
+                }*/
                 return true;
             }catch(SQLException e){
                 System.err.println(e);
@@ -95,16 +111,16 @@ public class PagoDb extends Conexion{
         PreparedStatement ps;
        ResultSet rs;
         Connection con = getInstance();
-        String sql = "Select * from transaccion where id="+id;
+        String sql = "Select * from cuota where id="+id;
         try{
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             if(rs.next()){
-                p.setCedula(rs.getString("cedula_usuario"));
+                p.setCedula(rs.getString("id"));
                 p.setMonto(rs.getString("monto"));
-                p.setFecha(rs.getString("fecha"));
-                p.setTipo(rs.getString("tipo"));
-                p.setDesc(rs.getString("descripcion"));
+                p.setFecha(rs.getString("fecha_pago"));
+                p.setTipo(rs.getString("estado"));
+                //p.setDesc(rs.getString("descripcion"));
                 ps.close();
                 return true;
             }else{
@@ -117,19 +133,19 @@ public class PagoDb extends Conexion{
         }
     }
     public static boolean actualizar(Pago p,String id){
+
+
+
         System.out.println("Entro en actualizar");
         PreparedStatement ps;
         Connection con = getInstance();
-        String sql = "UPDATE transaccion SET  cedula_usuario=?,monto=?,fecha=?,tipo=?,descripcion=? "
-                + "WHERE id = ?";
+
+        String sql = "UPDATE multa SET estado='Pagado' "
+            + "WHERE id = ?";
         try{
             ps = con.prepareStatement(sql);
-            ps.setString(1, p.getCedula());
-            ps.setString(2, p.getMonto());
-            ps.setString(3, p.getFecha());
-            ps.setString(4, p.getTipo());
-            ps.setString(5, p.getDesc());
-            ps.setString(6, id);
+            ps.setString(1, id);
+
             ps.execute();
             ps.close();
             return true;

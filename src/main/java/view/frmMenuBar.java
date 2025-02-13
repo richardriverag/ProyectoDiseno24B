@@ -997,9 +997,9 @@ public class frmMenuBar extends javax.swing.JFrame {
         PagosSoloVerLayout.setHorizontalGroup(
             PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PagosSoloVerLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
+                .addGap(479, 479, 479)
                 .addComponent(PagosBotonSoloVer)
-                .addContainerGap(1092, Short.MAX_VALUE))
+                .addContainerGap(729, Short.MAX_VALUE))
             .addGroup(PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PagosSoloVerLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1009,9 +1009,9 @@ public class frmMenuBar extends javax.swing.JFrame {
         PagosSoloVerLayout.setVerticalGroup(
             PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PagosSoloVerLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
+                .addGap(71, 71, 71)
                 .addComponent(PagosBotonSoloVer)
-                .addContainerGap(617, Short.MAX_VALUE))
+                .addContainerGap(633, Short.MAX_VALUE))
             .addGroup(PagosSoloVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PagosSoloVerLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)

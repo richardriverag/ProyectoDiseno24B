@@ -170,5 +170,5 @@ CREATE TABLE AnuncioGeneral (
     contenido TEXT NOT NULL,
     fechaCreacion DATETIME NOT NULL,
     idAdministrador INT,
-    FOREIGN KEY (idAdministrador) REFERENCES Administrador(idAdministrador)
+    FOREIGN KEY (idAdministrador) REFERENCES Usuario(id)
 );

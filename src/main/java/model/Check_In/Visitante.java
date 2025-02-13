@@ -17,6 +17,7 @@ public class Visitante {
     private String detallesContacto;
     private String motivoVisita;
 
+
     public int getId() {
         return id;
     }
